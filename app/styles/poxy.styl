@@ -1,0 +1,51 @@
+@import 'poxy-vars'
+
+section
+  display block
+  float left
+  margin 0
+  overflow hidden
+  padding 0
+  width 100%
+
+.site-width
+  display block
+  float left
+  margin 0 auto
+  width: 100%
+
+.copy-width
+  display block
+  position relative
+
+.copy-inside
+  display inline-block
+
+.copy-width,
+section:before,
+section:after
+  margin 0 auto
+
+// i = 4
+// while i < 7 {
+//   .copy-width,
+//   section:before,
+//   section:after {
+//
+//     @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)) {
+//       width: ((($i - .5) * ($column + $gutter) - $gutter) / $em);
+// 		}
+// 	}
+//
+//   $i: $i + .5 !global;
+// }
+
+
+
+
+// for i in (1..$zone-a-max)
+//   .copy-width,
+//   section:before,
+//   section:after
+//     @media (min-width:((i * ($column + $gutter) - $gutter) / $em))
+//       width: (((i - 2) * ($column + $gutter) - $gutter) / $em)
