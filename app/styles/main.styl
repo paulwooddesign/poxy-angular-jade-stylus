@@ -1,4 +1,84 @@
 @import 'poxy'
+
+
+//////////////////////////////////////////////////////////////////////
+// Meat
+/////////////////////////////////////////////////////////////////////
+#meat{
+  padding:0;
+  display:block;
+  background-color:$meat_bg;
+  //.page img, .vip img, article img, .ring-finder img {width:100%; height:auto;}
+  article img, .ring-finder img{width:100%; height:auto;}
+
+  //#page-head-banner{background-color:darken($emphasis, 20%);}
+  #page-head-banner .site-width:before, #page-head-banner .site-width:after {height:1px;}
+  section .site-width{float:left;}
+
+ 	section .site-width:before, section .site-width:after{height:$sy; float:left; width:100%; content:""; }
+
+  section .site-width:before, section .site-width:after {@include zone(beta) { height:$sy; }}
+	section .site-width:before, section .site-width:after {@include zone(gamma) { height:$sy; }}
+	section .site-width:before, section .site-width:after {@include zone(delta) { height:$sy; }}
+	section .site-width:before, section .site-width:after {@include zone(epsilon) { height:$sy/2; }}
+
+
+	// section .site-width:before {@include zone(alpha) { height:$sy/2; }}
+	// section .site-width:before {@include zone(beta) { height:0; }}
+	// section .site-width:before {@include zone(gamma) { height:0; }}
+	// section .site-width:before {@include zone(delta) { height:0; }}
+	// section .site-width:before {@include zone(epsilon) { height:0; }}
+
+
+  section:before{
+    background-image:$main_border_background_image;
+    border-top: 0px solid $main_top_border_color;
+    //border-bottom: 1px solid #fff;
+    height:1px; display:block; content:"";
+  }
+
+  //section .site-width{background:rgba(0,0,0, 1) !important; }
+  //section .site-width:before{background:rgba(0,0,0, .3) !important; float:left;}
+  section:nth-child(1):before{width:100% !important; }
+  section:nth-child(2):before{width:100% !important; }
+  //section:first-child:before, section:first-child:after{height:0;}
+  //section:last-child .site-width:after{margin-top:$cols1 !important;}
+  .site-width{margin:$spacer/8 0; background: #f7f7f7 url(images/dot-bg.png) repeat center top;
+
+    background: #f5f5f5;
+    background-color: #f7f7f7;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(lighten(#e7e7e7, 3%)));
+    background-image: -webkit-linear-gradient(top, #efefef, lighten(#e7e7e7, 3%));
+    background-image: -moz-linear-gradient(top, #efefef, lighten(#e7e7e7, 3%));
+    background-image: -ms-linear-gradient(top, #efefef, lighten(#e7e7e7, 3%));
+    background-image: -o-linear-gradient(top, #efefef, lighten(#e7e7e7, 3%));
+
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(lighten(#e7e7e7, 3%)));
+    background-image: -webkit-linear-gradient(top, #efefef, lighten(#e7e7e7, 3%));
+    background-image: -moz-linear-gradient(top, #efefef, lighten(#e7e7e7, 3%));
+    background-image: -ms-linear-gradient(top, #efefef, lighten(#e7e7e7, 3%));
+    background-image: -o-linear-gradient(top, #efefef, lighten(#e7e7e7, 3%));
+
+
+
+  }
+}
+
+
+#meat:first-child section:first-child:after{width:100% !important}
+
+#meat:after, footer:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+}
+
+
+
+
 //
 // body
 //   padding-top 20px
