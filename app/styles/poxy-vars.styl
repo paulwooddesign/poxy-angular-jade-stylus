@@ -36,6 +36,10 @@ $zone-e-min = 4
 
 
 
+// SIZE ARRAY
+$sizes = (A 1 1) (A 2 1) (A 3 1)
+
+
 //////////////////////////////////////////////////////////////////////
 // FRAMLESS GRID SETTINGS - Joni Korpi - http://framelessgrid.com/
 /////////////////////////////////////////////////////////////////////
@@ -81,7 +85,6 @@ $cols39 = (39 * ($column + $gutter) - $gutter) / $em
 $cols40 = (40 * ($column + $gutter) - $gutter) / $em
 $cols41 = (41 * ($column + $gutter) - $gutter) / $em
 
-
 // Virtical Gutter Width
 $gx = ($gutter) / $em
 
@@ -104,3 +107,41 @@ $s7 = ($spacer / 7)
 $s8 = ($spacer / 8)
 $s9 = ($spacer / 9)
 $s10 = ($spacer / 10)
+
+
+/////////////////////////////////
+// Copy Width - Everything is based on this width
+/////////////////////////////////
+
+.copy-width
+  for i in (1..$max-copy-width)
+    @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)em)
+        width: ((((i - 2) * ($column + $gutter) - $gutter) / $em)em)
+
+
+/////////////////////////////////
+// Function Poxy Scale
+/////////////////////////////////
+
+poxy-scale-x($i, $scale, $x1, $x2)
+  if $scale == E
+    return ((((($i - .5)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)em
+  else
+    return ((((($i - 2)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)em
+
+poxy-zone-width($zone, $zone-class-lower, $zone-min, $zone-max)
+  for $i in ($zone-min..$zone-max)
+    for $size in $sizes
+      if $size[0] == $zone
+        for $i in ($zone-min..$zone-max)
+          @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)em)
+            for $i2 in (1..9)
+              \[class\*\={$zone-class-lower}\_{$size[1]}{$i2}\]
+                 width poxy-scale-x($i, $size[0], $size[1], $i2)
+
+poxy-zone-width(A, a, $zone-a-min, $zone-a-max)
+
+// poxy-zone-width(E, e, $zone-e-min, $zone-e-max)
+// poxy-zone-width(D, d, $zone-d-min, $zone-d-max)
+// poxy-zone-width(C, c, $zone-c-min, $zone-c-max)
+// poxy-zone-width(B, b, $zone-b-min, $zone-b-max)

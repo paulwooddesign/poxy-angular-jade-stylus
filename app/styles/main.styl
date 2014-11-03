@@ -1,6 +1,188 @@
-@import 'poxy'
+/////////////////////////////////
+// GRID SETTINGS
+/////////////////////////////////
+
+$font-size = 16px // Your base font-size in pixels
+$em = $font-size / 1em	// Shorthand for outputting ems
+$column = 48px	// The column-width of your grid in pixels
+$gutter = 24px
+$gutter-y = 24px
+$max-copy-width = 20
 
 
+/////////////////////////////////
+// ZONE SETTINGS
+/////////////////////////////////
+//Class Scale Range
+//$ratio-range:$box-ratio-range;
+
+$zone-a-max = $max-copy-width
+$zone-a-min = 15
+
+$zone-b-max = 14
+$zone-b-min = 12
+
+$zone-c-max = 11
+$zone-c-min = 10
+
+$zone-d-max = 9
+$zone-d-min = 7
+
+$zone-e-max = 6
+$zone-e-min = 4
+
+// $ZONE_F_MAX = 6
+// $ZONE_F_MIN = 4
+
+
+
+// SIZE ARRAY
+$sizes = (A 1 1) (A 2 1) (A 3 1)
+
+
+//////////////////////////////////////////////////////////////////////
+// FRAMLESS GRID SETTINGS - Joni Korpi - http://framelessgrid.com/
+/////////////////////////////////////////////////////////////////////
+$cols1 = (1 * ($column + $gutter) - $gutter) / $em
+$cols2 = (2 * ($column + $gutter) - $gutter) / $em
+$cols3 = (3 * ($column + $gutter) - $gutter) / $em
+$cols4 = (4 * ($column + $gutter) - $gutter) / $em
+$cols5 = (5 * ($column + $gutter) - $gutter) / $em
+$cols6 = (6 * ($column + $gutter) - $gutter) / $em
+$cols7 = (7 * ($column + $gutter) - $gutter) / $em
+$cols8 = (8 * ($column + $gutter) - $gutter) / $em
+$cols9 = (9 * ($column + $gutter) - $gutter) / $em
+$cols10 = (10 * ($column + $gutter) - $gutter) / $em
+$cols11 = (11 * ($column + $gutter) - $gutter) / $em
+$cols12 = (12 * ($column + $gutter) - $gutter) / $em
+$cols13 = (13 * ($column + $gutter) - $gutter) / $em
+$cols14 = (14 * ($column + $gutter) - $gutter) / $em
+$cols15 = (15 * ($column + $gutter) - $gutter) / $em
+$cols16 = (16 * ($column + $gutter) - $gutter) / $em
+$cols17 = (17 * ($column + $gutter) - $gutter) / $em
+$cols18 = (18 * ($column + $gutter) - $gutter) / $em
+$cols19 = (19 * ($column + $gutter) - $gutter) / $em
+$cols20 = (20 * ($column + $gutter) - $gutter) / $em
+$cols21 = (21 * ($column + $gutter) - $gutter) / $em
+$cols22 = (22 * ($column + $gutter) - $gutter) / $em
+$cols23 = (23 * ($column + $gutter) - $gutter) / $em
+$cols24 = (24 * ($column + $gutter) - $gutter) / $em
+$cols25 = (25 * ($column + $gutter) - $gutter) / $em
+$cols26 = (26 * ($column + $gutter) - $gutter) / $em
+$cols27 = (27 * ($column + $gutter) - $gutter) / $em
+$cols28 = (28 * ($column + $gutter) - $gutter) / $em
+$cols29 = (29 * ($column + $gutter) - $gutter) / $em
+$cols30 = (30 * ($column + $gutter) - $gutter) / $em
+$cols31 = (31 * ($column + $gutter) - $gutter) / $em
+$cols32 = (32 * ($column + $gutter) - $gutter) / $em
+$cols33 = (33 * ($column + $gutter) - $gutter) / $em
+$cols34 = (34 * ($column + $gutter) - $gutter) / $em
+$cols35 = (35 * ($column + $gutter) - $gutter) / $em
+$cols36 = (36 * ($column + $gutter) - $gutter) / $em
+$cols37 = (37 * ($column + $gutter) - $gutter) / $em
+$cols38 = (38 * ($column + $gutter) - $gutter) / $em
+$cols39 = (39 * ($column + $gutter) - $gutter) / $em
+$cols40 = (40 * ($column + $gutter) - $gutter) / $em
+$cols41 = (41 * ($column + $gutter) - $gutter) / $em
+
+// Virtical Gutter Width
+$gx = ($gutter) / $em
+
+// Horizontal Gutter Height
+$gy = ($gutter-y) / $em
+
+//spacer/Shiv - margin rythem
+$spacer = $gx
+$sx = $gx
+$sy = $gy
+
+
+$s1 = ($spacer / 1)
+$s2 = ($spacer / 2)
+$s3 = ($spacer / 3)
+$s4 = ($spacer / 4)
+$s5 = ($spacer / 5)
+$s6 = ($spacer / 6)
+$s7 = ($spacer / 7)
+$s8 = ($spacer / 8)
+$s9 = ($spacer / 9)
+$s10 = ($spacer / 10)
+
+
+/////////////////////////////////
+// Copy Width - Everything is based on this width
+/////////////////////////////////
+
+.copy-width
+  for i in (1..$max-copy-width)
+    @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)em)
+        width: ((((i - 2) * ($column + $gutter) - $gutter) / $em)em)
+
+
+/////////////////////////////////
+// Function Poxy Scale
+/////////////////////////////////
+
+poxy-scale-x($i, $scale, $x1, $x2)
+  if $scale == E
+    return ((((($i - .5)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)em
+  else
+    return ((((($i - 2)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)em
+
+poxy-zone-width($zone, $zone-class-lower, $zone-min, $zone-max)
+  for $i in ($zone-min..$zone-max)
+    for $size in $sizes
+      if $size[0] == $zone
+        for $i in ($zone-min..$zone-max)
+          @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)em)
+            for $i2 in (1..9)
+              \[class\*\={$zone-class-lower}\_{$size[1]}{$i2}\]
+                 width poxy-scale-x($i, $size[0], $size[1], $i2)
+
+poxy-zone-width(A, a, $zone-a-min, $zone-a-max)
+
+// poxy-zone-width(E, e, $zone-e-min, $zone-e-max)
+// poxy-zone-width(D, d, $zone-d-min, $zone-d-max)
+// poxy-zone-width(C, c, $zone-c-min, $zone-c-max)
+// poxy-zone-width(B, b, $zone-b-min, $zone-b-max)
+
+
+
+
+
+
+
+.container
+  font-size: 100%
+
+section
+  display block
+  float left
+  margin 0
+  overflow hidden
+  padding 0
+  width 100%
+
+.site-width
+  display block
+  float left
+  margin 0 auto
+  width: 100%
+
+.copy-width
+  display block
+  position relative
+
+.copy-inside
+  display inline-block
+
+.copy-width,
+section:before,
+section:after
+  margin 0 auto
+
+figure
+  float left
 
 
 //////////////////////////////////////////////////////////////////////
@@ -58,76 +240,3 @@ footer:after
      content ""
      clear both
      height 0
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-// body
-//   padding-top 20px
-//   padding-bottom 20px
-//
-// .header,
-// .marketing,
-// .footer
-//   padding-left 15px
-//   padding-right 15px
-//
-// .header
-//   border-bottom 1px solid #e5e5e5
-//   margin-bottom 30px
-//
-//   h3
-//     margin-top 0
-//     margin-bottom 0
-//     line-height 40px
-//     padding-bottom 19px
-//
-// .footer
-//   padding-top 19px
-//   color #777
-//   border-top 1px solid #e5e5e5
-//
-// @media (min-width:768px)
-//   .container
-//     max-width 730px
-//
-// @media screen and (min-width: 768px)
-//   .header,
-//   .marketing,
-//   .footer
-//     padding-left 0
-//     padding-right 0
-//
-// .container-narrow
-//   & > hr
-//     margin 30px 0
-//
-// .jumbotron
-//   text-align center
-//   border-bottom 1px solid #e5e5e5
-//   border-bottom 0
-//   .btn
-//     font-size 21px
-//     padding 14px 24px
-//
-// .marketing
-//   margin 40px 0
-//   p
-//     & + h4
-//       margin-top 28px
