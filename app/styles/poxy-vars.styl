@@ -122,6 +122,8 @@ $s10 = ($spacer / 10)
 /////////////////////////////////
 // Function Poxy Scale
 /////////////////////////////////
+poxy-class-x($zone-class-lower, $size, $i2)
+    return [class{$zone-class-lower}_{$size}{$i2}]
 
 poxy-scale-x($i, $scale, $x1, $x2)
   if $scale == E
@@ -136,7 +138,7 @@ poxy-zone-width($zone, $zone-class-lower, $zone-min, $zone-max)
         for $i in ($zone-min..$zone-max)
           @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)em)
             for $i2 in (1..9)
-              \[class\*\={$zone-class-lower}\_{$size[1]}{$i2}\]
+              poxy-class-x($zone-class-lower, $size[1], $i2)
                  width poxy-scale-x($i, $size[0], $size[1], $i2)
 
 poxy-zone-width(A, a, $zone-a-min, $zone-a-max)
