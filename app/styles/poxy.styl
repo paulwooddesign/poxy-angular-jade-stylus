@@ -1,43 +1,271 @@
-// html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, nav, section, menu, time, mark, audio, video, canvas
-//   margin 0
-//   padding 0
-//   border 0
-//
-// .container
-//   font-size: 100%
-//
-// section
-//   display block
-//   float left
-//   margin 0
-//   overflow hidden
-//   padding 0
-//   width 100%
-//
-// .site-width
-//   display block
-//   float left
-//   margin 0 auto
-//   width: 100%
-//
-// .copy-width
-//   display block
-//   position relative
-//   margin 0 auto
-//   background #333
-//
-// .copy-inside
-//   display inline-block
-//
-// section:before,
-// section:after
-//   height $g1
-//   margin 0 auto
-//
-// figure
-//   margin-right $g1
-//   float left
-//   background #ccc
-//
-// .mr0
-//   margin-right 0
+/////////////////////////////////
+// GRID SETTINGS
+/////////////////////////////////
+
+$font-size = 16 // Your base font-size in pixels
+$em = $font-size / 1rem	// Shorthand for outputting ems
+$column = 48	// The column-width of your grid in pixels
+$gutter = 12
+$gutter-y = 24
+$max-copy-width = 20
+
+// Class Scale Range
+$ratio-range = 20
+
+/////////////////////////////////
+// ZONE SETTINGS
+/////////////////////////////////
+
+
+$zone-a-max = $max-copy-width
+$zone-a-min = 15
+
+$zone-b-max = 14
+$zone-b-min = 12
+
+$zone-c-max = 11
+$zone-c-min = 10
+
+$zone-d-max = 9
+$zone-d-min = 7
+
+$zone-e-max = 6
+$zone-e-min = 4
+
+// $ZONE_F_MAX = 6
+// $ZONE_F_MIN = 4
+
+
+
+// SIZE ARRAY
+$sizes = (A 1 1) (A 2 1) (A 3 1) (A 4 1) (A 5 1) (A 6 1) (B 1 1) (B 2 1) (B 3 1) (C 1 1) (C 2 1) (C 3 1) (D 1 1) (D 2 1) (D 3 1) (E 1 1) (E 2 1) (E 3 1)
+
+
+//////////////////////////////////////////////////////////////////////
+// FRAMLESS GRID SETTINGS - Joni Korpi - http://framelessgrid.com/
+/////////////////////////////////////////////////////////////////////
+$cols1 = (1 * ($column + $gutter) - $gutter) / $em
+
+// Virtical & Horizontal Gutter Size
+$gx = (($gutter) / $em)rem
+$gy = (($gutter-y) / $em)rem
+
+
+//spacer/Shiv - margin rythem
+$spacer = $gx
+$sx = $gx
+$sy = $gy
+
+
+$s1 = ($spacer / 1)
+$s2 = ($spacer / 2)
+$s3 = ($spacer / 3)
+$s4 = ($spacer / 4)
+$s5 = ($spacer / 5)
+$s6 = ($spacer / 6)
+$s7 = ($spacer / 7)
+$s8 = ($spacer / 8)
+$s9 = ($spacer / 9)
+$s10 = ($spacer / 10)
+
+
+// Reset
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, nav, section, menu, time, mark, audio, video, canvas
+  margin 0
+  padding 0
+  border 0
+
+
+*
+  box-sizing border-box
+
+/////////////////////////////////
+// Copy Width - Everything is based on this width
+/////////////////////////////////
+
+.cw
+  for i in (1..$max-copy-width)
+    @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)rem)
+        width: (((((i - 2) * ($column + $gutter) - $gutter) / $em) + $gx)rem)
+
+.cw > *
+  for i in (1..$max-copy-width)
+    @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)rem)
+        width: (((((i - 2) * ($column + $gutter) - $gutter) / $em))rem)
+
+.cw0 > *
+  margin-left 0
+
+
+/////////////////////////////////
+// Function Poxy Scale
+/////////////////////////////////
+
+poxy-scale-x($i, $scale, $x1, $x2)
+  if $scale == E
+    return ((((($i - .5)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)rem
+  else
+    return ((((($i - 2)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)rem
+
+//  Box Width
+poxy-zone-width($zone, $zone-class-lower, $zone-min, $zone-max)
+  for $i in ($zone-min..$zone-max)
+    for $size in $sizes
+      if $size[0] == $zone
+        for $i in ($zone-min..$zone-max)
+          @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)rem)
+            for $i2 in (1..$ratio-range)
+              \[class\*\={$zone-class-lower}{$size[1]}{$i2}\]
+                 width poxy-scale-x($i, $size[0], $size[1], $i2)
+
+
+poxy-zone-width(E, e, $zone-e-min, $zone-e-max)
+poxy-zone-width(D, d, $zone-d-min, $zone-d-max)
+poxy-zone-width(C, c, $zone-c-min, $zone-c-max)
+poxy-zone-width(B, b, $zone-b-min, $zone-b-max)
+poxy-zone-width(A, a, $zone-a-min, $zone-a-max)
+
+
+// Box Height
+poxy-zone-height($zone, $zone-class-lower, $zone-min, $zone-max)
+  for $i in ($zone-min..$zone-max)
+    for $size in $sizes
+      if $size[0] == $zone
+        for $i in ($zone-min..$zone-max)
+          @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)rem)
+            for $i2 in (1..$ratio-range)
+              \[class\*\={$zone-class-lower}\_{$size[1]}{$i2}\]
+                 height poxy-scale-x($i, $size[0], $size[1], $i2)
+
+
+poxy-zone-height(E, e, $zone-e-min, $zone-e-max)
+poxy-zone-height(D, d, $zone-d-min, $zone-d-max)
+poxy-zone-height(C, c, $zone-c-min, $zone-c-max)
+poxy-zone-height(B, b, $zone-b-min, $zone-b-max)
+poxy-zone-height(A, a, $zone-a-min, $zone-a-max)
+
+
+body
+  font-family sans-serif
+  font-size 100%
+  background: #111
+
+.cb
+  clear both
+  display block
+  font-size 0
+  height 0
+  line-height 0
+  width 100%
+
+.container
+  font-size: 100%
+
+section
+  display block
+  float left
+  margin 0
+  overflow hidden
+  padding 0
+  width 100%
+  margin-top -($gy)
+
+.site-width,
+.sw
+  display block
+  float left
+  margin 0 auto
+  width: 100%
+
+.copy-width,
+.cw
+  display block
+  position relative
+  background #666
+  margin 0 auto
+
+.copy-inside
+  display inline-block
+
+section:before,
+section:after
+  margin 0 auto
+  height $gy
+  float right
+  width 100%
+  border-top alpha(#fff, .2) solid 1px
+  border-bottom alpha(#fff, .2) solid 1px
+  //background alpha(#222, .9)
+
+figure
+  //margin-right $gx
+  margin-bottom $gy
+  margin-left $gx
+  float left
+  background alpha(#fff, .1)
+  border alpha(#fff, .15) solid 2px
+  text-align center
+  //padding .25rem 0
+  border-radius .15rem
+  width 100%
+  // &:last-child
+  //   margin-bottom 0
+
+.mr0
+  margin-right 0
+
+//////////////////////////////////////////////////////////////////////
+// Meat
+/////////////////////////////////////////////////////////////////////
+.container
+  padding:0;
+  display:block;
+  //background-color:$container_bg;
+
+  section .site-width:before
+  section .site-width:after
+    height $sy
+    float:left
+    width:100%
+    content:""
+
+
+  section:before
+    //border-top 0px solid #ccc
+    //border-bottom: 1px solid #fff;
+    //height 1px
+    display block
+    content ""
+
+
+  //section .site-width{background:rgba(0,0,0, 1) !important; }
+  //section .site-width:before{background:rgba(0,0,0, .3) !important; float:left;}
+  section:nth-child(1):before
+    width 100% !important
+
+  section:nth-child(2):before
+    width:100% !important
+
+  //section:first-child:before, section:first-child:after{height:0;}
+  //section:last-child .site-width:after{margin-top:$cols1 !important;}
+
+  .site-width
+    margin:$spacer/8 0
+    background #f5f5f5
+    background-color #444
+
+  .copy-width
+    background #666
+
+
+
+//#meat:first-child section:first-child:after{width:100% !important}
+
+.container:after
+footer:after
+     visibility hidden
+     display block
+     font-size 0
+     content ""
+     clear both
+     height 0
