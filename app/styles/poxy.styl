@@ -2,20 +2,19 @@
 // GRID SETTINGS
 /////////////////////////////////
 
-$font-size = 16 // Your base font-size in pixels
+$font-size = 14 // Your base font-size in pixels
 $em = $font-size / 1rem	// Shorthand for outputting ems
 $column = 48	// The column-width of your grid in pixels
-$gutter = 12
-$gutter-y = 24
-$max-copy-width = 20
+$gutter = 12 // The width of the horizontal gutter
+$gutter-y = 24 // The height of the vertical gutter
+$max-copy-width = 20 // The widest the site can get
 
 // Class Scale Range
 $ratio-range = 20
 
 /////////////////////////////////
-// ZONE SETTINGS
+// ZONE/BREAKPOINT SETTINGS
 /////////////////////////////////
-
 
 $zone-a-max = $max-copy-width
 $zone-a-min = 15
@@ -32,13 +31,22 @@ $zone-d-min = 7
 $zone-e-max = 6
 $zone-e-min = 4
 
-// $ZONE_F_MAX = 6
-// $ZONE_F_MIN = 4
+// More zones can be added (who knows what will come out in 5 years)
+// $zone-f-min = 6
+// $zone-f-min = 4
+
+// $zone-g-min = 6
+// $zone-g-min = 4
 
 
+// Zone Numerators array
+$sizes = (A 1) (A 2) (A 3) (A 4) (A 5) (A 6) (B 1) (B 2) (B 3) (C 1) (C 2) (C 3) (D 1) (D 2) (D 3) (E 1) (E 2) (E 3)
 
-// SIZE ARRAY
-$sizes = (A 1 1) (A 2 1) (A 3 1) (A 4 1) (A 5 1) (A 6 1) (B 1 1) (B 2 1) (B 3 1) (C 1 1) (C 2 1) (C 3 1) (D 1 1) (D 2 1) (D 3 1) (E 1 1) (E 2 1) (E 3 1)
+$numerators-A = (A 1) (A 2) (A 3) (A 4) (A 5) (A 6)
+$numerators-B = (B 1) (B 2) (B 3)
+$numerators-C = (C 1) (C 2) (C 3)
+$numerators-D = (D 1) (D 2) (D 3)
+$numerators-E = (E 1) (E 2) (E 3)
 
 
 //////////////////////////////////////////////////////////////////////
@@ -69,20 +77,56 @@ $s9 = ($spacer / 9)
 $s10 = ($spacer / 10)
 
 
+/////////////////////////////////
+// Functions
+/////////////////////////////////
+
+poxy-scale($i, $scale, $x1, $x2)
+  if $scale == E
+    return ((((($i - .5)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)rem
+  else
+    return ((((($i - 2)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)rem
+
+//  Box Width
+poxy-zone-width($zone, $zone-class-lower, $zone-min, $zone-max, $numerators)
+  for $i in ($zone-min..$zone-max)
+    for $size in $numerators
+      if $size[0] == $zone
+        for $i in ($zone-min..$zone-max)
+          @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)rem)
+            for $i2 in (1..$ratio-range)
+              \[class\*\={$zone-class-lower}{$size[1]}{$i2}\]
+                 width poxy-scale($i, $size[0], $size[1], $i2)
+
+// Box Height
+poxy-zone-height($zone, $zone-class-lower, $zone-min, $zone-max, $numerators)
+  for $i in ($zone-min..$zone-max)
+    for $size in $numerators
+      if $size[0] == $zone
+        for $i in ($zone-min..$zone-max)
+          @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)rem)
+            for $i2 in (1..$ratio-range)
+              \[class\*\={$zone-class-lower}\_{$size[1]}{$i2}\]
+                 height poxy-scale($i, $size[0], $size[1], $i2)
+
+
+
+
+//////////////////////////////////////////////////////
 // Reset
+//////////////////////////////////////////////////////
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, nav, section, menu, time, mark, audio, video, canvas
   margin 0
   padding 0
   border 0
 
-
 *
   box-sizing border-box
 
-/////////////////////////////////
-// Copy Width - Everything is based on this width
-/////////////////////////////////
 
+//////////////////////////////////////////////////////
+// Copy Width - Ratios are based on this width
+////////////////////////////////////////////////////
 .cw
   for i in (1..$max-copy-width)
     @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)rem)
@@ -97,58 +141,22 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, blockquote,
   margin-left 0
 
 
-/////////////////////////////////
-// Function Poxy Scale
-/////////////////////////////////
+// Get Width Classes
+poxy-zone-width(E, e, $zone-e-min, $zone-e-max, $numerators-E)
+poxy-zone-width(D, d, $zone-d-min, $zone-d-max, $numerators-D)
+poxy-zone-width(C, c, $zone-c-min, $zone-c-max, $numerators-C)
+poxy-zone-width(B, b, $zone-b-min, $zone-b-max, $numerators-B)
+poxy-zone-width(A, a, $zone-a-min, $zone-a-max, $numerators-A)
 
-poxy-scale-x($i, $scale, $x1, $x2)
-  if $scale == E
-    return ((((($i - .5)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)rem
-  else
-    return ((((($i - 2)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)rem
-
-//  Box Width
-poxy-zone-width($zone, $zone-class-lower, $zone-min, $zone-max)
-  for $i in ($zone-min..$zone-max)
-    for $size in $sizes
-      if $size[0] == $zone
-        for $i in ($zone-min..$zone-max)
-          @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)rem)
-            for $i2 in (1..$ratio-range)
-              \[class\*\={$zone-class-lower}{$size[1]}{$i2}\]
-                 width poxy-scale-x($i, $size[0], $size[1], $i2)
+// Get Hight Classes
+poxy-zone-height(E, e, $zone-e-min, $zone-e-max, $numerators-E)
+poxy-zone-height(D, d, $zone-d-min, $zone-d-max, $numerators-D)
+poxy-zone-height(C, c, $zone-c-min, $zone-c-max, $numerators-C)
+poxy-zone-height(B, b, $zone-b-min, $zone-b-max, $numerators-B)
+poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A)
 
 
-poxy-zone-width(E, e, $zone-e-min, $zone-e-max)
-poxy-zone-width(D, d, $zone-d-min, $zone-d-max)
-poxy-zone-width(C, c, $zone-c-min, $zone-c-max)
-poxy-zone-width(B, b, $zone-b-min, $zone-b-max)
-poxy-zone-width(A, a, $zone-a-min, $zone-a-max)
 
-
-// Box Height
-poxy-zone-height($zone, $zone-class-lower, $zone-min, $zone-max)
-  for $i in ($zone-min..$zone-max)
-    for $size in $sizes
-      if $size[0] == $zone
-        for $i in ($zone-min..$zone-max)
-          @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)rem)
-            for $i2 in (1..$ratio-range)
-              \[class\*\={$zone-class-lower}\_{$size[1]}{$i2}\]
-                 height poxy-scale-x($i, $size[0], $size[1], $i2)
-
-
-poxy-zone-height(E, e, $zone-e-min, $zone-e-max)
-poxy-zone-height(D, d, $zone-d-min, $zone-d-max)
-poxy-zone-height(C, c, $zone-c-min, $zone-c-max)
-poxy-zone-height(B, b, $zone-b-min, $zone-b-max)
-poxy-zone-height(A, a, $zone-a-min, $zone-a-max)
-
-
-body
-  font-family sans-serif
-  font-size 100%
-  background: #111
 
 .cb
   clear both
