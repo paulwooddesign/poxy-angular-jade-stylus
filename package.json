@@ -1,7 +1,9 @@
 {
   "name": "poxystylus",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "grunt-contrib-stylus": "^0.20.0"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.4.0",
