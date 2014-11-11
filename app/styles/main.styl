@@ -2,11 +2,11 @@
 // GRID SETTINGS
 /////////////////////////////////
 
-$font-size = 16px // Your base font-size in pixels
-$em = $font-size / 1em	// Shorthand for outputting ems
-$column = 48px	// The column-width of your grid in pixels
-$gutter = 24px
-$gutter-y = 24px
+$font-size = 16 // Your base font-size in pixels
+$em = $font-size / 1rem	// Shorthand for outputting ems
+$column = 48	// The column-width of your grid in pixels
+$gutter = 24
+$gutter-y = 24
 $max-copy-width = 20
 
 
@@ -37,7 +37,7 @@ $zone-e-min = 4
 
 
 // SIZE ARRAY
-$sizes = (A 1 1) (A 2 1) (A 3 1)
+$sizes = (A 1 1) (A 2 1) (A 3 1) (B 1 1) (B 2 1) (B 3 1) (C 1 1) (C 2 1) (C 3 1) (D 1 1) (D 2 1) (D 3 1) (E 1 1) (E 2 1) (E 3 1)
 
 
 //////////////////////////////////////////////////////////////////////
@@ -108,6 +108,10 @@ $s8 = ($spacer / 8)
 $s9 = ($spacer / 9)
 $s10 = ($spacer / 10)
 
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, nav, section, menu, time, mark, audio, video, canvas
+  margin 0
+  padding 0
+  border 0
 
 /////////////////////////////////
 // Copy Width - Everything is based on this width
@@ -115,8 +119,8 @@ $s10 = ($spacer / 10)
 
 .copy-width
   for i in (1..$max-copy-width)
-    @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)em)
-        width: ((((i - 2) * ($column + $gutter) - $gutter) / $em)em)
+    @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)rem)
+        width: ((((i - 2) * ($column + $gutter) - $gutter) / $em)rem)
 
 
 /////////////////////////////////
@@ -125,32 +129,56 @@ $s10 = ($spacer / 10)
 
 poxy-scale-x($i, $scale, $x1, $x2)
   if $scale == E
-    return ((((($i - .5)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)em
+    return ((((($i - .5)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)rem
   else
-    return ((((($i - 2)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)em
+    return ((((($i - 2)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)rem
 
+//  Box Width
 poxy-zone-width($zone, $zone-class-lower, $zone-min, $zone-max)
   for $i in ($zone-min..$zone-max)
     for $size in $sizes
       if $size[0] == $zone
         for $i in ($zone-min..$zone-max)
-          @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)em)
+          @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)rem)
             for $i2 in (1..9)
               \[class\*\={$zone-class-lower}\_{$size[1]}{$i2}\]
                  width poxy-scale-x($i, $size[0], $size[1], $i2)
 
+
+poxy-zone-width(E, e, $zone-e-min, $zone-e-max)
+poxy-zone-width(D, d, $zone-d-min, $zone-d-max)
+poxy-zone-width(C, c, $zone-c-min, $zone-c-max)
+poxy-zone-width(B, b, $zone-b-min, $zone-b-max)
 poxy-zone-width(A, a, $zone-a-min, $zone-a-max)
 
-// poxy-zone-width(E, e, $zone-e-min, $zone-e-max)
-// poxy-zone-width(D, d, $zone-d-min, $zone-d-max)
-// poxy-zone-width(C, c, $zone-c-min, $zone-c-max)
-// poxy-zone-width(B, b, $zone-b-min, $zone-b-max)
+
+// Box Height
+poxy-zone-height($zone, $zone-class-lower, $zone-min, $zone-max)
+  for $i in ($zone-min..$zone-max)
+    for $size in $sizes
+      if $size[0] == $zone
+        for $i in ($zone-min..$zone-max)
+          @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)rem)
+            for $i2 in (1..9)
+              \[class\*\={$zone-class-lower}{$size[1]}{$i2}\]
+                 height poxy-scale-x($i, $size[0], $size[1], $i2)
+
+
+poxy-zone-height(E, e, $zone-e-min, $zone-e-max)
+poxy-zone-height(D, d, $zone-d-min, $zone-d-max)
+poxy-zone-height(C, c, $zone-c-min, $zone-c-max)
+poxy-zone-height(B, b, $zone-b-min, $zone-b-max)
+poxy-zone-height(A, a, $zone-a-min, $zone-a-max)
 
 
 
-
-
-
+.cb
+  clear both
+  display block
+  font-size 0
+  height 0
+  line-height 0
+  width 100%
 
 .container
   font-size: 100%
@@ -172,6 +200,7 @@ section
 .copy-width
   display block
   position relative
+  background #333
 
 .copy-inside
   display inline-block
@@ -182,8 +211,14 @@ section:after
   margin 0 auto
 
 figure
+  //margin-right $gx
+  //margin-bottom $gy
+  margin .9%;
   float left
+  background #ccc
 
+.mr0
+  margin-right 0
 
 //////////////////////////////////////////////////////////////////////
 // Meat
