@@ -9,12 +9,13 @@ $gutter = 24
 $gutter-y = 24
 $max-copy-width = 20
 
+// Class Scale Range
+$ratio-range = 20
 
 /////////////////////////////////
 // ZONE SETTINGS
 /////////////////////////////////
-//Class Scale Range
-//$ratio-range:$box-ratio-range;
+
 
 $zone-a-max = $max-copy-width
 $zone-a-min = 15
@@ -120,7 +121,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, blockquote,
 .copy-width
   for i in (1..$max-copy-width)
     @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)rem)
-        width: ((((i - 2) * ($column + $gutter) - $gutter) / $em)rem)
+        width: (((((i - 2) * ($column + $gutter) - $gutter) / $em) + $gx)rem)
 
 
 /////////////////////////////////
@@ -140,8 +141,8 @@ poxy-zone-width($zone, $zone-class-lower, $zone-min, $zone-max)
       if $size[0] == $zone
         for $i in ($zone-min..$zone-max)
           @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)rem)
-            for $i2 in (1..9)
-              \[class\*\={$zone-class-lower}\_{$size[1]}{$i2}\]
+            for $i2 in (1..$ratio-range)
+              \[class\*\={$zone-class-lower}{$size[1]}{$i2}\]
                  width poxy-scale-x($i, $size[0], $size[1], $i2)
 
 
@@ -159,8 +160,8 @@ poxy-zone-height($zone, $zone-class-lower, $zone-min, $zone-max)
       if $size[0] == $zone
         for $i in ($zone-min..$zone-max)
           @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)rem)
-            for $i2 in (1..9)
-              \[class\*\={$zone-class-lower}{$size[1]}{$i2}\]
+            for $i2 in (1..$ratio-range)
+              \[class\*\={$zone-class-lower}\_{$size[1]}{$i2}\]
                  height poxy-scale-x($i, $size[0], $size[1], $i2)
 
 
@@ -212,8 +213,8 @@ section:after
 
 figure
   //margin-right $gx
-  //margin-bottom $gy
-  margin .9%;
+  margin-bottom $gy
+  margin-left $gx
   float left
   background #ccc
 
