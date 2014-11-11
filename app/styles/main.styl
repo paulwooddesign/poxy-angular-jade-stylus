@@ -45,46 +45,7 @@ $sizes = (A 1 1) (A 2 1) (A 3 1) (A 4 1) (A 5 1) (A 6 1) (B 1 1) (B 2 1) (B 3 1)
 // FRAMLESS GRID SETTINGS - Joni Korpi - http://framelessgrid.com/
 /////////////////////////////////////////////////////////////////////
 $cols1 = (1 * ($column + $gutter) - $gutter) / $em
-$cols2 = (2 * ($column + $gutter) - $gutter) / $em
-$cols3 = (3 * ($column + $gutter) - $gutter) / $em
-$cols4 = (4 * ($column + $gutter) - $gutter) / $em
-$cols5 = (5 * ($column + $gutter) - $gutter) / $em
-$cols6 = (6 * ($column + $gutter) - $gutter) / $em
-$cols7 = (7 * ($column + $gutter) - $gutter) / $em
-$cols8 = (8 * ($column + $gutter) - $gutter) / $em
-$cols9 = (9 * ($column + $gutter) - $gutter) / $em
-$cols10 = (10 * ($column + $gutter) - $gutter) / $em
-$cols11 = (11 * ($column + $gutter) - $gutter) / $em
-$cols12 = (12 * ($column + $gutter) - $gutter) / $em
-$cols13 = (13 * ($column + $gutter) - $gutter) / $em
-$cols14 = (14 * ($column + $gutter) - $gutter) / $em
-$cols15 = (15 * ($column + $gutter) - $gutter) / $em
-$cols16 = (16 * ($column + $gutter) - $gutter) / $em
-$cols17 = (17 * ($column + $gutter) - $gutter) / $em
-$cols18 = (18 * ($column + $gutter) - $gutter) / $em
-$cols19 = (19 * ($column + $gutter) - $gutter) / $em
-$cols20 = (20 * ($column + $gutter) - $gutter) / $em
-$cols21 = (21 * ($column + $gutter) - $gutter) / $em
-$cols22 = (22 * ($column + $gutter) - $gutter) / $em
-$cols23 = (23 * ($column + $gutter) - $gutter) / $em
-$cols24 = (24 * ($column + $gutter) - $gutter) / $em
-$cols25 = (25 * ($column + $gutter) - $gutter) / $em
-$cols26 = (26 * ($column + $gutter) - $gutter) / $em
-$cols27 = (27 * ($column + $gutter) - $gutter) / $em
-$cols28 = (28 * ($column + $gutter) - $gutter) / $em
-$cols29 = (29 * ($column + $gutter) - $gutter) / $em
-$cols30 = (30 * ($column + $gutter) - $gutter) / $em
-$cols31 = (31 * ($column + $gutter) - $gutter) / $em
-$cols32 = (32 * ($column + $gutter) - $gutter) / $em
-$cols33 = (33 * ($column + $gutter) - $gutter) / $em
-$cols34 = (34 * ($column + $gutter) - $gutter) / $em
-$cols35 = (35 * ($column + $gutter) - $gutter) / $em
-$cols36 = (36 * ($column + $gutter) - $gutter) / $em
-$cols37 = (37 * ($column + $gutter) - $gutter) / $em
-$cols38 = (38 * ($column + $gutter) - $gutter) / $em
-$cols39 = (39 * ($column + $gutter) - $gutter) / $em
-$cols40 = (40 * ($column + $gutter) - $gutter) / $em
-$cols41 = (41 * ($column + $gutter) - $gutter) / $em
+
 
 // Virtical Gutter Width
 $gx = ($gutter) / $em
@@ -175,6 +136,7 @@ poxy-zone-height(A, a, $zone-a-min, $zone-a-max)
 body
   font-family sans-serif
   font-size .5rem
+  background: #222
 
 .cb
   clear both
@@ -216,10 +178,10 @@ section
 section:before,
 section:after
   margin 0 auto
-  height .5rem
+  height 1rem
   float right
   width 100%
-  background #efefef
+  background #333
 
 figure
   //margin-right $gx
@@ -230,6 +192,7 @@ figure
   text-align center
   padding .25rem 0
   border-radius .15rem
+  width 100%
   // &:last-child
   //   margin-bottom 0
 
@@ -274,7 +237,7 @@ figure
   .site-width
     margin:$spacer/8 0
     background #f5f5f5
-    background-color #f7f7f7
+    background-color #444
 
   .copy-width
     background #666
