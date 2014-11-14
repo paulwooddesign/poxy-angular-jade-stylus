@@ -2,11 +2,11 @@
 // GRID SETTINGS
 /////////////////////////////////
 
-$font-size = 14 // Your base font-size in pixels
+$font-size = 18 // Your base font-size in pixels
 $em = $font-size / 1rem	// Shorthand for outputting ems
 $column = 48	// The column-width of your grid in pixels
 $gutter = 12 // The width of the horizontal gutter
-$gutter-y = 24 // The height of the vertical gutter
+$gutter-y = 12 // The height of the vertical gutter
 $max-copy-width = 20 // The widest the site can get
 
 // Class Scale Range
@@ -40,9 +40,9 @@ $zone-e-min = 4
 
 
 // Zone Numerators array
-$sizes = (A 1) (A 2) (A 3) (A 4) (A 5) (A 6) (B 1) (B 2) (B 3) (C 1) (C 2) (C 3) (D 1) (D 2) (D 3) (E 1) (E 2) (E 3)
+//$sizes = (A 1) (A 2) (A 3) (A 4) (A 5) (A 6) (B 1) (B 2) (B 3) (C 1) (C 2) (C 3) (D 1) (D 2) (D 3) (E 1) (E 2) (E 3)
 
-$numerators-A = (A 1) (A 2) (A 3) (A 4) (A 5) (A 6)
+$numerators-A = (A 1) (A 2) (A 3)
 $numerators-B = (B 1) (B 2) (B 3)
 $numerators-C = (C 1) (C 2) (C 3)
 $numerators-D = (D 1) (D 2) (D 3)
@@ -82,8 +82,8 @@ $s10 = ($spacer / 10)
 /////////////////////////////////
 
 poxy-scale($i, $scale, $x1, $x2)
-  if $scale == E
-    return ((((($i - .5)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)rem
+  if $i <= 7
+    return ((((($i - .75)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)rem
   else
     return ((((($i - 2)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)rem
 
@@ -111,6 +111,37 @@ poxy-zone-height($zone, $zone-class-lower, $zone-min, $zone-max, $numerators)
 
 
 
+/////////////////////////////////
+// Functions
+/////////////////////////////////
+
+poxy-scale-mobile($i, $scale, $x1, $x2)
+    return ((((($i - .5)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)rem
+
+
+//  Box Width
+poxy-zone-width-mobile($zone, $zone-class-lower, $zone-min, $zone-max, $numerators)
+  for $i in ($zone-min..$zone-max)
+    for $size in $numerators
+      if $size[0] == $zone
+        for $i in ($zone-min..$zone-max)
+          @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)rem)
+            for $i2 in (1..$ratio-range)
+              \[class\*\={$zone-class-lower}{$size[1]}{$i2}\]
+                 width poxy-scale-mobile($i, $size[0], $size[1], $i2)
+
+// Box Height
+poxy-zone-height-mobile($zone, $zone-class-lower, $zone-min, $zone-max, $numerators)
+  for $i in ($zone-min..$zone-max)
+    for $size in $numerators
+      if $size[0] == $zone
+        for $i in ($zone-min..$zone-max)
+          @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)rem)
+            for $i2 in (1..$ratio-range)
+              \[class\*\={$zone-class-lower}\_{$size[1]}{$i2}\]
+                 height poxy-scale-mobile($i, $size[0], $size[1], $i2)
+
+
 
 //////////////////////////////////////////////////////
 // Reset
@@ -128,7 +159,12 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, blockquote,
 // Copy Width - Ratios are based on this width
 ////////////////////////////////////////////////////
 .cw
-  for i in (1..$max-copy-width)
+  for i in (1..7)
+    @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)rem)
+        width: (((((i - .5) * ($column + $gutter) - $gutter) / $em) + $gx)rem)
+
+.cw
+  for i in (8..$max-copy-width)
     @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)rem)
         width: (((((i - 2) * ($column + $gutter) - $gutter) / $em) + $gx)rem)
 
@@ -154,6 +190,19 @@ poxy-zone-height(D, d, $zone-d-min, $zone-d-max, $numerators-D)
 poxy-zone-height(C, c, $zone-c-min, $zone-c-max, $numerators-C)
 poxy-zone-height(B, b, $zone-b-min, $zone-b-max, $numerators-B)
 poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A)
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////
+// POXY
+////////////////////////////////////////////////////
+
 
 
 
@@ -210,11 +259,11 @@ figure
   margin-bottom $gy
   margin-left $gx
   float left
-  background alpha(#fff, .1)
-  border alpha(#fff, .15) solid 2px
+  background alpha(#fff, .2)
+  //border alpha(#fff, .15) solid 2px
   text-align center
   //padding .25rem 0
-  border-radius .15rem
+  //border-radius .15rem
   width 100%
   // &:last-child
   //   margin-bottom 0
