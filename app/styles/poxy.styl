@@ -158,12 +158,12 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, blockquote,
 //////////////////////////////////////////////////////
 // Copy Width - Ratios are based on this width
 ////////////////////////////////////////////////////
-.cw
+.cw, .pcw, .qcw
   for i in (1..7)
     @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)rem)
         width: (((((i - .5) * ($column + $gutter) - $gutter) / $em) + $gx)rem)
 
-.cw
+.cw, .pcw, .qcw
   for i in (8..$max-copy-width)
     @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)rem)
         width: (((((i - 2) * ($column + $gutter) - $gutter) / $em) + $gx)rem)
@@ -176,7 +176,20 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, blockquote,
 .cw0 > *
   margin-left 0
 
+// copy width
+.qcw
+  margin 0 0
+  float right
 
+.pcw
+  margin 0 0
+  float left
+
+
+
+//////////////////////////////////////////////////////
+// Container(div) Ratio Sizes
+//////////////////////////////////////////////////////
 // Get Width Classes
 poxy-zone-width(E, e, $zone-e-min, $zone-e-max, $numerators-E)
 poxy-zone-width(D, d, $zone-d-min, $zone-d-max, $numerators-D)
@@ -194,19 +207,66 @@ poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A)
 
 
 
+//////////////////////////////////////////////////////
+// POXY
+////////////////////////////////////////////////////
+
+// fixed
+.pfxy
+  top 0
+  left 0
+  height 100%
+  position fixed
+
+
+
+// Float
+.poxy
+  float left
+
+.qoxy
+  float right
+
+.doxy
+
+
+.boxy
+
+
+
+
+// Absolute
+.paxy, .qaxy, .baxy, .daxy
+  position absolute
+
+
+.qoxy
+  right 0
+  left 0
+
+.daxy
+  bottom 0
+
+.baxy
+  bottom 0
+
+
+
 
 
 
 
 
 //////////////////////////////////////////////////////
-// POXY
+// DEV
 ////////////////////////////////////////////////////
+.red
+  background red
 
 
-
-
-
+//////////////////////////////////////////////////////
+// COMMON
+////////////////////////////////////////////////////
 .cb
   clear both
   display block
@@ -214,6 +274,15 @@ poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A)
   height 0
   line-height 0
   width 100%
+
+
+
+
+
+
+//////////////////////////////////////////////////////
+// CORE
+////////////////////////////////////////////////////
 
 .container
   font-size: 100%
