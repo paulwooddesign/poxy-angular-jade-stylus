@@ -27,7 +27,7 @@ $gy-D = 12
 $gs-D = .5
 
 $gx-E = 12
-$gy-E = 12
+$gy-E = 24
 $gs-E = .25
 
 
@@ -165,13 +165,11 @@ zone($zone)
 /////////////////////////////////
 
 // Copy Width - Ratios are based on this width
-
 poxy-copy-width($zone-min, $zone-max, $gx, $gy, $gs)
   for i in ($zone-min..$zone-max)
-    .cw, .pcw, .qcw
+    .cw
       @media (min-width: ((i * ($column + $gx) - $gx) / $em)rem)
           width: (((((i - ($gs)) * ($column + $gx) - $gx) / $em) + (($gx) / $em))rem)
-
           figure
             margin-left (($gx) / $em)rem
             margin-bottom (($gy) / $em)rem
@@ -180,10 +178,6 @@ poxy-copy-width($zone-min, $zone-max, $gx, $gy, $gs)
 poxy-scale($i, $scale, $x1, $x2, $zone-gutter, $gs)
   // if $i <= $zone-e-max
   //   return ((((($i - $gs)*$x1)/$x2) * ($column + $zone-gutter) - $zone-gutter) / $em)rem
-  //
-  // if $i <= $zone-d-max
-  //   return ((((($i - $gs)*$x1)/$x2) * ($column + $zone-gutter) - $zone-gutter) / $em)rem
-  //
   // else
     return ((((($i - $gs)*$x1)/$x2) * ($column + $zone-gutter) - $zone-gutter) / $em)rem
 
@@ -246,17 +240,10 @@ poxy-copy-width($zone-a-min, $zone-a-max, $gx-A, $gy-A, $gs-A)
 //     @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)rem)
 //         width: (((((i - 2) * ($column + $gutter) - $gutter) / $em))rem)
 
-.cw0 > *
-  margin-left 0
+// .cw0 > *
+//   margin-left 0
 
-// copy width
-.qcw
-  margin 0 0
-  float right
 
-.pcw
-  margin 0 0
-  float left
 
 
 
@@ -281,61 +268,127 @@ poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
 //////////////////////////////////////////////////////
 // Section negative margin Offset
 ////////////////////////////////////////////////////
-section
-  @media (min-width: (($zone-e-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-d-min * ($column + $gutter) - $gutter) / $em)rem)
+@media (min-width: (($zone-e-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-d-min * ($column + $gutter) - $gutter) / $em)rem)
+  .he
+    display none !important
+  section
     margin-left: -($gxE/2)
     margin-top: 0
-
     &:first-child
       margin-top ($gyE/2) !important
-
+    &:last-child
+      margin-bottom: -($gyE/2) !important
     &:after
       margin-top: -($gyE) !important
-
     .cw0
       margin-bottom: ($gyE) !important
 
-  @media (min-width: (($zone-d-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-c-min * ($column + $gutter) - $gutter) / $em)rem)
+@media (min-width: (($zone-d-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-c-min * ($column + $gutter) - $gutter) / $em)rem)
+  .hd
+    display none !important
+  section
     margin-left: -($gxD/2)
-    margin-top: -($gyA/2)
-
-  @media (min-width: (($zone-c-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-b-min * ($column + $gutter) - $gutter) / $em)rem)
-    margin-left: -($gxC/2)
-    margin-top: -($gyC/2)
-
+    margin-top: 0
     &:first-child
-      margin-top 0 !important
+      margin-top: ($gyD/2) !important
+    &:last-child
+      margin-bottom: -($gyD/2) !important
+    &:after
+      margin-top: -($gyD) !important
+    .cw0
+      margin-bottom: ($gyD) !important
 
+@media (min-width: (($zone-c-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-b-min * ($column + $gutter) - $gutter) / $em)rem)
+  .hc
+    display none !important
+  section
+    margin-left: -($gxC/2)
+    margin-top: 0
+    &:first-child
+      margin-top: ($gyC/2) !important
+    &:last-child
+      margin-bottom: -($gyC/2) !important
     &:after
       margin-top: -($gyC) !important
+    .cw0
+      margin-bottom: ($gyC) !important
 
-  @media (min-width: (($zone-b-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-a-min * ($column + $gutter) - $gutter) / $em)rem)
-      margin-left: -($gxB/2)
-      margin-top: 0
+@media (min-width: (($zone-b-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-a-min * ($column + $gutter) - $gutter) / $em)rem)
+  .hb
+    display none !important
+  [class*=poxyb]
+      float left
+  [class*=qoxyb]
+    float right
+  [class*=paxyb]
+    position absolute
+    top 0
+    left 0
+  [class*=qaxyb]
+    position absolute
+    top 0
+    right 0
+  [class*=baxyb]
+    position absolute
+    bottom 0
+    left 0
+  [class*=daxyb]
+    position absolute
+    bottom 0
+    right 0
+  section
+    margin-left: -($gxB/2)
+    margin-top: 0
+    &:first-child
+      margin-top: ($gyB/2) !important
+    &:last-child
+      margin-bottom: -($gyB/2) !important
+    &:after
+      margin-top: -($gyB) !important
+    .cw0
+      margin-bottom: ($gyB) !important
 
-      &:first-child
-        margin-top ($gyB/2) !important
 
-      &:after
-        margin-top: -($gyB) !important
-
-      .cw0
-        margin-bottom: ($gyB) !important
-
-
-
-  @media (min-width: (($zone-a-min * ($column + $gutter) - $gutter) / $em)rem)
+@media (min-width: (($zone-a-min * ($column + $gutter) - $gutter) / $em)rem)
+  .ha
+    display none !important
+  [class*=poxya]
+    float left
+  [class*=qoxya]
+    float right
+  [class*=paxya]
+    position absolute
+    top 0
+    left 0
+  [class*=qaxya]
+    position absolute
+    top 0
+    right 0
+  [class*=baxya]
+    position absolute
+    bottom 0
+    left 0
+  [class*=daxya]
+    position absolute
+    bottom 0
+    right 0
+  section
     margin-left: -($gxA/2)
     margin-top: 0
-
     &:first-child
-      margin-top ($gyA/2) !important
-
+      //margin-top: ($gyA/2) !important
+      margin-top: 0 !important
+    // &:last-child
+    //   margin-bottom: -($gyA) !important
     &:after
       margin-top: -($gyA) !important
-
     .cw0
       margin-bottom: ($gyA) !important
+      margin-right: -($gyA) !important
+
+  footer
+    padding-top: ($gyA) !important
+
 
 
 
@@ -350,7 +403,6 @@ section
 // fixed
 .pfxy
   position fixed
-  height 100%
   top 0
   left 0
 
@@ -367,6 +419,7 @@ section
 .qoxy
   float right
 
+
 .doxy
 
 
@@ -382,50 +435,53 @@ section
 [class*=paxa14]
   width 25% !important
 
-
-
-[class*=paxa],
-[class*=paxya]
-  position absolute !important
-  left 0
-
-[class*=qaxya]
-  position absolute !important
-  right 0
-
 // Absolute
-.paxy, .pa, .qaxy, .baxy, .daxy
+.paxy,
+.pa,
+.qaxy,
+.baxy,
+.daxy
   position absolute !important
-
 .paxy
   left 0
-
 .qa
   right 0
-
 .qoxy
   right 0
-
 .daxy
   bottom 0
-
 .baxy
   bottom 0
 
 
-.pax
 
-
-
+//////////////////////////////////////////////////////
+// z-index
+////////////////////////////////////////////////////
+.z1
+  z-index 1
+.z2
+  z-index 2
+.z3
+  z-index 3
+.z4
+  z-index 4
+.z5
+  z-index 5
+.z6
+  z-index 6
 
 
 //////////////////////////////////////////////////////
 // DEV
 ////////////////////////////////////////////////////
+.hide
+  display none !important
 .red
   background red
-
-
+.logo
+  background-size cover
+.ba
 //////////////////////////////////////////////////////
 // COMMON
 ////////////////////////////////////////////////////
@@ -437,8 +493,20 @@ section
   line-height 0
   width 100%
 
-.hide
-  display none
+section.clear
+  margin-bottom 0 !important
+  &:after,
+  &:before
+    display none !important
+  .sw
+    margin-bottom 0 !important
+    &:after,
+    &:before
+      display none !important
+
+
+.mb0
+  margin-bottom 0 !important
 
 
 
@@ -455,28 +523,21 @@ section
   overflow hidden
   padding 0
   width 100%
-  //margin-top -($gy)
-  // &:first-child
-  //   margin-top $gyA !important
 
-
-.site-width,
-.sw
+.sw // site-width
   display block
   float left
   margin 0 auto
   width: 100%
   position relative
-  //margin-left: -($gxA/2)
 
-.copy-width,
-.cw
-  //display inline-block
+.cw // copy-widt
   position relative
   background #666
   margin 0 auto
 
 .cw0
+  width 100%
   float left
 
 .copy-inside
@@ -485,7 +546,6 @@ section
 section:before,
 section:after
   //margin 0 auto
-  //height $gy
   float right
   width 100%
   background alpha(#fff, .1)
@@ -498,9 +558,6 @@ section:after
   border-bottom alpha(#fff, .2) solid 1px
 
 figure
-  //margin-right $gx
-  // margin-bottom $gy
-  //margin-left $gxE
   float left
   background alpha(#fff, .2)
   //border alpha(#fff, .15) solid 2px
@@ -508,15 +565,26 @@ figure
   //padding .25rem 0
   //border-radius .15rem
   width 100%
-  // &:last-child
-  //   margin-bottom 0
 
 .mr0
   margin-right 0
 
 
+//////////////////////////////////////////////////////
+// Box Styling
+////////////////////////////////////////////////////
 
+header
+  float left
+  width 100%
 
+#meat
+  float left
+  width 100%
+
+footer
+  float left
+  width 100%
 
 //////////////////////////////////////////////////////////////////////
 // Meat
@@ -552,16 +620,6 @@ figure
 
   //section:first-child:before, section:first-child:after{height:0;}
   //section:last-child .site-width:after{margin-top:$cols1 !important;}
-
-  .site-width
-    margin:$spacer/8 0
-    background #f5f5f5
-    background-color #444
-
-  .copy-width
-    background #666
-
-
 
 //#meat:first-child section:first-child:after{width:100% !important}
 
@@ -600,24 +658,18 @@ $zone-f-color = #10e277
   float left
   width $cols1
   height $cols1
-  //background $zone-e-color
-
   +zone(E)
     background $zone-e-color
     color #fff
-
   +zone(D)
     background $zone-d-color
     color #fff
-
   +zone(C)
     background $zone-c-color
     color #fff
-
   +zone(B)
     background $zone-b-color
     color #000
-
   +zone(A)
     background $zone-a-color
     color #000
@@ -650,19 +702,15 @@ figure
   +zone(E)
     background $zone-e-color
     color #fff
-
   +zone(D)
     background $zone-d-color
     color #fff
-
   +zone(C)
     background $zone-c-color
     color #fff
-
   +zone(B)
     background $zone-b-color
     color #000
-
   +zone(A)
     background $zone-a-color
     color #000
