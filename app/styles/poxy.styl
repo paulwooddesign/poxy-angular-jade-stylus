@@ -38,26 +38,26 @@ $gs-E = .25
 
 // Development - Include all Ratios
 
-// $ratio-range = (1..20)
-//
-// $numerators-A = (A 1) (A 2) (A 3)
-// $numerators-B = (B 1) (B 2) (B 3)
-// $numerators-C = (C 1) (C 2) (C 3)
-// $numerators-D = (D 1) (D 2) (D 3)
-// $numerators-E = (E 1) (E 2) (E 3)
+$ratio-range = (1..20)
+
+$numerators-A = (A 1) (A 2) (A 3) (A 4)
+$numerators-B = (B 1) (B 2) (B 3)
+$numerators-C = (C 1) (C 2) (C 3)
+$numerators-D = (D 1) (D 2) (D 3)
+$numerators-E = (E 1) (E 2) (E 3)
 
 /////////////////////////////////
 // Dist - Include only the ratios you need
 // N keeps numerators working as an array
 /////////////////////////////////
 
-$ratio-range = 2 4 6 8 16 18
-
-$numerators-A = (N 1) (A 1) (A 2)
-$numerators-B = (N 1) (B 1)
-$numerators-C = (N 1) (C 1)
-$numerators-D = (N 1) (D 1)
-$numerators-E = (N 1) (E 1)
+// $ratio-range = 2 4 6 8 16 18
+//
+// $numerators-A = (N 1) (A 1) (A 2)
+// $numerators-B = (N 1) (B 1)
+// $numerators-C = (N 1) (C 1)
+// $numerators-D = (N 1) (D 1)
+// $numerators-E = (N 1) (E 1)
 
 
 /////////////////////////////////
@@ -284,18 +284,61 @@ poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
 section
   @media (min-width: (($zone-e-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-d-min * ($column + $gutter) - $gutter) / $em)rem)
     margin-left: -($gxE/2)
+    margin-top: 0
+
+    &:first-child
+      margin-top ($gyE/2) !important
+
+    &:after
+      margin-top: -($gyE) !important
+
+    .cw0
+      margin-bottom: ($gyE) !important
 
   @media (min-width: (($zone-d-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-c-min * ($column + $gutter) - $gutter) / $em)rem)
     margin-left: -($gxD/2)
+    margin-top: -($gyA/2)
 
   @media (min-width: (($zone-c-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-b-min * ($column + $gutter) - $gutter) / $em)rem)
     margin-left: -($gxC/2)
+    margin-top: -($gyC/2)
+
+    &:first-child
+      margin-top 0 !important
+
+    &:after
+      margin-top: -($gyC) !important
 
   @media (min-width: (($zone-b-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-a-min * ($column + $gutter) - $gutter) / $em)rem)
-    margin-left: -($gxB/2)
+      margin-left: -($gxB/2)
+      margin-top: 0
+
+      &:first-child
+        margin-top ($gyB/2) !important
+
+      &:after
+        margin-top: -($gyB) !important
+
+      .cw0
+        margin-bottom: ($gyB) !important
+
+
 
   @media (min-width: (($zone-a-min * ($column + $gutter) - $gutter) / $em)rem)
     margin-left: -($gxA/2)
+    margin-top: 0
+
+    &:first-child
+      margin-top ($gyA/2) !important
+
+    &:after
+      margin-top: -($gyA) !important
+
+    .cw0
+      margin-bottom: ($gyA) !important
+
+
+
 
 
 
@@ -329,17 +372,39 @@ section
 
 .boxy
 
+[class*=poxa11]
+[class*=paxa11]
+  width 100% !important
+
+[class*=paxa12]
+  width 50% !important
+
+[class*=paxa14]
+  width 25% !important
 
 
+
+[class*=paxa],
+[class*=paxya]
+  position absolute !important
+  left 0
+
+[class*=qaxya]
+  position absolute !important
+  right 0
 
 // Absolute
-.paxy, .qaxy, .baxy, .daxy
-  position absolute
+.paxy, .pa, .qaxy, .baxy, .daxy
+  position absolute !important
 
+.paxy
+  left 0
+
+.qa
+  right 0
 
 .qoxy
   right 0
-  left 0
 
 .daxy
   bottom 0
@@ -348,7 +413,7 @@ section
   bottom 0
 
 
-
+.pax
 
 
 
@@ -391,6 +456,8 @@ section
   padding 0
   width 100%
   //margin-top -($gy)
+  // &:first-child
+  //   margin-top $gyA !important
 
 
 .site-width,
@@ -399,6 +466,7 @@ section
   float left
   margin 0 auto
   width: 100%
+  position relative
   //margin-left: -($gxA/2)
 
 .copy-width,
@@ -408,18 +476,26 @@ section
   background #666
   margin 0 auto
 
+.cw0
+  float left
+
 .copy-inside
   display inline-block
 
 section:before,
 section:after
-  margin 0 auto
-  height $gy
+  //margin 0 auto
+  //height $gy
   float right
   width 100%
+  background alpha(#fff, .1)
+  content:""
+
+section:before
   border-top alpha(#fff, .2) solid 1px
+
+section:after
   border-bottom alpha(#fff, .2) solid 1px
-  //background alpha(#222, .9)
 
 figure
   //margin-right $gx
