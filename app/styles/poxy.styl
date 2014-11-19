@@ -107,6 +107,17 @@ $gyD = (($gy-D) / $em)rem
 $gxE = (($gx-E) / $em)rem
 $gyE = (($gy-E) / $em)rem
 
+$gxa = (($gx-A) / $em)rem
+$gya = (($gy-A) / $em)rem
+$gxb = (($gx-B) / $em)rem
+$gyb = (($gy-B) / $em)rem
+$gxc = (($gx-C) / $em)rem
+$gyc = (($gy-C) / $em)rem
+$gxd = (($gx-D) / $em)rem
+$gyd = (($gy-D) / $em)rem
+$gxe = (($gx-E) / $em)rem
+$gye = (($gy-E) / $em)rem
+
 //spacer/Shiv - margin rythem
 $spacer = $gx
 $sx = $gx
@@ -268,393 +279,93 @@ poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
 //////////////////////////////////////////////////////
 // Section negative margin Offset
 ////////////////////////////////////////////////////
-@media (min-width: (($zone-e-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-d-min * ($column + $gutter) - $gutter) / $em)rem)
-  .he
-    display none !important
-  [class*=poxye]
-    float left
-  [class*=qoxye]
-    float right
-  [class*=paxye]
-    position absolute
-    top 0
-    left 0
-  [class*=qaxye]
-    position absolute
-    top 0
-    right 0
-  [class*=baxye]
-    position absolute
-    bottom 0
-    left 0
-  [class*=daxye]
-    position absolute
-    bottom 0
-    right 0
-  section
-    margin-left: -($gxE/2)
-    margin-top: 0
-    &:first-child
-      //margin-top ($gyE/2) !important
-    &:last-child
-      margin-bottom: -($gyE/2) !important
-    &:after
-      margin-top: -($gyE) !important
-    .cw0
-      margin-bottom: ($gyE) !important
+zone-core($z, $zone-min, $gx, $gy)
+  @media (min-width: (($zone-min * ($column + $gutter) - $gutter) / $em)rem)
+    .ha
+      display none !important
+    [class*=poxy{$z}]
+      float left
+    [class*=qoxy{$z}]
+      float right
+    [class*=paxy{$z}]
+      position absolute
+      top 0
+      left 0
+    [class*=qaxy{$z}]
+      position absolute
+      top 0
+      right 0
+    [class*=baxy{$z}]
+      position absolute
+      bottom 0
+      left 0
+    [class*=daxy{$z}]
+      position absolute
+      bottom 0
+      right 0
+    section
+      margin-left: -($gx/2)
+      margin-top: 0
+      &:first-child
+        //margin-top: ($gyA/2) !important
+        margin-top: 0 !important
+      // &:last-child
+      //   margin-bottom: -($gyA) !important
+      &:after
+        margin-top: -($gy) !important
+      .cw0
+        margin-bottom: ($gy) !important
+        margin-right: -($gy) !important
 
-  footer
-    padding-top: ($gyE) !important
+    footer
+      padding-top: ($gy) !important
 
-  // Percent Width
-  [class*="ep11"]
-    width 100%
-  [class*="ep34"]
-    width 75%
-  [class*="ep12"]
-    width 50%
-  [class*="ep25"]
-    width 40%
-  [class*="ep14"]
-    width 25%
-  [class*="ep15"]
-    width 20%
-  [class*="ep23"]
-    width 66.6666666%
-  [class*="ep13"]
-    width 33.3333333%
+    // Percent Width
+    [class*={$z}p11]
+      width 100%
+    [class*={$z}p34]
+      width 75%
+    [class*={$z}p12]
+      width 50%
+    [class*={$z}p25]
+      width 40%
+    [class*={$z}p14]
+      width 25%
+    [class*={$z}p15]
+      width 20%
+    [class*={$z}p23]
+      width 66.6666666%
+    [class*={$z}p13]
+      width 33.3333333%
 
-  // Percent Height
-  [class*="ep_11"]
-    height 300%
-  [class*="ep_11"]
-    height 100%
-  [class*="ep_34"]
-    height 75%
-  [class*="ep_12"]
-    height 50%
-  [class*="ep_25"]
-    height 40%
-  [class*="ep_14"]
-    height 25%
-  [class*="ep_15"]
-    height 20%
-  [class*="ep_23"]
-    height 66.6666666%
-  [class*="ep_13"]
-    height 33.3333333%
-
-
-@media (min-width: (($zone-d-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-c-min * ($column + $gutter) - $gutter) / $em)rem)
-  .hd
-    display none !important
-  [class*=poxyd]
-    float left
-  [class*=qoxyd]
-    float right
-  [class*=paxyd]
-    position absolute
-    top 0
-    left 0
-  [class*=qaxyd]
-    position absolute
-    top 0
-    right 0
-  [class*=baxyd]
-    position absolute
-    bottom 0
-    left 0
-  [class*=daxyd]
-    position absolute
-    bottom 0
-    right 0
-  section
-    margin-left: -($gxD/2)
-    margin-top: 0
-    &:first-child
-      //margin-top: ($gyD/2) !important
-    &:last-child
-      margin-bottom: -($gyD/2) !important
-    &:after
-      margin-top: -($gyD) !important
-    .cw0
-      margin-bottom: ($gyD) !important
-
-  footer
-    padding-top: ($gyD) !important
-
-  // Percent Width
-  [class*="dp11"]
-    width 100%
-  [class*="dp34"]
-    width 75%
-  [class*="dp12"]
-    width 50%
-  [class*="dp25"]
-    width 40%
-  [class*="dp14"]
-    width 25%
-  [class*="dp15"]
-    width 20%
-  [class*="dp23"]
-    width 66.6666666%
-  [class*="dp13"]
-    width 33.3333333%
-
-  // Percent Height
-  [class*="dp_11"]
-    height 300%
-  [class*="dp_11"]
-    height 100%
-  [class*="dp_34"]
-    height 75%
-  [class*="dp_12"]
-    height 50%
-  [class*="dp_25"]
-    height 40%
-  [class*="dp_14"]
-    height 25%
-  [class*="dp_15"]
-    height 20%
-  [class*="dp_23"]
-    height 66.6666666%
-  [class*="dp_13"]
-    height 33.3333333%
-
-@media (min-width: (($zone-c-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-b-min * ($column + $gutter) - $gutter) / $em)rem)
-  .hc
-    display none !important
-  [class*=poxyc]
-    float left
-  [class*=qoxyc]
-    float right
-  [class*=paxyc]
-    position absolute
-    top 0
-    left 0
-  [class*=qaxyc]
-    position absolute
-    top 0
-    right 0
-  [class*=baxyc]
-    position absolute
-    bottom 0
-    left 0
-  [class*=daxyc]
-    position absolute
-    bottom 0
-    right 0
-  section
-    margin-left: -($gxC/2)
-    margin-top: 0
-    &:first-child
-      //margin-top: ($gyC/2) !important
-    &:last-child
-      margin-bottom: -($gyC/2) !important
-    &:after
-      margin-top: -($gyC) !important
-    .cw0
-      margin-bottom: ($gyC) !important
-
-  footer
-    padding-top: ($gyC) !important
-
-  // Percent Width
-  [class*="cp11"]
-    width 100%
-  [class*="cp34"]
-    width 75%
-  [class*="cp12"]
-    width 50%
-  [class*="cp25"]
-    width 40%
-  [class*="cp14"]
-    width 25%
-  [class*="cp15"]
-    width 20%
-  [class*="cp23"]
-    width 66.6666666%
-  [class*="cp13"]
-    width 33.3333333%
-
-  // Percent Height
-  [class*="cp_11"]
-    height 300%
-  [class*="cp_11"]
-    height 100%
-  [class*="cp_34"]
-    height 75%
-  [class*="cp_12"]
-    height 50%
-  [class*="cp_25"]
-    height 40%
-  [class*="cp_14"]
-    height 25%
-  [class*="cp_15"]
-    height 20%
-  [class*="cp_23"]
-    height 66.6666666%
-  [class*="cp_13"]
-    height 33.3333333%
-
-@media (min-width: (($zone-b-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-a-min * ($column + $gutter) - $gutter) / $em)rem)
-  .hb
-    display none !important
-  [class*=poxyb]
-    float left
-  [class*=qoxyb]
-    float right
-  [class*=paxyb]
-    position absolute
-    top 0
-    left 0
-  [class*=qaxyb]
-    position absolute
-    top 0
-    right 0
-  [class*=baxyb]
-    position absolute
-    bottom 0
-    left 0
-  [class*=daxyb]
-    position absolute
-    bottom 0
-    right 0
-  section
-    margin-left: -($gxB/2)
-    margin-top: 0
-    &:first-child
-      //margin-top: ($gyB/2) !important
-    &:last-child
-      margin-bottom: -($gyB/2) !important
-    &:after
-      margin-top: -($gyB) !important
-    .cw0
-      margin-bottom: ($gyB) !important
-
-  footer
-    padding-top: ($gyB) !important
-
-  // Percent Width
-  [class*="bp11"]
-    width 100%
-  [class*="bp34"]
-    width 75%
-  [class*="bp12"]
-    width 50%
-  [class*="bp25"]
-    width 40%
-  [class*="bp14"]
-    width 25%
-  [class*="bp15"]
-    width 20%
-  [class*="bp23"]
-    width 66.6666666%
-  [class*="bp13"]
-    width 33.3333333%
-
-  // Percent Height
-  [class*="bp_11"]
-    height 300%
-  [class*="bp_11"]
-    height 100%
-  [class*="bp_34"]
-    height 75%
-  [class*="bp_12"]
-    height 50%
-  [class*="bp_25"]
-    height 40%
-  [class*="bp_14"]
-    height 25%
-  [class*="bp_15"]
-    height 20%
-  [class*="bp_23"]
-    height 66.6666666%
-  [class*="bp_13"]
-    height 33.3333333%
-
-@media (min-width: (($zone-a-min * ($column + $gutter) - $gutter) / $em)rem)
-  .ha
-    display none !important
-  [class*=poxya]
-    float left
-  [class*=qoxya]
-    float right
-  [class*=paxya]
-    position absolute
-    top 0
-    left 0
-  [class*=qaxya]
-    position absolute
-    top 0
-    right 0
-  [class*=baxya]
-    position absolute
-    bottom 0
-    left 0
-  [class*=daxya]
-    position absolute
-    bottom 0
-    right 0
-  section
-    margin-left: -($gxA/2)
-    margin-top: 0
-    &:first-child
-      //margin-top: ($gyA/2) !important
-      margin-top: 0 !important
-    // &:last-child
-    //   margin-bottom: -($gyA) !important
-    &:after
-      margin-top: -($gyA) !important
-    .cw0
-      margin-bottom: ($gyA) !important
-      margin-right: -($gyA) !important
-
-  footer
-    padding-top: ($gyA) !important
-
-  // Percent Width
-  [class*="ap11"]
-    width 100%
-  [class*="ap34"]
-    width 75%
-  [class*="ap12"]
-    width 50%
-  [class*="ap25"]
-    width 40%
-  [class*="ap14"]
-    width 25%
-  [class*="ap15"]
-    width 20%
-  [class*="ap23"]
-    width 66.6666666%
-  [class*="ap13"]
-    width 33.3333333%
-
-  // Percent Height
-  [class*="ap_11"]
-    height 300%
-  [class*="ap_11"]
-    height 100%
-  [class*="ap_34"]
-    height 75%
-  [class*="ap_12"]
-    height 50%
-  [class*="ap_25"]
-    height 40%
-  [class*="ap_14"]
-    height 25%
-  [class*="ap_15"]
-    height 20%
-  [class*="ap_23"]
-    height 66.6666666%
-  [class*="ap_13"]
-    height 33.3333333%
+    // Percent Height
+    [class*={$z}p_11]
+      height 300%
+    [class*={$z}p_11]
+      height 100%
+    [class*={$z}p_34]
+      height 75%
+    [class*={$z}p_12]
+      height 50%
+    [class*={$z}p_25]
+      height 40%
+    [class*={$z}p_14]
+      height 25%
+    [class*={$z}p_15]
+      height 20%
+    [class*={$z}p_23]
+      height 66.6666666%
+    [class*={$z}p_13]
+      height 33.3333333%
 
 
 
 
-
+zone-core(e, $zone-e-min, $gxe, $gye)
+zone-core(d, $zone-d-min, $gxd, $gyd)
+zone-core(c, $zone-c-min, $gxc, $gyc)
+zone-core(b, $zone-b-min, $gxb, $gyb)
+zone-core(a, $zone-a-min, $gxa, $gya)
 
 
 
@@ -868,6 +579,7 @@ poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
 //////////////////////////////////////////////////////
 // z-index
 ////////////////////////////////////////////////////
+
 .z1
   z-index 1
 .z2
