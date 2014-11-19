@@ -750,6 +750,120 @@ poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
 
 
 
+//////////////////////////////////////////////////////////////////////
+// OXY Classes
+///////////////////////////////////////////////////////////////////
+.oxy
+  translate(50%, -50%)
+  position absolute
+  right 50%
+  top 50%
+  z-index 999
+
+.ox
+  translate(0%, -50%)
+  left 0
+  position absolute
+  top 50%
+  z-index 999
+
+.ox_
+  translate(0%, -50%)
+  position absolute
+  right 0
+  top 50%
+  z-index 999
+
+.oy
+  position absolute
+  right 50%
+  top 0
+  z-index 999
+  translate(50%, 0%)
+
+
+.oy_6
+  translate(50%, 0%)
+  position absolute
+  right 50%
+  top 0
+  z-index 999
+
+.oxy12,
+.oxy1,
+.oxy2,
+.oxy3,
+.oxy4,
+.oxy5,
+.oxy6,
+.oxy7,
+.oxy8,
+.oxy9,
+.ox10,
+.oxy11,
+  position absolute
+
+
+.oxy12
+  translate(50%, 0%)
+  right 50%
+
+.oxy1
+  translate(50%, 0%)
+  right 25%
+  top 0
+
+.oxy2
+  translate(0%, -50%)
+  right 0%
+  top 25%
+
+.oxy3
+  translate(0%, -50%)
+  right 0%
+  top 50%
+
+.oxy4
+  translate(0%, -50%)
+  right 0% top 75%
+
+.oxy5
+  translate(50%, 0%)
+  bottom 0%
+  right 25%
+
+.oxy6
+  translate(50%, 0%)
+  bottom 0%
+  right 50%
+
+.oxy7
+  translate(50%, 0%)
+  bottom 0%
+  right 75%
+
+.oxy8
+  translate(0%, -50%)
+  left 0%
+  top 75%
+
+.oxy9
+  translate(0%, -50%)
+  left 0%
+  top 50%
+
+.oxy10
+  translate(0%, 50%)
+  left 0%
+  top 25%
+
+.oxy11
+  translate(-50%, 0%)
+  left 25%
+  top 0%
+
+
+
 
 //////////////////////////////////////////////////////
 // z-index
@@ -967,11 +1081,11 @@ $zone-f-color = #10e277
 // Deve Zone Styles
 /////////////////////////////////////////////////////////////////////
 
-// section:before
-//   border-top alpha(#fff, .2) solid 1px
-//
-// section:after
-//   border-bottom alpha(#fff, .2) solid 1px
+section:before
+  border-top alpha(#fff, .2) solid 1px
+
+section:after
+  border-bottom alpha(#fff, .2) solid 1px
 
 .poxy-dev span
   font-size .8em
