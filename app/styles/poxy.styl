@@ -95,18 +95,6 @@ $cols1 = (1 * ($column + $gutter) - $gutter) / $em
 $gx = (($gutter) / $em)rem
 $gy = (($gutter-y) / $em)rem
 
-// Zone Gutters (rem)
-$gxA = (($gx-A) / $em)rem
-$gyA = (($gy-A) / $em)rem
-$gxB = (($gx-B) / $em)rem
-$gyB = (($gy-B) / $em)rem
-$gxC = (($gx-C) / $em)rem
-$gyC = (($gy-C) / $em)rem
-$gxD = (($gx-D) / $em)rem
-$gyD = (($gy-D) / $em)rem
-$gxE = (($gx-E) / $em)rem
-$gyE = (($gy-E) / $em)rem
-
 $gxa = (($gx-A) / $em)rem
 $gya = (($gy-A) / $em)rem
 $gxb = (($gx-B) / $em)rem
@@ -140,9 +128,6 @@ $s10 = ($spacer / 10)
 /////////////////////////////////////////////////////////////////////
 
 zone($zone)
-  // if $zone == mobile-menu
-  //   @media (min-width: ($zone-e-min * ($column + $gutter) - $gutter) / $em) and (max-width: ($mobile-max * ($column + $gutter) - $gutter) / $em)
-  //     {block}
 
   // ZONE E
   if $zone == E
@@ -212,69 +197,6 @@ poxy-zone-height($zone, $zone-class-lower, $zone-min, $zone-max, $numerators, $z
             for $i2 in $ratio-range
               \[class\*\={$zone-class-lower}\_{$size[1]}{$i2}\]
                  height poxy-scale($i, $size[0], $size[1], $i2, $zone-gutter, $gs)
-
-
-
-
-//////////////////////////////////////////////////////
-// Reset
-//////////////////////////////////////////////////////
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, nav, section, menu, time, mark, audio, video, canvas
-  margin 0
-  padding 0
-  border 0
-
-*
-  box-sizing border-box
-
-
-
-
-
-// Get custom zone copy widths based on gutter settings
-poxy-copy-width($zone-e-min, $zone-e-max, $gx-E, $gy-E, $gs-E)
-poxy-copy-width($zone-d-min, $zone-d-max, $gx-D, $gy-D, $gs-D)
-poxy-copy-width($zone-c-min, $zone-c-max, $gx-C, $gy-C, $gs-C)
-poxy-copy-width($zone-b-min, $zone-b-max, $gx-B, $gy-B, $gs-B)
-poxy-copy-width($zone-a-min, $zone-a-max, $gx-A, $gy-A, $gs-A)
-
-
-// Default
-// .cw, .pcw, .qcw
-//   for i in (8..$max-copy-width)
-//     @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)rem)
-//         width: (((((i - 2) * ($column + $gutter) - $gutter) / $em) + $gx)rem)
-//
-// .cw > *
-//   for i in (1..$max-copy-width)
-//     @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)rem)
-//         width: (((((i - 2) * ($column + $gutter) - $gutter) / $em))rem)
-
-.cw0 > *
-  margin-left 0
-  margin-right -($gxA)
-
-
-
-
-
-//////////////////////////////////////////////////////
-// Container(div) Ratio Sizes
-//////////////////////////////////////////////////////
-// Get Width Classes
-poxy-zone-width(E, e, $zone-e-min, $zone-e-max, $numerators-E, $gx-E, $gs-E)
-poxy-zone-width(D, d, $zone-d-min, $zone-d-max, $numerators-D, $gx-D, $gs-D)
-poxy-zone-width(C, c, $zone-c-min, $zone-c-max, $numerators-C, $gx-C, $gs-C)
-poxy-zone-width(B, b, $zone-b-min, $zone-b-max, $numerators-B, $gx-B, $gs-B)
-poxy-zone-width(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
-
-// Get Hight Classes
-poxy-zone-height(E, e, $zone-e-min, $zone-e-max, $numerators-E, $gx-E, $gs-E)
-poxy-zone-height(D, d, $zone-d-min, $zone-d-max, $numerators-D, $gx-D, $gs-D)
-poxy-zone-height(C, c, $zone-c-min, $zone-c-max, $numerators-C, $gx-C, $gs-C)
-poxy-zone-height(B, b, $zone-b-min, $zone-b-max, $numerators-B, $gx-B, $gs-B)
-poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
-
 
 //////////////////////////////////////////////////////
 // Section negative margin Offset
@@ -360,6 +282,41 @@ zone-core($z, $zone-min, $gx, $gy)
 
 
 
+//////////////////////////////////////////////////////
+// Reset
+//////////////////////////////////////////////////////
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, nav, section, menu, time, mark, audio, video, canvas
+  margin 0
+  padding 0
+  border 0
+
+*
+  box-sizing border-box
+
+
+// Get custom zone copy widths based on gutter settings
+poxy-copy-width($zone-e-min, $zone-e-max, $gx-E, $gy-E, $gs-E)
+poxy-copy-width($zone-d-min, $zone-d-max, $gx-D, $gy-D, $gs-D)
+poxy-copy-width($zone-c-min, $zone-c-max, $gx-C, $gy-C, $gs-C)
+poxy-copy-width($zone-b-min, $zone-b-max, $gx-B, $gy-B, $gs-B)
+poxy-copy-width($zone-a-min, $zone-a-max, $gx-A, $gy-A, $gs-A)
+
+//////////////////////////////////////////////////////
+// Container(div) Ratio Sizes
+//////////////////////////////////////////////////////
+// Get Width Classes
+poxy-zone-width(E, e, $zone-e-min, $zone-e-max, $numerators-E, $gx-E, $gs-E)
+poxy-zone-width(D, d, $zone-d-min, $zone-d-max, $numerators-D, $gx-D, $gs-D)
+poxy-zone-width(C, c, $zone-c-min, $zone-c-max, $numerators-C, $gx-C, $gs-C)
+poxy-zone-width(B, b, $zone-b-min, $zone-b-max, $numerators-B, $gx-B, $gs-B)
+poxy-zone-width(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
+
+// Get Hight Classes
+poxy-zone-height(E, e, $zone-e-min, $zone-e-max, $numerators-E, $gx-E, $gs-E)
+poxy-zone-height(D, d, $zone-d-min, $zone-d-max, $numerators-D, $gx-D, $gs-D)
+poxy-zone-height(C, c, $zone-c-min, $zone-c-max, $numerators-C, $gx-C, $gs-C)
+poxy-zone-height(B, b, $zone-b-min, $zone-b-max, $numerators-B, $gx-B, $gs-B)
+poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
 
 zone-core(e, $zone-e-min, $gxe, $gye)
 zone-core(d, $zone-d-min, $gxd, $gyd)
@@ -374,18 +331,26 @@ zone-core(a, $zone-a-min, $gxa, $gya)
 // POXY
 ////////////////////////////////////////////////////
 
-// fixed
-.pfxy
+// fixed - "f" stands for Fixed
+.pfxy,
+.qfxy,
+.bfxy,
+.dfxy
   position fixed
+.pfxy
   top 0
   left 0
-
+.qfxy
+  top 0
+  right 0
 .bfxy
-  position fixed
   bottom 0
   left 0
+.dfxy
+  bottom 0
+  right 0
 
-// Float
+// Float - "o" stands for Float
 .poxy,
 .boxy
   float left
@@ -394,24 +359,28 @@ zone-core(a, $zone-a-min, $gxa, $gya)
 .doxy
   float right
 
-
 // Absolute
 .paxy,
 .pa,
 .qaxy,
 .baxy,
 .daxy
-  position absolute !important
+  position absolute
 .paxy
+  top 0
   left 0
 .qa
+  top 0
   right 0
 .qoxy
+  top 0
   right 0
 .daxy
   bottom 0
+  right 0
 .baxy
   bottom 0
+  left 0
 
 
 
@@ -594,37 +563,7 @@ zone-core(a, $zone-a-min, $gxa, $gya)
   z-index 6
 
 
-//////////////////////////////////////////////////////
-// DEV
-////////////////////////////////////////////////////
-.hide
-  display none !important
-.red
-  background red
-.logo
-  background-size cover
-.bg0
-  background transparent !important
-.bg10
-  background-color darken(#fff, 10%) !important
-.bg20
-  background-color darken(#fff, 20%) !important
-.bg30
-  background-color darken(#fff, 30%) !important
-.bg40
-  background-color darken(#fff, 40%) !important
-.bg50
-  background-color darken(#fff, 50%) !important
-.bg60
-  background-color darken(#fff, 60%) !important
-.bg70
-  background-color darken(#fff, 70%) !important
-.bg80
-  background-color darken(#fff, 80%) !important
-.bg90
-  background-color darken(#fff, 90%) !important
-.bg100
-  background-color darken(#fff, 100%) !important
+
 //////////////////////////////////////////////////////
 // COMMON
 ////////////////////////////////////////////////////
@@ -685,22 +624,21 @@ section
   width 100%
   float left
 
+.cw0 > *
+  margin-left 0
+  //margin-right -($gxA)
+
 .copy-inside
   display inline-block
 
 section:before,
 section:after
   //margin 0 auto
+  display block
   float right
   width 100%
   background alpha(#fff, .1)
   content:""
-
-// section:before
-//   border-top alpha(#fff, .2) solid 1px
-//
-// section:after
-//   border-bottom alpha(#fff, .2) solid 1px
 
 figure
   float left
@@ -713,26 +651,15 @@ figure
 //////////////////////////////////////////////////////
 // Box Styling
 ////////////////////////////////////////////////////
-
-header
-  float left
-  width 100%
-
+header,
+footer,
 #meat
   float left
   width 100%
 
-footer
-  float left
-  width 100%
-
-//////////////////////////////////////////////////////////////////////
-// Meat
-/////////////////////////////////////////////////////////////////////
 .container
   padding:0;
   display:block;
-  //background-color:$container_bg;
 
   section .site-width:before
   section .site-width:after
@@ -741,17 +668,8 @@ footer
     width:100%
     content:""
 
-
-  section:before
-    //border-top 0px solid #ccc
-    //border-bottom: 1px solid #fff;
-    //height 1px
-    display block
-    content ""
-
-
-  //section .site-width{background:rgba(0,0,0, 1) !important; }
-  //section .site-width:before{background:rgba(0,0,0, .3) !important; float:left;}
+  //section .site-width{background:rgba(0,0,0, 1) !important
+  //section .site-width:before{background:rgba(0,0,0, .3) !important
   section:nth-child(1):before
     width 100% !important
 
@@ -760,8 +678,6 @@ footer
 
   //section:first-child:before, section:first-child:after{height:0;}
   //section:last-child .site-width:after{margin-top:$cols1 !important;}
-
-//#meat:first-child section:first-child:after{width:100% !important}
 
 .container:after
 footer:after
@@ -774,9 +690,11 @@ footer:after
 
 
 
-/////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+// Deve Zone Styles
+/////////////////////////////////////////////////////////////////////
+
 // ZONE COLORS
-/////////////////////////////////
 $zone-a-color = #00bcd4
 $zone-b-color = #5677fc
 $zone-c-color = #ffc107
@@ -784,18 +702,8 @@ $zone-d-color = #a6e22a
 $zone-e-color = #e0276f
 $zone-f-color = #10e277
 
-
-
-
-
-
-//////////////////////////////////////////////////////////////////////
-// Deve Zone Styles
-/////////////////////////////////////////////////////////////////////
-
 section:before
   border-top alpha(#fff, .2) solid 1px
-
 section:after
   border-bottom alpha(#fff, .2) solid 1px
 
@@ -833,7 +741,6 @@ section:after
     +zone(A)
       content 'A '
 
-
 .poxy_dev li:first-child a
   line-height 2em
 
@@ -861,3 +768,35 @@ figure
   +zone(A)
     background-color $zone-a-color
     color #000
+
+//////////////////////////////////////////////////////
+// DEV
+////////////////////////////////////////////////////
+.hide
+  display none !important
+.red
+  background red
+.logo
+  background-size cover
+.bg0
+  background transparent !important
+.bg10
+  background-color darken(#fff, 10%) !important
+.bg20
+  background-color darken(#fff, 20%) !important
+.bg30
+  background-color darken(#fff, 30%) !important
+.bg40
+  background-color darken(#fff, 40%) !important
+.bg50
+  background-color darken(#fff, 50%) !important
+.bg60
+  background-color darken(#fff, 60%) !important
+.bg70
+  background-color darken(#fff, 70%) !important
+.bg80
+  background-color darken(#fff, 80%) !important
+.bg90
+  background-color darken(#fff, 90%) !important
+.bg100
+  background-color darken(#fff, 100%) !important
