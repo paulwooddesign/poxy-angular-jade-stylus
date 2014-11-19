@@ -1,4 +1,11 @@
 /////////////////////////////////
+// DESIGN SETTINGS
+/////////////////////////////////
+$body-color = #000
+
+
+
+/////////////////////////////////
 // GRID SETTINGS
 /////////////////////////////////
 
@@ -10,8 +17,8 @@ $gutter-y = 24 // The height of the vertical gutter
 $max-copy-width = 20 // The widest the site can get
 
 // Zone Gutters
-$gx-A = 24
-$gy-A = 24
+$gx-A = 36
+$gy-A = 64
 $gs-A = 2
 
 $gx-B = 28
@@ -28,7 +35,7 @@ $gs-D = .5
 
 $gx-E = 12
 $gy-E = 24
-$gs-E = .25
+$gs-E = .5
 
 
 /////////////////////////////////
@@ -89,23 +96,22 @@ $zone-e-min = 4
 //////////////////////////////////////////////////////////////////////
 // FRAMLESS GRID SETTINGS - Joni Korpi - http://framelessgrid.com/
 /////////////////////////////////////////////////////////////////////
-$cols1 = (1 * ($column + $gutter) - $gutter) / $em
+$cols1 = ((1 * ($column + $gutter) - $gutter) / $em)rem
 
 // Virtical & Horizontal Gutter Size
 $gx = (($gutter) / $em)rem
 $gy = (($gutter-y) / $em)rem
 
-// Zone Gutters (rem)
-$gxA = (($gx-A) / $em)rem
-$gyA = (($gy-A) / $em)rem
-$gxB = (($gx-B) / $em)rem
-$gyB = (($gy-B) / $em)rem
-$gxC = (($gx-C) / $em)rem
-$gyC = (($gy-C) / $em)rem
-$gxD = (($gx-D) / $em)rem
-$gyD = (($gy-D) / $em)rem
-$gxE = (($gx-E) / $em)rem
-$gyE = (($gy-E) / $em)rem
+$gxa = (($gx-A) / $em)rem
+$gya = (($gy-A) / $em)rem
+$gxb = (($gx-B) / $em)rem
+$gyb = (($gy-B) / $em)rem
+$gxc = (($gx-C) / $em)rem
+$gyc = (($gy-C) / $em)rem
+$gxd = (($gx-D) / $em)rem
+$gyd = (($gy-D) / $em)rem
+$gxe = (($gx-E) / $em)rem
+$gye = (($gy-E) / $em)rem
 
 //spacer/Shiv - margin rythem
 $spacer = $gx
@@ -129,9 +135,6 @@ $s10 = ($spacer / 10)
 /////////////////////////////////////////////////////////////////////
 
 zone($zone)
-  // if $zone == mobile-menu
-  //   @media (min-width: ($zone-e-min * ($column + $gutter) - $gutter) / $em) and (max-width: ($mobile-max * ($column + $gutter) - $gutter) / $em)
-  //     {block}
 
   // ZONE E
   if $zone == E
@@ -202,6 +205,105 @@ poxy-zone-height($zone, $zone-class-lower, $zone-min, $zone-max, $numerators, $z
               \[class\*\={$zone-class-lower}\_{$size[1]}{$i2}\]
                  height poxy-scale($i, $size[0], $size[1], $i2, $zone-gutter, $gs)
 
+//////////////////////////////////////////////////////
+// Section negative margin Offset
+////////////////////////////////////////////////////
+zone-core($z, $zone-min, $gx, $gy)
+  @media (min-width: (($zone-min * ($column + $gutter) - $gutter) / $em)rem)
+    // Hide
+    .ha
+      display none !important
+    p
+      margin-top ($gy/2)
+      line-height (28/$em)
+      letter-spacing: .01em
+
+    section
+      margin-top 0
+      padding-top $gy
+      &:first-child
+        //margin-top: ($gyA/2) !important
+        padding-top 0 !important
+        margin-top 0 !important
+      // &:last-child
+      //   margin-bottom: -($gyA) !important
+      &:after
+        margin-top: -($gy) !important
+      .sw
+        margin-left -($gx/2)
+      .cw0
+        margin-bottom: ($gy) !important
+        margin-right: -($gy) !important
+
+    footer
+      padding-top: ($gy) !important
+    [class*=pox{$z}]
+      height auto !important
+    [class*=poxy{$z}]
+      float left
+    [class*=qoxy{$z}]
+      float right
+    [class*=paxy{$z}]
+      position absolute
+      top 0
+      left 0
+    [class*=qaxy{$z}]
+      position absolute
+      top 0
+      right 0
+    [class*=baxy{$z}]
+      position absolute
+      bottom 0
+      left 0
+    [class*=daxy{$z}]
+      position absolute
+      bottom 0
+      right 0
+    // Percent Width
+    [class*={$z}p11]
+      width 100%
+    [class*={$z}p34]
+      width 75%
+    [class*={$z}p12]
+      width 50%
+    [class*={$z}p25]
+      width 40%
+    [class*={$z}p14]
+      width 25%
+    [class*={$z}p15]
+      width 20%
+    [class*={$z}p23]
+      width 66.6666666%
+    [class*={$z}p13]
+      width 33.3333333%
+    [class*={$z}p98]
+      width 98%
+    [class*={$z}p99]
+      width 99%
+
+    // Percent Height
+    [class*={$z}p_11]
+      height 300%
+    [class*={$z}p_11]
+      height 100%
+    [class*={$z}p_34]
+      height 75%
+    [class*={$z}p_12]
+      height 50%
+    [class*={$z}p_25]
+      height 40%
+    [class*={$z}p_14]
+      height 25%
+    [class*={$z}p_15]
+      height 20%
+    [class*={$z}p_23]
+      height 66.6666666%
+    [class*={$z}p_13]
+      height 33.3333333%
+    [class*={$z}p_98]
+      height 98%
+    [class*={$z}p_99]
+      height 99%
 
 
 
@@ -216,445 +318,94 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, blockquote,
 *
   box-sizing border-box
 
+//////////////////////////////////////////////////////
+// Typography
+//////////////////////////////////////////////////////
+body
+  color alpha($body-color, 87%)
 
+.tera
+  font-size (112/$em)rem
+h1,
+.giga
+  font-size (56/$em)rem
+.mega
+  font-size (45/$em)rem
+h2,
+.alpha
+  font-size (34/$em)rem
+h3,
+.beta
+  font-size (24/$em)rem
+.gamma
+  font-size (20/$em)rem
+h4,
+.delta
+  font-size (18/$em)rem
+h5,
+.epsilon
+  font-size (14/$em)rem
+h6,
+.zeta
+  font-size (12/$em)rem
 
-
-
+///
+// .tera
+//   font-size (114/$em)rem
+// h1,
+// .giga
+//   font-size (89/$em)rem
+// .mega
+//   font-size (55/$em)rem
+// h2,
+// .alpha
+//   font-size (34/$em)rem
+// h3,
+// .beta
+//   font-size (21/$em)rem
+// .gamma
+//   font-size (13/$em)rem
+// h4,
+// .delta
+//   font-size (8/$em)rem
+// h5,
+// .epsilon
+//   font-size (5/$em)rem
+// h6,
+// .zeta
+//   font-size (3/$em)rem
+//////////////////////////////////////////////////////
+// Container(div) Ratio Sizes
 // Get custom zone copy widths based on gutter settings
+//////////////////////////////////////////////////////
 poxy-copy-width($zone-e-min, $zone-e-max, $gx-E, $gy-E, $gs-E)
 poxy-copy-width($zone-d-min, $zone-d-max, $gx-D, $gy-D, $gs-D)
 poxy-copy-width($zone-c-min, $zone-c-max, $gx-C, $gy-C, $gs-C)
 poxy-copy-width($zone-b-min, $zone-b-max, $gx-B, $gy-B, $gs-B)
 poxy-copy-width($zone-a-min, $zone-a-max, $gx-A, $gy-A, $gs-A)
 
-
-// Default
-// .cw, .pcw, .qcw
-//   for i in (8..$max-copy-width)
-//     @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)rem)
-//         width: (((((i - 2) * ($column + $gutter) - $gutter) / $em) + $gx)rem)
-//
-// .cw > *
-//   for i in (1..$max-copy-width)
-//     @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)rem)
-//         width: (((((i - 2) * ($column + $gutter) - $gutter) / $em))rem)
-
-.cw0 > *
-  margin-left 0
-  margin-right -($gxA)
-
-
-
-
-
 //////////////////////////////////////////////////////
 // Container(div) Ratio Sizes
 //////////////////////////////////////////////////////
-// Get Width Classes
+// width (x)
 poxy-zone-width(E, e, $zone-e-min, $zone-e-max, $numerators-E, $gx-E, $gs-E)
 poxy-zone-width(D, d, $zone-d-min, $zone-d-max, $numerators-D, $gx-D, $gs-D)
 poxy-zone-width(C, c, $zone-c-min, $zone-c-max, $numerators-C, $gx-C, $gs-C)
 poxy-zone-width(B, b, $zone-b-min, $zone-b-max, $numerators-B, $gx-B, $gs-B)
 poxy-zone-width(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
-
-// Get Hight Classes
+// height (y)
 poxy-zone-height(E, e, $zone-e-min, $zone-e-max, $numerators-E, $gx-E, $gs-E)
 poxy-zone-height(D, d, $zone-d-min, $zone-d-max, $numerators-D, $gx-D, $gs-D)
 poxy-zone-height(C, c, $zone-c-min, $zone-c-max, $numerators-C, $gx-C, $gs-C)
 poxy-zone-height(B, b, $zone-b-min, $zone-b-max, $numerators-B, $gx-B, $gs-B)
 poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
 
-
-//////////////////////////////////////////////////////
-// Section negative margin Offset
-////////////////////////////////////////////////////
-@media (min-width: (($zone-e-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-d-min * ($column + $gutter) - $gutter) / $em)rem)
-  .he
-    display none !important
-  [class*=poxye]
-    float left
-  [class*=qoxye]
-    float right
-  [class*=paxye]
-    position absolute
-    top 0
-    left 0
-  [class*=qaxye]
-    position absolute
-    top 0
-    right 0
-  [class*=baxye]
-    position absolute
-    bottom 0
-    left 0
-  [class*=daxye]
-    position absolute
-    bottom 0
-    right 0
-  section
-    margin-left: -($gxE/2)
-    margin-top: 0
-    &:first-child
-      //margin-top ($gyE/2) !important
-    &:last-child
-      margin-bottom: -($gyE/2) !important
-    &:after
-      margin-top: -($gyE) !important
-    .cw0
-      margin-bottom: ($gyE) !important
-
-  footer
-    padding-top: ($gyE) !important
-
-  // Percent Width
-  [class*="ep11"]
-    width 100%
-  [class*="ep34"]
-    width 75%
-  [class*="ep12"]
-    width 50%
-  [class*="ep25"]
-    width 40%
-  [class*="ep14"]
-    width 25%
-  [class*="ep15"]
-    width 20%
-  [class*="ep23"]
-    width 66.6666666%
-  [class*="ep13"]
-    width 33.3333333%
-
-  // Percent Height
-  [class*="ep_11"]
-    height 300%
-  [class*="ep_11"]
-    height 100%
-  [class*="ep_34"]
-    height 75%
-  [class*="ep_12"]
-    height 50%
-  [class*="ep_25"]
-    height 40%
-  [class*="ep_14"]
-    height 25%
-  [class*="ep_15"]
-    height 20%
-  [class*="ep_23"]
-    height 66.6666666%
-  [class*="ep_13"]
-    height 33.3333333%
-
-
-@media (min-width: (($zone-d-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-c-min * ($column + $gutter) - $gutter) / $em)rem)
-  .hd
-    display none !important
-  [class*=poxyd]
-    float left
-  [class*=qoxyd]
-    float right
-  [class*=paxyd]
-    position absolute
-    top 0
-    left 0
-  [class*=qaxyd]
-    position absolute
-    top 0
-    right 0
-  [class*=baxyd]
-    position absolute
-    bottom 0
-    left 0
-  [class*=daxyd]
-    position absolute
-    bottom 0
-    right 0
-  section
-    margin-left: -($gxD/2)
-    margin-top: 0
-    &:first-child
-      //margin-top: ($gyD/2) !important
-    &:last-child
-      margin-bottom: -($gyD/2) !important
-    &:after
-      margin-top: -($gyD) !important
-    .cw0
-      margin-bottom: ($gyD) !important
-
-  footer
-    padding-top: ($gyD) !important
-
-  // Percent Width
-  [class*="dp11"]
-    width 100%
-  [class*="dp34"]
-    width 75%
-  [class*="dp12"]
-    width 50%
-  [class*="dp25"]
-    width 40%
-  [class*="dp14"]
-    width 25%
-  [class*="dp15"]
-    width 20%
-  [class*="dp23"]
-    width 66.6666666%
-  [class*="dp13"]
-    width 33.3333333%
-
-  // Percent Height
-  [class*="dp_11"]
-    height 300%
-  [class*="dp_11"]
-    height 100%
-  [class*="dp_34"]
-    height 75%
-  [class*="dp_12"]
-    height 50%
-  [class*="dp_25"]
-    height 40%
-  [class*="dp_14"]
-    height 25%
-  [class*="dp_15"]
-    height 20%
-  [class*="dp_23"]
-    height 66.6666666%
-  [class*="dp_13"]
-    height 33.3333333%
-
-@media (min-width: (($zone-c-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-b-min * ($column + $gutter) - $gutter) / $em)rem)
-  .hc
-    display none !important
-  [class*=poxyc]
-    float left
-  [class*=qoxyc]
-    float right
-  [class*=paxyc]
-    position absolute
-    top 0
-    left 0
-  [class*=qaxyc]
-    position absolute
-    top 0
-    right 0
-  [class*=baxyc]
-    position absolute
-    bottom 0
-    left 0
-  [class*=daxyc]
-    position absolute
-    bottom 0
-    right 0
-  section
-    margin-left: -($gxC/2)
-    margin-top: 0
-    &:first-child
-      //margin-top: ($gyC/2) !important
-    &:last-child
-      margin-bottom: -($gyC/2) !important
-    &:after
-      margin-top: -($gyC) !important
-    .cw0
-      margin-bottom: ($gyC) !important
-
-  footer
-    padding-top: ($gyC) !important
-
-  // Percent Width
-  [class*="cp11"]
-    width 100%
-  [class*="cp34"]
-    width 75%
-  [class*="cp12"]
-    width 50%
-  [class*="cp25"]
-    width 40%
-  [class*="cp14"]
-    width 25%
-  [class*="cp15"]
-    width 20%
-  [class*="cp23"]
-    width 66.6666666%
-  [class*="cp13"]
-    width 33.3333333%
-
-  // Percent Height
-  [class*="cp_11"]
-    height 300%
-  [class*="cp_11"]
-    height 100%
-  [class*="cp_34"]
-    height 75%
-  [class*="cp_12"]
-    height 50%
-  [class*="cp_25"]
-    height 40%
-  [class*="cp_14"]
-    height 25%
-  [class*="cp_15"]
-    height 20%
-  [class*="cp_23"]
-    height 66.6666666%
-  [class*="cp_13"]
-    height 33.3333333%
-
-@media (min-width: (($zone-b-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-a-min * ($column + $gutter) - $gutter) / $em)rem)
-  .hb
-    display none !important
-  [class*=poxyb]
-    float left
-  [class*=qoxyb]
-    float right
-  [class*=paxyb]
-    position absolute
-    top 0
-    left 0
-  [class*=qaxyb]
-    position absolute
-    top 0
-    right 0
-  [class*=baxyb]
-    position absolute
-    bottom 0
-    left 0
-  [class*=daxyb]
-    position absolute
-    bottom 0
-    right 0
-  section
-    margin-left: -($gxB/2)
-    margin-top: 0
-    &:first-child
-      //margin-top: ($gyB/2) !important
-    &:last-child
-      margin-bottom: -($gyB/2) !important
-    &:after
-      margin-top: -($gyB) !important
-    .cw0
-      margin-bottom: ($gyB) !important
-
-  footer
-    padding-top: ($gyB) !important
-
-  // Percent Width
-  [class*="bp11"]
-    width 100%
-  [class*="bp34"]
-    width 75%
-  [class*="bp12"]
-    width 50%
-  [class*="bp25"]
-    width 40%
-  [class*="bp14"]
-    width 25%
-  [class*="bp15"]
-    width 20%
-  [class*="bp23"]
-    width 66.6666666%
-  [class*="bp13"]
-    width 33.3333333%
-
-  // Percent Height
-  [class*="bp_11"]
-    height 300%
-  [class*="bp_11"]
-    height 100%
-  [class*="bp_34"]
-    height 75%
-  [class*="bp_12"]
-    height 50%
-  [class*="bp_25"]
-    height 40%
-  [class*="bp_14"]
-    height 25%
-  [class*="bp_15"]
-    height 20%
-  [class*="bp_23"]
-    height 66.6666666%
-  [class*="bp_13"]
-    height 33.3333333%
-
-@media (min-width: (($zone-a-min * ($column + $gutter) - $gutter) / $em)rem)
-  .ha
-    display none !important
-  [class*=poxya]
-    float left
-  [class*=qoxya]
-    float right
-  [class*=paxya]
-    position absolute
-    top 0
-    left 0
-  [class*=qaxya]
-    position absolute
-    top 0
-    right 0
-  [class*=baxya]
-    position absolute
-    bottom 0
-    left 0
-  [class*=daxya]
-    position absolute
-    bottom 0
-    right 0
-  section
-    margin-left: -($gxA/2)
-    margin-top: 0
-    &:first-child
-      //margin-top: ($gyA/2) !important
-      margin-top: 0 !important
-    // &:last-child
-    //   margin-bottom: -($gyA) !important
-    &:after
-      margin-top: -($gyA) !important
-    .cw0
-      margin-bottom: ($gyA) !important
-      margin-right: -($gyA) !important
-
-  footer
-    padding-top: ($gyA) !important
-
-  // Percent Width
-  [class*="ap11"]
-    width 100%
-  [class*="ap34"]
-    width 75%
-  [class*="ap12"]
-    width 50%
-  [class*="ap25"]
-    width 40%
-  [class*="ap14"]
-    width 25%
-  [class*="ap15"]
-    width 20%
-  [class*="ap23"]
-    width 66.6666666%
-  [class*="ap13"]
-    width 33.3333333%
-
-  // Percent Height
-  [class*="ap_11"]
-    height 300%
-  [class*="ap_11"]
-    height 100%
-  [class*="ap_34"]
-    height 75%
-  [class*="ap_12"]
-    height 50%
-  [class*="ap_25"]
-    height 40%
-  [class*="ap_14"]
-    height 25%
-  [class*="ap_15"]
-    height 20%
-  [class*="ap_23"]
-    height 66.6666666%
-  [class*="ap_13"]
-    height 33.3333333%
-
-
-
-
-
+// zone margin offsets and other zone exclusive styles
+zone-core(e, $zone-e-min, $gxe, $gye)
+zone-core(d, $zone-d-min, $gxd, $gyd)
+zone-core(c, $zone-c-min, $gxc, $gyc)
+zone-core(b, $zone-b-min, $gxb, $gyb)
+zone-core(a, $zone-a-min, $gxa, $gya)
 
 
 
@@ -663,18 +414,26 @@ poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
 // POXY
 ////////////////////////////////////////////////////
 
-// fixed
-.pfxy
+// fixed - "f" stands for Fixed
+.pfxy,
+.qfxy,
+.bfxy,
+.dfxy
   position fixed
+.pfxy
   top 0
   left 0
-
+.qfxy
+  top 0
+  right 0
 .bfxy
-  position fixed
   bottom 0
   left 0
+.dfxy
+  bottom 0
+  right 0
 
-// Float
+// Float - "o" stands for Float
 .poxy,
 .boxy
   float left
@@ -684,23 +443,29 @@ poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
   float right
 
 
+
 // Absolute
 .paxy,
 .pa,
 .qaxy,
 .baxy,
 .daxy
-  position absolute !important
+  position absolute
 .paxy
+  top 0
   left 0
 .qa
+  top 0
   right 0
 .qoxy
+  top 0
   right 0
 .daxy
   bottom 0
+  right 0
 .baxy
   bottom 0
+  left 0
 
 
 
@@ -750,10 +515,129 @@ poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
 
 
 
+//////////////////////////////////////////////////////////////////////
+// OXY Classes
+///////////////////////////////////////////////////////////////////
+.oxy
+  //translate(50%, -50%)
+  -ms-transform: translate(50%, -50%); /* IE 9 */
+  -webkit-transform: translate(50%, -50%); /* Chrome, Safari, Opera */
+  transform: translate(50%, -50%);
+
+  position absolute
+  right 50%
+  top 50%
+  z-index 2
+
+.ox
+  translate(0%, -50%)
+  left 0
+  position absolute
+  top 50%
+  z-index 2
+
+.ox_
+  translate(0%, -50%)
+  position absolute
+  right 0
+  top 50%
+  z-index 2
+
+.oy
+  position absolute
+  right 50%
+  top 0
+  z-index 2
+  translate(50%, 0%)
+
+
+.oy_6
+  translate(50%, 0%)
+  position absolute
+  right 50%
+  top 0
+  z-index 2
+
+.oxy12,
+.oxy1,
+.oxy2,
+.oxy3,
+.oxy4,
+.oxy5,
+.oxy6,
+.oxy7,
+.oxy8,
+.oxy9,
+.ox10,
+.oxy11,
+  position absolute
+
+
+.oxy12
+  translate(50%, 0%)
+  right 50%
+
+.oxy1
+  translate(50%, 0%)
+  right 25%
+  top 0
+
+.oxy2
+  translate(0%, -50%)
+  right 0%
+  top 25%
+
+.oxy3
+  translate(0%, -50%)
+  right 0%
+  top 50%
+
+.oxy4
+  translate(0%, -50%)
+  right 0% top 75%
+
+.oxy5
+  translate(50%, 0%)
+  bottom 0%
+  right 25%
+
+.oxy6
+  translate(50%, 0%)
+  bottom 0%
+  right 50%
+
+.oxy7
+  translate(50%, 0%)
+  bottom 0%
+  right 75%
+
+.oxy8
+  translate(0%, -50%)
+  left 0%
+  top 75%
+
+.oxy9
+  translate(0%, -50%)
+  left 0%
+  top 50%
+
+.oxy10
+  translate(0%, 50%)
+  left 0%
+  top 25%
+
+.oxy11
+  translate(-50%, 0%)
+  left 25%
+  top 0%
+
+
+
 
 //////////////////////////////////////////////////////
 // z-index
 ////////////////////////////////////////////////////
+
 .z1
   z-index 1
 .z2
@@ -766,39 +650,16 @@ poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
   z-index 5
 .z6
   z-index 6
+.z7
+  z-index 7
+.z8
+  z-index 8
+.z9
+  z-index 9
+.z10
+  z-index 10
 
 
-//////////////////////////////////////////////////////
-// DEV
-////////////////////////////////////////////////////
-.hide
-  display none !important
-.red
-  background red
-.logo
-  background-size cover
-.bg0
-  background transparent !important
-.bg10
-  background-color darken(#fff, 10%) !important
-.bg20
-  background-color darken(#fff, 20%) !important
-.bg30
-  background-color darken(#fff, 30%) !important
-.bg40
-  background-color darken(#fff, 40%) !important
-.bg50
-  background-color darken(#fff, 50%) !important
-.bg60
-  background-color darken(#fff, 60%) !important
-.bg70
-  background-color darken(#fff, 70%) !important
-.bg80
-  background-color darken(#fff, 80%) !important
-.bg90
-  background-color darken(#fff, 90%) !important
-.bg100
-  background-color darken(#fff, 100%) !important
 //////////////////////////////////////////////////////
 // COMMON
 ////////////////////////////////////////////////////
@@ -811,11 +672,13 @@ poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
   width 100%
 
 section.clear
+  padding-top 0 !important
   margin-bottom 0 !important
   &:after,
   &:before
     display none !important
   .sw
+    margin-left 0 !important
     margin-bottom 0 !important
     &:after,
     &:before
@@ -832,15 +695,13 @@ section.full
 //////////////////////////////////////////////////////
 // CORE
 ////////////////////////////////////////////////////
-
-.container
-  font-size: 100%
+nav a
+  position relative
 
 section
   display block
   float left
   overflow hidden
-  padding 0
   width 100%
 
 .sw // site-width
@@ -859,26 +720,31 @@ section
   width 100%
   float left
 
+.cw0 > *
+  margin-left 0
+  //margin-right -($gxA)
+
 .copy-inside
   display inline-block
 
 section:before,
 section:after
   //margin 0 auto
+  display block
   float right
   width 100%
   background alpha(#fff, .1)
   content:""
 
-// section:before
-//   border-top alpha(#fff, .2) solid 1px
-//
-// section:after
-//   border-bottom alpha(#fff, .2) solid 1px
-
 figure
+  -webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
+ 	backface-visibility: hidden;
   float left
   width 100%
+
+figure  *
+  -webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
+   backface-visibility: hidden;
 
 .mr0
   margin-right 0
@@ -887,26 +753,15 @@ figure
 //////////////////////////////////////////////////////
 // Box Styling
 ////////////////////////////////////////////////////
-
-header
-  float left
-  width 100%
-
+header,
+footer,
 #meat
   float left
   width 100%
 
-footer
-  float left
-  width 100%
-
-//////////////////////////////////////////////////////////////////////
-// Meat
-/////////////////////////////////////////////////////////////////////
 .container
   padding:0;
   display:block;
-  //background-color:$container_bg;
 
   section .site-width:before
   section .site-width:after
@@ -915,17 +770,8 @@ footer
     width:100%
     content:""
 
-
-  section:before
-    //border-top 0px solid #ccc
-    //border-bottom: 1px solid #fff;
-    //height 1px
-    display block
-    content ""
-
-
-  //section .site-width{background:rgba(0,0,0, 1) !important; }
-  //section .site-width:before{background:rgba(0,0,0, .3) !important; float:left;}
+  //section .site-width{background:rgba(0,0,0, 1) !important
+  //section .site-width:before{background:rgba(0,0,0, .3) !important
   section:nth-child(1):before
     width 100% !important
 
@@ -934,8 +780,6 @@ footer
 
   //section:first-child:before, section:first-child:after{height:0;}
   //section:last-child .site-width:after{margin-top:$cols1 !important;}
-
-//#meat:first-child section:first-child:after{width:100% !important}
 
 .container:after
 footer:after
@@ -948,9 +792,11 @@ footer:after
 
 
 
-/////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+// Deve Zone Styles
+/////////////////////////////////////////////////////////////////////
+
 // ZONE COLORS
-/////////////////////////////////
 $zone-a-color = #00bcd4
 $zone-b-color = #5677fc
 $zone-c-color = #ffc107
@@ -958,20 +804,14 @@ $zone-d-color = #a6e22a
 $zone-e-color = #e0276f
 $zone-f-color = #10e277
 
-
-
-
-
-
-//////////////////////////////////////////////////////////////////////
-// Deve Zone Styles
-/////////////////////////////////////////////////////////////////////
-
-// section:before
-//   border-top alpha(#fff, .2) solid 1px
-//
-// section:after
-//   border-bottom alpha(#fff, .2) solid 1px
+section
+  border-top alpha(#fff, .2) solid 1px
+  &:nth-child(2n+2)
+    background alpha(#fff, .3)
+  &:before
+    border-top alpha(#fff, .2) solid 1px
+  &:after
+    border-bottom alpha(#fff, .2) solid 1px
 
 .poxy-dev span
   font-size .8em
@@ -1007,7 +847,6 @@ $zone-f-color = #10e277
     +zone(A)
       content 'A '
 
-
 .poxy_dev li:first-child a
   line-height 2em
 
@@ -1021,17 +860,49 @@ $zone-f-color = #10e277
 
 figure
   +zone(E)
-    background-color $zone-e-color
-    color #fff
+    background-color alpha($zone-e-color, 10%)
+    //color #fff
   +zone(D)
-    background-color $zone-d-color
-    color #fff
+    background-color alpha($zone-d-color, 10%)
+    //color #fff
   +zone(C)
-    background-color $zone-c-color
-    color #fff
+    background-color alpha($zone-c-color, 10%)
+    //color #fff
   +zone(B)
-    background-color $zone-b-color
-    color #000
+    background-color alpha($zone-b-color, 10%)
+    //color #000
   +zone(A)
-    background-color $zone-a-color
-    color #000
+    background-color alpha($zone-a-color, 10%)
+    //color #000
+
+//////////////////////////////////////////////////////
+// DEV
+////////////////////////////////////////////////////
+.hide
+  display none !important
+.red
+  background red
+.logo
+  background-size cover
+.bg0
+  background transparent !important
+.bg10
+  background-color darken(#fff, 10%) !important
+.bg20
+  background-color darken(#fff, 20%) !important
+.bg30
+  background-color darken(#fff, 30%) !important
+.bg40
+  background-color darken(#fff, 40%) !important
+.bg50
+  background-color darken(#fff, 50%) !important
+.bg60
+  background-color darken(#fff, 60%) !important
+.bg70
+  background-color darken(#fff, 70%) !important
+.bg80
+  background-color darken(#fff, 80%) !important
+.bg90
+  background-color darken(#fff, 90%) !important
+.bg100
+  background-color darken(#fff, 100%) !important
