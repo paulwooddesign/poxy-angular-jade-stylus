@@ -3,7 +3,7 @@
 /////////////////////////////////
 $body-color = #111
 $body-color-light = #ccc
-
+$accent = #d251d7
 
 /////////////////////////////////
 // GRID SETTINGS
@@ -218,6 +218,27 @@ zone-core($z, $zone-min, $gx, $gy)
       line-height (28/$em)
       letter-spacing: .01em
 
+    nav a
+      margin-top ($gy/8)
+      line-height (28/$em)
+      letter-spacing: .01em
+
+    // Text Alignment (tx(zone)-)
+    .tx{$z}-c
+      text-align center
+    .tx{$z}-r
+      text-align right
+    .tx{$z}-l
+      text-align left
+    .tx{$z}-v
+      -webkit-box-sizing border-box
+      box-sizing border-box
+      display table
+      > *
+        display table-cell
+        margin auto 0
+        vertical-align middle
+
     section
       margin-top 0
       padding-top $gy
@@ -325,6 +346,7 @@ body
   color alpha($body-color, 87%)
 
 a
+  text-decoration none
   color #ccc
 
 .dark
@@ -408,7 +430,7 @@ poxy-zone-height(E, e, $zone-e-min, $zone-e-max, $numerators-E, $gx-E, $gs-E)
 poxy-zone-height(D, d, $zone-d-min, $zone-d-max, $numerators-D, $gx-D, $gs-D)
 poxy-zone-height(C, c, $zone-c-min, $zone-c-max, $numerators-C, $gx-C, $gs-C)
 poxy-zone-height(B, b, $zone-b-min, $zone-b-max, $numerators-B, $gx-B, $gs-B)
-poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
+poxy-zone-height(A, a, ($zone-a-min + 1), $zone-a-max, $numerators-A, $gx-A, $gs-A)
 
 // zone margin offsets and other zone exclusive styles
 zone-core(e, $zone-e-min, $gxe, $gye)
@@ -423,6 +445,19 @@ zone-core(a, $zone-a-min, $gxa, $gya)
 //////////////////////////////////////////////////////
 // POXY
 ////////////////////////////////////////////////////
+// Float - "o" stands for Float
+.poxy,
+.boxy
+  float left
+
+.qoxy,
+.doxy
+  float right
+
+nav.pox > a
+  width 100%
+  float left
+
 
 // fixed - "f" stands for Fixed
 .pfxy,
@@ -443,14 +478,6 @@ zone-core(a, $zone-a-min, $gxa, $gya)
   bottom 0
   right 0
 
-// Float - "o" stands for Float
-.poxy,
-.boxy
-  float left
-
-.qoxy,
-.doxy
-  float right
 
 
 
@@ -650,27 +677,9 @@ zone-core(a, $zone-a-min, $gxa, $gya)
 //////////////////////////////////////////////////////
 // z-index
 ////////////////////////////////////////////////////
-
-.z1
-  z-index 1
-.z2
-  z-index 2
-.z3
-  z-index 3
-.z4
-  z-index 4
-.z5
-  z-index 5
-.z6
-  z-index 6
-.z7
-  z-index 7
-.z8
-  z-index 8
-.z9
-  z-index 9
-.z10
-  z-index 10
+for $i in (1..10)
+  .z{$i}
+    z-index $i
 
 
 //////////////////////////////////////////////////////
@@ -702,6 +711,33 @@ section.full
 
 .mb0
   margin-bottom 0 !important
+
+
+// Background (bg-)
+.bg-a
+  background-color $accent
+
+// Text (tx-)
+.tx-a
+  color $accent
+.tx-c
+  text-align center
+.tx-r
+  text-align right
+.tx-l
+  text-align left
+
+// Vertical Center
+// display: table is kinda hacky, but it's a good way to vertically
+// align elements that has good browser support
+.tx-v
+  -webkit-box-sizing border-box
+  box-sizing border-box
+  display table
+  > *
+    display table-cell
+    margin auto 0
+    vertical-align middle
 
 
 
@@ -877,22 +913,34 @@ section
   text-transform uppercase
   top 40%
 
-// figure
-//   +zone(E)
-//     background-color alpha($zone-e-color, 10%)
-//     //color #fff
-//   +zone(D)
-//     background-color alpha($zone-d-color, 10%)
-//     //color #fff
-//   +zone(C)
-//     background-color alpha($zone-c-color, 10%)
-//     //color #fff
-//   +zone(B)
-//     background-color alpha($zone-b-color, 10%)
-//     //color #000
-//   +zone(A)
-//     background-color alpha($zone-a-color, 10%)
-//     //color #000
+
+
+
+
+for $i in (1..40)
+  @media (min-width:(($i * ($column + $gutter) - $gutter) / $em))
+    .logo h2:after,
+    .poxy-dev span:after
+      content '' + $i + 'x'
+
+
+$dev-color-opacity = 70%
+figure
+  +zone(E)
+    background-color alpha($zone-e-color, $dev-color-opacity)
+    //color #fff
+  +zone(D)
+    background-color alpha($zone-d-color, $dev-color-opacity)
+    //color #fff
+  +zone(C)
+    background-color alpha($zone-c-color, $dev-color-opacity)
+    //color #fff
+  +zone(B)
+    background-color alpha($zone-b-color, $dev-color-opacity)
+    //color #000
+  +zone(A)
+    background-color alpha($zone-a-color, $dev-color-opacity)
+    //color #000
 
 //////////////////////////////////////////////////////
 // DEV
@@ -900,7 +948,7 @@ section
 .hide
   display none !important
 .red
-  background red
+  background-color red
 .logo
   background-size cover
 .bg0
