@@ -1,8 +1,8 @@
 /////////////////////////////////
 // DESIGN SETTINGS
 /////////////////////////////////
-$body-color = #000
-
+$body-color = #111
+$body-color-light = #ccc
 
 
 /////////////////////////////////
@@ -324,6 +324,16 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, blockquote,
 body
   color alpha($body-color, 87%)
 
+a
+  color #ccc
+
+.dark
+  p
+  color alpha($body-color-light, 87%)
+
+
+
+
 .tera
   font-size (112/$em)rem
 h1,
@@ -603,6 +613,9 @@ zone-core(a, $zone-a-min, $gxa, $gya)
 
 .oxy6
   translate(50%, 0%)
+  -ms-transform: translate(50%, 0%); /* IE 9 */
+  -webkit-transform: translate(50%, 0%); /* Chrome, Safari, Opera */
+  transform: translate(50%, 0%);
   bottom 0%
   right 50%
 
@@ -743,10 +756,14 @@ figure
  	backface-visibility: hidden;
   float left
   width 100%
+  span
+    background-size cover
+    background-position center center
 
 figure  *
   -webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
    backface-visibility: hidden;
+
 
 .mr0
   margin-right 0
@@ -807,13 +824,13 @@ $zone-e-color = #e0276f
 $zone-f-color = #10e277
 
 section
-  border-top alpha(#fff, .2) solid 1px
+  border-top alpha(#fff, .1) solid 1px
   &:nth-child(2n+2)
     background alpha(#fff, .3)
   &:before
-    border-top alpha(#fff, .2) solid 1px
+    border-top alpha(#fff, .03) solid 1px
   &:after
-    border-bottom alpha(#fff, .2) solid 1px
+    border-bottom alpha(#fff, .03) solid 1px
 
 .poxy-dev span
   font-size .8em
@@ -860,22 +877,22 @@ section
   text-transform uppercase
   top 40%
 
-figure
-  +zone(E)
-    background-color alpha($zone-e-color, 10%)
-    //color #fff
-  +zone(D)
-    background-color alpha($zone-d-color, 10%)
-    //color #fff
-  +zone(C)
-    background-color alpha($zone-c-color, 10%)
-    //color #fff
-  +zone(B)
-    background-color alpha($zone-b-color, 10%)
-    //color #000
-  +zone(A)
-    background-color alpha($zone-a-color, 10%)
-    //color #000
+// figure
+//   +zone(E)
+//     background-color alpha($zone-e-color, 10%)
+//     //color #fff
+//   +zone(D)
+//     background-color alpha($zone-d-color, 10%)
+//     //color #fff
+//   +zone(C)
+//     background-color alpha($zone-c-color, 10%)
+//     //color #fff
+//   +zone(B)
+//     background-color alpha($zone-b-color, 10%)
+//     //color #000
+//   +zone(A)
+//     background-color alpha($zone-a-color, 10%)
+//     //color #000
 
 //////////////////////////////////////////////////////
 // DEV
