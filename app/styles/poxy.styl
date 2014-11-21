@@ -6,6 +6,10 @@ $body-color-light = #ccc
 $accent = #d251d7
 
 /////////////////////////////////
+// Navigation
+/////////////////////////////////
+$side-fixed-nav-size-a = 6
+/////////////////////////////////
 // GRID SETTINGS
 /////////////////////////////////
 
@@ -165,6 +169,12 @@ zone($zone)
 /////////////////////////////////
 // Functions
 /////////////////////////////////
+poxy-left-nav-margin($zone-min, $zone-max, $gx, $gy, $gs)
+  margin-left: (((((4 - ($gs/6)) * ($column + $gx) - $gx) / $em) + (($gx) / $em))rem)
+
+
+//poxy-left-nav-margin($zone-a-min, $zone-a-max, $gx-A, $gy-A, $gs-A)
+
 
 // Copy Width - Ratios are based on this width
 poxy-copy-width($zone-min, $zone-max, $gx, $gy, $gs)
@@ -191,7 +201,7 @@ poxy-zone-width($zone, $zone-class-lower, $zone-min, $zone-max, $numerators, $zo
         for $i in ($zone-min..$zone-max)
           @media (min-width:(($i * ($column + $zone-gutter) - $zone-gutter) / $em)rem)
             for $i2 in $ratio-range
-              \[class\*\={$zone-class-lower}{$size[1]}{$i2}\]=
+              \[class\*\={$zone-class-lower}{$size[1]}{$i2}\]
                  width poxy-scale($i, $size[0], $size[1], $i2, $zone-gutter, $gs)
 
 // Box Height
@@ -242,7 +252,9 @@ zone-core($z, $zone-min, $gx, $gy)
     section
       margin-top 0
       padding-top $gy
-      margin-left 200px
+
+      poxy-left-nav-margin($zone-e-min, $zone-e-max, $gx-E, $gy-E, $gs-E)
+
       &:first-child
         //margin-top: ($gyA/2) !important
         padding-top 0 !important
@@ -873,7 +885,11 @@ section
   &:after
     border-bottom alpha(#fff, .03) solid 1px
 
+.poxy-dev
+  z-index 9999
+
 .poxy-dev span
+
   font-size .8em
   padding $s4
   float left
