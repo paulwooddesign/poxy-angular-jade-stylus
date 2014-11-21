@@ -1,7 +1,7 @@
 /////////////////////////////////
 // DESIGN SETTINGS
 /////////////////////////////////
-$body-color = #111
+$body-color = #222
 $body-color-light = #ccc
 $accent = #d251d7
 
@@ -191,7 +191,7 @@ poxy-zone-width($zone, $zone-class-lower, $zone-min, $zone-max, $numerators, $zo
         for $i in ($zone-min..$zone-max)
           @media (min-width:(($i * ($column + $zone-gutter) - $zone-gutter) / $em)rem)
             for $i2 in $ratio-range
-              \[class\*\={$zone-class-lower}{$size[1]}{$i2}\]
+              \[class\*\={$zone-class-lower}{$size[1]}{$i2}\]=
                  width poxy-scale($i, $size[0], $size[1], $i2, $zone-gutter, $gs)
 
 // Box Height
@@ -242,6 +242,7 @@ zone-core($z, $zone-min, $gx, $gy)
     section
       margin-top 0
       padding-top $gy
+      margin-left 200px
       &:first-child
         //margin-top: ($gyA/2) !important
         padding-top 0 !important
@@ -677,7 +678,7 @@ nav.pox > a
 //////////////////////////////////////////////////////
 // z-index
 ////////////////////////////////////////////////////
-for $i in (1..10)
+for $i in (1..20)
   .z{$i}
     z-index $i
 
@@ -711,8 +712,12 @@ section.full
 
 .mb0
   margin-bottom 0 !important
-
-
+.mt0
+  margin-top 0 !important
+.mr0
+  margin-right 0 !important
+.ml0
+  margin-left 0 !important
 // Background (bg-)
 .bg-a
   background-color $accent
