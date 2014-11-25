@@ -236,6 +236,24 @@ zone-core($z, $zone-min, $gx, $gy)
       line-height (28/$em)
       letter-spacing: .01em
 
+    .mb1
+      margin-bottom ($gy/1)
+    .mb2
+      margin-bottom ($gy/2)
+    .mb3
+      margin-bottom ($gy/3)
+    .mb4
+      margin-bottom ($gy/4)
+
+    .mt1
+      margin-top ($gy/1)
+    .mt2
+      margin-top ($gy/2)
+    .mt3
+      margin-top ($gy/3)
+    .mt4
+      margin-top ($gy/4)
+
     // Text Alignment (tx(zone)-)
     .tx{$z}-c
       text-align center
@@ -354,6 +372,8 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, blockquote,
 
 *
   box-sizing border-box
+  background-position center center
+  background-size cover
 
 //////////////////////////////////////////////////////
 // Typography
@@ -622,13 +642,18 @@ nav.pox > a
 .oxy8,
 .oxy9,
 .ox10,
-.oxy11,
+.oxy11
+  display block
   position absolute
 
 
 .oxy12
   translate(50%, 0%)
+  -ms-transform: translate(50%, 0%); /* IE 9 */
+  -webkit-transform: translate(50%, 0%); /* Chrome, Safari, Opera */
+  transform: translate(50%, 0%);
   right 50%
+  top 0%
 
 .oxy1
   translate(50%, 0%)
@@ -690,6 +715,10 @@ nav.pox > a
 
 
 
+
+.br100
+  border-radius 100%
+
 //////////////////////////////////////////////////////
 // z-index
 ////////////////////////////////////////////////////
@@ -716,7 +745,7 @@ section.clear
   &:before
     display none !important
   .sw
-    margin-left 0 !important
+    //margin-left 0 !important
     margin-bottom 0 !important
     &:after,
     &:before
@@ -724,6 +753,11 @@ section.clear
 
 section.full
   margin-left 0 !important
+  .cw
+    width 100% !important
+  .cw > *
+    margin-left 0
+
 
 .mb0
   margin-bottom 0 !important
@@ -791,7 +825,6 @@ section
 
 .cw0 > *
   margin-left 0
-  //margin-right -($gxA)
 
 .copy-inside
   display inline-block
@@ -951,8 +984,8 @@ for $i in (1..40)
 $dev-color-opacity = 70%
 figure
   +zone(E)
-    background-color alpha($zone-e-color, $dev-color-opacity)
-    //color #fff
+    //background-color alpha($zone-e-color, $dev-color-opacity)
+    color alpha($zone-e-color, $dev-color-opacity)
   +zone(D)
     background-color alpha($zone-d-color, $dev-color-opacity)
     //color #fff
@@ -963,8 +996,8 @@ figure
     background-color alpha($zone-b-color, $dev-color-opacity)
     //color #000
   +zone(A)
-    background-color alpha($zone-a-color, $dev-color-opacity)
-    //color #000
+    //background-color alpha($zone-a-color, $dev-color-opacity)
+    color alpha($zone-a-color, $dev-color-opacity)
 
 //////////////////////////////////////////////////////
 // DEV
