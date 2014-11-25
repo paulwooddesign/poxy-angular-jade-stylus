@@ -179,12 +179,15 @@ poxy-left-nav-margin($zone-min, $zone-max, $gx, $gy, $gs)
 // Copy Width - Ratios are based on this width
 poxy-copy-width($zone-min, $zone-max, $gx, $gy, $gs)
   for i in ($zone-min..$zone-max)
-    .cw
+    section
       @media (min-width: ((i * ($column + $gx) - $gx) / $em)rem)
+        .cw
           width: (((((i - ($gs)) * ($column + $gx) - $gx) / $em) + (($gx) / $em))rem)
-          figure
-            margin-left (($gx) / $em)rem
-            margin-bottom (($gy) / $em)rem
+
+        figure, 
+        .slick-slider
+          margin-left (($gx) / $em)rem
+          margin-bottom (($gy) / $em)rem
 
 //
 poxy-scale($i, $scale, $x1, $x2, $zone-gutter, $gs)
@@ -253,7 +256,7 @@ zone-core($z, $zone-min, $gx, $gy)
       margin-top 0
       padding-top $gy
 
-      poxy-left-nav-margin($zone-e-min, $zone-e-max, $gx-E, $gy-E, $gs-E)
+      //poxy-left-nav-margin($zone-e-min, $zone-e-max, $gx-E, $gy-E, $gs-E)
 
       &:first-child
         //margin-top: ($gyA/2) !important

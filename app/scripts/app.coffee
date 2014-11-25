@@ -2,6 +2,7 @@
 
 angular
   .module('poxyStylusApp', [
+    'slick',
     'ngCookies',
     'ngResource',
     'ngSanitize',
@@ -14,4 +15,3 @@ angular
         controller: 'MainCtrl'
       .otherwise
         redirectTo: '/'
-
