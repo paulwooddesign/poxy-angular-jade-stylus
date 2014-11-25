@@ -254,6 +254,24 @@ zone-core($z, $zone-min, $gx, $gy)
     .mt4
       margin-top ($gy/4)
 
+    .mr1
+      margin-top ($gy/1)
+    .mr2
+      margin-top ($gy/2)
+    .mr3
+      margin-top ($gy/3)
+    .mr4
+      margin-top ($gy/4)
+
+    .m1
+      margin-top ($gy/1)
+    .m2
+      margin-top ($gy/2)
+    .m3
+      margin-top ($gy/3)
+    .m4
+      margin-top ($gy/4)
+
     // Text Alignment (tx(zone)-)
     .tx{$z}-c
       text-align center
@@ -753,6 +771,8 @@ section.clear
 
 section.full
   margin-left 0 !important
+  .sw
+    margin-left 0 !important
   .cw
     width 100% !important
   .cw > *
@@ -898,6 +918,8 @@ footer:after
      clear both
      height 0
 
+footer section:last-child:after
+  display none
 
 
 //////////////////////////////////////////////////////////////////////
