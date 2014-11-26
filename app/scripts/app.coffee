@@ -3,7 +3,6 @@
 angular
   .module('poxyStylusApp', [
     'slick',
-    'ngFX',
     'ngCookies',
     'ngResource',
     'ngSanitize',
