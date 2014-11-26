@@ -6,8 +6,10 @@ include mixins/placeholder-image.jade
     div.sw
       div.cw 
       
-  section.dark.bg-a.bg-contain.shadow
-    div.sw
+  section(style='background-image: url(images/product-banner-mask.png);').dark.bg-a.bg-contain.banner-mask
+    span.shadow.oxy.ap11ap_11b313b_313c313c_313d313d_313e313e_313
+    div.sw.z2
+      
       div.cw
         figure(style='background-image: url(images/product-demo.png);').a12a_12b12b_12
         figure.a12a_12b12b_12.mt1
@@ -17,7 +19,7 @@ include mixins/placeholder-image.jade
           p
             +lipsum(50, "words")
             
-          div.mt1.light
+          div.mt1.light.txc
             figure.ap14.ml0
               span(style='background-image: url(http://placehold.it/50x50/333333&text=icon);').poxy.mb4.ap11a_116.br100
               h4.beta no
@@ -41,6 +43,8 @@ include mixins/placeholder-image.jade
         figure.a12a_12b14b_14c14c_14d14d_14e12e_12.tx-v
           div
             h3.mega Features
+            p
+              +lipsum(50, "words")
             
               
         figure.a12a_12b14b_14c14c_14d14d_14e12e_12.bg10.br100

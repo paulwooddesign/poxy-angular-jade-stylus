@@ -185,6 +185,7 @@ poxy-copy-width($zone-min, $zone-max, $gx, $gy, $gs)
           width: (((((i - ($gs)) * ($column + $gx) - $gx) / $em) + (($gx) / $em))rem)
 
         figure,
+        button,
         .slick-slider
           margin-left (($gx) / $em)rem
           margin-bottom (($gy) / $em)rem
@@ -534,7 +535,7 @@ nav.pox > a
 .qfxy,
 .bfxy,
 .dfxy
-  position fixed
+  position fixed !important
 .pfxy
   top 0
   left 0
@@ -682,7 +683,7 @@ nav.pox > a
 
 
 .oxy12
-  translate(50%, 0%)
+  //translate(50%, 0%)
   -ms-transform: translate(50%, 0%); /* IE 9 */
   -webkit-transform: translate(50%, 0%); /* Chrome, Safari, Opera */
   transform: translate(50%, 0%);
@@ -690,31 +691,31 @@ nav.pox > a
   top 0%
 
 .oxy1
-  translate(50%, 0%)
+  //translate(50%, 0%)
   right 25%
   top 0
 
 .oxy2
-  translate(0%, -50%)
+  //translate(0%, -50%)
   right 0%
   top 25%
 
 .oxy3
-  translate(0%, -50%)
+  //translate(0%, -50%)
   right 0%
   top 50%
 
 .oxy4
-  translate(0%, -50%)
+  //translate(0%, -50%)
   right 0% top 75%
 
 .oxy5
-  translate(50%, 0%)
+  //translate(50%, 0%)
   bottom 0%
   right 25%
 
 .oxy6
-  translate(50%, 0%)
+  //translate(50%, 0%)
   -ms-transform: translate(50%, 0%); /* IE 9 */
   -webkit-transform: translate(50%, 0%); /* Chrome, Safari, Opera */
   transform: translate(50%, 0%);
@@ -722,27 +723,29 @@ nav.pox > a
   right 50%
 
 .oxy7
-  translate(50%, 0%)
+  //translate(50%, 0%)
   bottom 0%
   right 75%
 
 .oxy8
-  translate(0%, -50%)
+  //translate(0%, -50%)
   left 0%
   top 75%
 
 .oxy9
-  translate(0%, -50%)
+  //translate(0%, -50%)
+  -ms-transform: translate(0%, -50%); /* IE 9 */
+  -webkit-transform: translate(0%, -50%); /* Chrome, Safari, Opera */
   left 0%
   top 50%
 
 .oxy10
-  translate(0%, 50%)
+  //translate(0%, 50%)
   left 0%
   top 25%
 
 .oxy11
-  translate(-50%, 0%)
+  //translate(-50%, 0%)
   left 25%
   top 0%
 
@@ -794,6 +797,11 @@ section.full
   .cw > *
     margin-left 0
 
+button
+  background none
+  border none
+  position relative
+  float left
 
 .mb0
   margin-bottom 0 !important
@@ -810,6 +818,7 @@ section.full
 // Text (tx-)
 .tx-a
   color $accent
+.txc,
 .tx-c
   text-align center
 .tx-r
@@ -835,14 +844,24 @@ section.full
 .bg-tc
   background-position center top
 
+.bg-contain,
 .bg-contain *
   background-size contain
   background-repeat no-repeat
 
 
+
+// Overflow
+.ofh
+  overflow hidden !important
+
 //////////////////////////////////////////////////////
 // CORE
 ////////////////////////////////////////////////////
+nav *
+  background-repeat no-repeat
+  background-size contain
+
 nav a
   position relative
 
@@ -850,7 +869,6 @@ section
   //position relative
   display block
   float left
-  //overflow hidden
   width 100%
 
 .sw // site-width
