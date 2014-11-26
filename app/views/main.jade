@@ -21,7 +21,7 @@ include mixins/placeholder-image.jade
     div.sw
       //- span.shadow.oxy.ap11ap_11b313b_313c313c_313d313d_313e313e_313
       div.cw
-        slick.mb0
+        slick(asNavFor=".main-banner-tabs").main-banner.mb0
           div.dark
             figure(style='background-image: url(images/banner-1.jpg);').ap11a_23b_12c_12d_12e_12.mb0.ml0.bg-tc
               span.oxy.tx-c
@@ -35,12 +35,21 @@ include mixins/placeholder-image.jade
               span
           div
             figure(style='background-image: url(http://placehold.it/1900x500/111111&text=slide-4);').ap11a_23b_12c_12d_12e_12.mb0.ml0
+            
+          div
+            figure(style='background-image: url(http://placehold.it/1900x500/111111&text=slide-4);').ap11a_23b_12c_12d_12e_12.mb0.ml0
+            
+          div
+            figure(style='background-image: url(http://placehold.it/1900x500/111111&text=slide-4);').ap11a_23b_12c_12d_12e_12.mb0.ml0
+            
+          div
+            figure(style='background-image: url(http://placehold.it/1900x500/111111&text=slide-4);').ap11a_23b_12c_12d_12e_12.mb0.ml0
 
 
   section.clear.full
     div.sw
       div.cw
-        slick(dots="true" infinite="false" speed="300" slides-to-show="4" touch-move="true" slides-to-scroll="1")
+        slick(dots="true" asNavFor=".main-banner" infinite="false" speed="300" slides-to-show="4" touch-move="true" slides-to-scroll="1").main-banner-tabs
           div
             figure(style='border: solid 20px #fff; background-image: url(images/fixed-home.jpg);').ap11a_14b_18c_12d_12e_12.mb0.ml0
               span
