@@ -2,7 +2,8 @@
   "name": "poxystylus",
   "version": "0.0.1",
   "dependencies": {
-    "grunt-contrib-stylus": "^0.20.0"
+    "grunt-contrib-stylus": "^0.20.0",
+    "nib": "^1.0.4"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
