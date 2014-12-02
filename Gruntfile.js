@@ -22,7 +22,8 @@ module.exports = function (grunt) {
     yeoman: {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
-      dist: 'dist'
+      dist: 'dist',
+      shopify: 'shopify'
     },
 
     // Watches files for changes and runs tasks based on the changed files
@@ -88,6 +89,14 @@ module.exports = function (grunt) {
         files: {
           '.tmp/styles/main.css': ['<%= yeoman.app %>/styles/{,*/}*.styl']
         }
+      },
+      shopify: {
+        options: {
+          compress: true
+        },
+        files: {
+          '.tmp/styles/main.css': ['<%= yeoman.app %>/styles/{,*/}*.styl']
+        }
       }
     },
 
@@ -113,6 +122,15 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>',
           src: ['*.jade', 'views/{,*/}*.jade'],
           ext: '.html'
+        }]
+      },
+      shopify: {
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.shopify %>',
+          src: ['*.jade', 'views/{,*/}*.jade'],
+          ext: '.liquid'
         }]
       }
     },
@@ -150,6 +168,11 @@ module.exports = function (grunt) {
         options: {
           base: '<%= yeoman.dist %>'
         }
+      },
+      shopify: {
+        options: {
+          base: '<%= yeoman.shopify %>'
+        }
       }
     },
 
@@ -175,6 +198,16 @@ module.exports = function (grunt) {
             '.tmp',
             '<%= yeoman.dist %>/*',
             '!<%= yeoman.dist %>/.git*'
+          ]
+        }]
+      },
+      shopify: {
+        files: [{
+          dot: true,
+          src: [
+            '.tmp',
+            '<%= yeoman.shopify %>/*',
+            '!<%= yeoman.shopify %>/.git*'
           ]
         }]
       },
@@ -230,6 +263,16 @@ module.exports = function (grunt) {
           ext: '.js'
         }]
       },
+      shopify: {
+        sourceMap: false,
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>/scripts',
+          src: '{,*/}*.coffee',
+          dest: '.tmp/scripts',
+          ext: '.js'
+        }]
+      },
       test: {
         files: [{
           expand: true,
@@ -252,6 +295,16 @@ module.exports = function (grunt) {
             '<%= yeoman.dist %>/styles/fonts/*'
           ]
         }
+      },
+      shopify: {
+        files: {
+          src: [
+            '<%= yeoman.shopify %>/assets/{,*/}*.js',
+            '<%= yeoman.shopify %>/assets/{,*/}*.css',
+            '<%= yeoman.shopify %>/assets/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            '<%= yeoman.shopify %>/assets/*'
+          ]
+        }
       }
     },
 
@@ -259,6 +312,7 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
+      //dist: {
       html: '<%= yeoman.dist %>/index.html',
       options: {
         root: '<%= yeoman.app %>',
@@ -273,16 +327,40 @@ module.exports = function (grunt) {
           }
         }
       }
+      //}
+      // html: '<%= yeoman.shopify %>/index.html',
+      // options: {
+      //   root: '<%= yeoman.app %>',
+      //   dest: '<%= yeoman.shopify %>',
+      //   flow: {
+      //     html: {
+      //       steps: {
+      //         js: ['concat', 'uglifyjs'],
+      //         css: ['cssmin']
+      //       },
+      //       post: {}
+      //     }
+      //   }
+      // }
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
-      css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
+      html: ['<%= yeoman.shopify %>/{,*/}*.liquid'],
+      css: ['<%= yeoman.shopify %>/assets/{,*/}*.css.liquid'],
       options: {
-        assetsDirs: ['<%= yeoman.dist %>']
+        assetsDirs: ['<%= yeoman.shopify %>']
       }
     },
+
+    // Shopify
+    // usemin: {
+    //   html: ['<%= yeoman.shopify %>/{,*/}*.liquid'],
+    //   css: ['<%= yeoman.shopify %>/assets/{,*/}*.css.liquid'],
+    //   options: {
+    //     assetsDirs: ['<%= yeoman.shopify %>']
+    //   }
+    // },
 
     // The following *-min tasks produce minified files in the dist folder
     cssmin: {
@@ -327,6 +405,20 @@ module.exports = function (grunt) {
           src: ['*.html', 'views/{,*/}*.html'],
           dest: '<%= yeoman.dist %>'
         }]
+      },
+      shopify: {
+        options: {
+          collapseWhitespace: true,
+          collapseBooleanAttributes: true,
+          removeCommentsFromCDATA: true,
+          removeOptionalTags: true
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.shopify %>',
+          src: ['*.html', 'views/{,*/}*.html'],
+          dest: '<%= yeoman.shopify %>'
+        }]
       }
     },
 
@@ -348,6 +440,9 @@ module.exports = function (grunt) {
     cdnify: {
       dist: {
         html: ['<%= yeoman.dist %>/*.html']
+      },
+      shopify: {
+        html: ['<%= yeoman.shopify %>/*.html']
       }
     },
 
@@ -374,6 +469,27 @@ module.exports = function (grunt) {
           src: ['generated/*']
         }]
       },
+      shopify: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.shopify %>',
+          src: [
+            '*.{ico,png,txt}',
+            '.htaccess',
+            '*.html',
+            'views/{,*/}*.html',
+            'images/{,*/}*.{webp}',
+            'fonts/*'
+          ]
+        }, {
+          expand: true,
+          cwd: '.tmp/images',
+          dest: '<%= yeoman.shopify %>/assets',
+          src: ['generated/*']
+        }]
+      },
       styles: {
         expand: true,
         cwd: '<%= yeoman.app %>/styles',
@@ -394,6 +510,10 @@ module.exports = function (grunt) {
         'stylus:test'
       ],
       dist: [
+        'imagemin',
+        'svgmin'
+      ],
+      shopify: [
         'imagemin',
         'svgmin'
       ]
@@ -476,12 +596,32 @@ module.exports = function (grunt) {
     'concat',
     'ngmin',
     'copy:dist',
-    'cdnify',
+    'cdnify:dist',
     'cssmin',
     'uglify',
-    'rev',
+    'rev:dist',
     'usemin',
-    'htmlmin'
+    'htmlmin:dist'
+  ]);
+
+  grunt.registerTask('shopify', [
+    'clean:shopify',
+    'bowerInstall',
+    'jade:shopify',
+    'coffee:shopify',
+    'stylus:shopify',
+    'useminPrepare',
+    'concurrent:shopify',
+    'autoprefixer',
+    'concat',
+    'ngmin',
+    'copy:shopify',
+    'cdnify:shopify',
+    'cssmin',
+    'uglify',
+    'rev:shopify',
+    'usemin',
+    'htmlmin:shopify'
   ]);
 
   grunt.registerTask('default', [
