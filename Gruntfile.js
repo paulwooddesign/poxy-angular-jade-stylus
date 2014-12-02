@@ -346,10 +346,10 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.shopify %>/{,*/}*.liquid'],
-      css: ['<%= yeoman.shopify %>/assets/{,*/}*.css.liquid'],
+      html: ['<%= yeoman.dist %>/{,*/}*.html'],
+      css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
-        assetsDirs: ['<%= yeoman.shopify %>']
+        assetsDirs: ['<%= yeoman.dist %>']
       }
     },
 
@@ -377,6 +377,14 @@ module.exports = function (grunt) {
           src: '{,*/}*.{png,jpg,jpeg,gif}',
           dest: '<%= yeoman.dist %>/images'
         }]
+      },
+      shopify: {
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>/images',
+          src: '{,*/}*.{png,jpg,jpeg,gif}',
+          dest: '<%= yeoman.dist %>/assets'
+        }]
       }
     },
 
@@ -387,6 +395,14 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>/images',
           src: '{,*/}*.svg',
           dest: '<%= yeoman.dist %>/images'
+        }]
+      },
+      shopify: {
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>/images',
+          src: '{,*/}*.svg',
+          dest: '<%= yeoman.dist %>/assets'
         }]
       }
     },
@@ -510,12 +526,12 @@ module.exports = function (grunt) {
         'stylus:test'
       ],
       dist: [
-        'imagemin',
-        'svgmin'
+        'imagemin:dist',
+        'svgmin:dist'
       ],
       shopify: [
-        'imagemin',
-        'svgmin'
+        'imagemin:shopify',
+        'svgmin:shopify'
       ]
     },
 
