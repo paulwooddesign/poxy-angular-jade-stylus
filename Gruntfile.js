@@ -484,6 +484,29 @@ module.exports = function (grunt) {
     //'htmlmin'
   ]);
 
+  grunt.registerTask('shopify', [
+  'clean:dist',
+  'bowerInstall',
+  'jade:dist',
+  'coffee:dist',
+  'stylus:dist',
+  'useminPrepare',
+  'concurrent:dist',
+  'autoprefixer',
+  'concat',
+  'ngmin',
+  'copy:dist',
+  'cdnify',
+  'cssmin',
+  'uglify',
+  //'rev'
+  'usemin'
+  //'htmlmin'
+
+
+  
+  ]);
+
   grunt.registerTask('default', [
     'newer:jshint',
     'test',
