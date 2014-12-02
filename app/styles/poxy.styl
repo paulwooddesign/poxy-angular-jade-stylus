@@ -1,16 +1,75 @@
+@import 'nib'
+/////////////////////////////////
+// DESIGN SETTINGS
+/////////////////////////////////
+$body-color = #222
+$body-color-light = #fff
+$accent = #d251d7
+
+/////////////////////////////////
+// Navigation
+/////////////////////////////////
+$side-fixed-nav-size-a = 6
 /////////////////////////////////
 // GRID SETTINGS
 /////////////////////////////////
 
-$font-size = 14 // Your base font-size in pixels
+$font-size = 18 // Your base font-size in pixels (18 seems to work across all browsers)
 $em = $font-size / 1rem	// Shorthand for outputting ems
 $column = 48	// The column-width of your grid in pixels
-$gutter = 12 // The width of the horizontal gutter
+$gutter = 24 // The width of the horizontal gutter
 $gutter-y = 24 // The height of the vertical gutter
 $max-copy-width = 20 // The widest the site can get
 
-// Class Scale Range
-$ratio-range = 20
+// Zone Gutters
+$gx-A = 36
+$gy-A = 64
+$gs-A = 2
+
+$gx-B = 28
+$gy-B = 28
+$gs-B = 2
+
+$gx-C = 24
+$gy-C = 24
+$gs-C = 1
+
+$gx-D = 22
+$gy-D = 20
+$gs-D = .5
+
+$gx-E = 12
+$gy-E = 24
+$gs-E = .5
+
+
+/////////////////////////////////
+// GRID Ratio Settings (Denominator)
+// Zone Numerators array ( 1/ $ratio)
+/////////////////////////////////
+
+// Development - Include all Ratios
+$ratio-range = (1..20)
+
+$numerators-A = (A 1) (A 2) (A 3) (A 4)
+$numerators-B = (B 1) (B 2) (B 3)
+$numerators-C = (C 1) (C 2) (C 3)
+$numerators-D = (D 1) (D 2) (D 3)
+$numerators-E = (E 1) (E 2) (E 3)
+
+/////////////////////////////////
+// Dist - Include only the ratios you need
+// N keeps numerators working as an array
+/////////////////////////////////
+
+// $ratio-range = 2 4 6 8 16 18
+
+// $numerators-A = (N 1) (A 1) (A 2)
+// $numerators-B = (N 1) (B 1)
+// $numerators-C = (N 1) (C 1)
+// $numerators-D = (N 1) (D 1)
+// $numerators-E = (N 1) (E 1)
+
 
 /////////////////////////////////
 // ZONE/BREAKPOINT SETTINGS
@@ -26,9 +85,9 @@ $zone-c-max = 11
 $zone-c-min = 10
 
 $zone-d-max = 9
-$zone-d-min = 7
+$zone-d-min = 8
 
-$zone-e-max = 6
+$zone-e-max = 7
 $zone-e-min = 4
 
 // More zones can be added (who knows what will come out in 5 years)
@@ -39,25 +98,25 @@ $zone-e-min = 4
 // $zone-g-min = 4
 
 
-// Zone Numerators array
-$sizes = (A 1) (A 2) (A 3) (A 4) (A 5) (A 6) (B 1) (B 2) (B 3) (C 1) (C 2) (C 3) (D 1) (D 2) (D 3) (E 1) (E 2) (E 3)
-
-$numerators-A = (A 1) (A 2) (A 3) (A 4) (A 5) (A 6)
-$numerators-B = (B 1) (B 2) (B 3)
-$numerators-C = (C 1) (C 2) (C 3)
-$numerators-D = (D 1) (D 2) (D 3)
-$numerators-E = (E 1) (E 2) (E 3)
-
-
 //////////////////////////////////////////////////////////////////////
 // FRAMLESS GRID SETTINGS - Joni Korpi - http://framelessgrid.com/
 /////////////////////////////////////////////////////////////////////
-$cols1 = (1 * ($column + $gutter) - $gutter) / $em
+$cols1 = ((1 * ($column + $gutter) - $gutter) / $em)rem
 
 // Virtical & Horizontal Gutter Size
 $gx = (($gutter) / $em)rem
 $gy = (($gutter-y) / $em)rem
 
+$gxa = (($gx-A) / $em)rem
+$gya = (($gy-A) / $em)rem
+$gxb = (($gx-B) / $em)rem
+$gyb = (($gy-B) / $em)rem
+$gxc = (($gx-C) / $em)rem
+$gyc = (($gy-C) / $em)rem
+$gxd = (($gx-D) / $em)rem
+$gyd = (($gy-D) / $em)rem
+$gxe = (($gx-E) / $em)rem
+$gye = (($gy-E) / $em)rem
 
 //spacer/Shiv - margin rythem
 $spacer = $gx
@@ -76,38 +135,263 @@ $s8 = ($spacer / 8)
 $s9 = ($spacer / 9)
 $s10 = ($spacer / 10)
 
+//////////////////////////////////////////////////////////////////////
+// ZONE Breakpoints
+/////////////////////////////////////////////////////////////////////
+
+zone($zone)
+
+  // ZONE E
+  if $zone == E
+    @media (min-width: (($zone-e-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-d-min * ($column + $gutter) - $gutter) / $em)rem)
+      {block}
+
+  if $zone == D
+    @media (min-width: (($zone-d-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-c-min * ($column + $gutter) - $gutter) / $em)rem)
+      {block}
+
+  if $zone == C
+    @media (min-width: (($zone-c-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-b-min * ($column + $gutter) - $gutter) / $em)rem)
+      {block}
+
+  if $zone == B
+    @media (min-width: (($zone-b-min * ($column + $gutter) - $gutter) / $em)rem) and (max-width: (($zone-a-min * ($column + $gutter) - $gutter) / $em)rem)
+      {block}
+
+  if $zone == A
+    @media (min-width: (($zone-a-min * ($column + $gutter) - $gutter) / $em)rem)
+      {block}
+
+  // else
+  //   @media (min-width: $zone)
+  //     {block}
+
 
 /////////////////////////////////
 // Functions
 /////////////////////////////////
+poxy-left-nav-margin($zone-min, $zone-max, $gx, $gy, $gs)
+  margin-left: (((((4 - ($gs/6)) * ($column + $gx) - $gx) / $em) + (($gx) / $em))rem)
 
-poxy-scale($i, $scale, $x1, $x2)
-  if $scale == E
-    return ((((($i - .5)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)rem
-  else
-    return ((((($i - 2)*$x1)/$x2) * ($column + $gutter) - $gutter) / $em)rem
+
+//poxy-left-nav-margin($zone-a-min, $zone-a-max, $gx-A, $gy-A, $gs-A)
+
+
+// Copy Width - Ratios are based on this width
+poxy-copy-width($zone-min, $zone-max, $gx, $gy, $gs)
+  for i in ($zone-min..$zone-max)
+    section
+      @media (min-width: ((i * ($column + $gx) - $gx) / $em)rem)
+        .cw
+          width: (((((i - ($gs)) * ($column + $gx) - $gx) / $em) + (($gx) / $em))rem)
+
+        figure,
+        button,
+        .slick-slider
+          margin-left (($gx) / $em)rem
+          margin-bottom (($gy) / $em)rem
+
+//
+poxy-scale($i, $scale, $x1, $x2, $zone-gutter, $gs)
+  // if $i <= $zone-e-max
+  //   return ((((($i - $gs)*$x1)/$x2) * ($column + $zone-gutter) - $zone-gutter) / $em)rem
+  // else
+    return ((((($i - $gs)*$x1)/$x2) * ($column + $zone-gutter) - $zone-gutter) / $em)rem
 
 //  Box Width
-poxy-zone-width($zone, $zone-class-lower, $zone-min, $zone-max, $numerators)
+poxy-zone-width($zone, $zone-class-lower, $zone-min, $zone-max, $numerators, $zone-gutter, $gs)
   for $i in ($zone-min..$zone-max)
     for $size in $numerators
       if $size[0] == $zone
         for $i in ($zone-min..$zone-max)
-          @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)rem)
-            for $i2 in (1..$ratio-range)
+          @media (min-width:(($i * ($column + $zone-gutter) - $zone-gutter) / $em)rem)
+            for $i2 in $ratio-range
               \[class\*\={$zone-class-lower}{$size[1]}{$i2}\]
-                 width poxy-scale($i, $size[0], $size[1], $i2)
+                 width poxy-scale($i, $size[0], $size[1], $i2, $zone-gutter, $gs)
 
 // Box Height
-poxy-zone-height($zone, $zone-class-lower, $zone-min, $zone-max, $numerators)
+poxy-zone-height($zone, $zone-class-lower, $zone-min, $zone-max, $numerators, $zone-gutter, $gs)
   for $i in ($zone-min..$zone-max)
     for $size in $numerators
       if $size[0] == $zone
         for $i in ($zone-min..$zone-max)
-          @media (min-width:(($i * ($column + $gutter) - $gutter) / $em)rem)
-            for $i2 in (1..$ratio-range)
+          @media (min-width:(($i * ($column + $zone-gutter) - $zone-gutter) / $em)rem)
+            for $i2 in $ratio-range
               \[class\*\={$zone-class-lower}\_{$size[1]}{$i2}\]
-                 height poxy-scale($i, $size[0], $size[1], $i2)
+                 height poxy-scale($i, $size[0], $size[1], $i2, $zone-gutter, $gs)
+
+//////////////////////////////////////////////////////
+// Section negative margin Offset
+////////////////////////////////////////////////////
+zone-core($z, $zone-min, $gx, $gy)
+  @media (min-width: (($zone-min * ($column + $gutter) - $gutter) / $em)rem)
+    // Hide
+    .ha
+      display none !important
+    p
+      margin-top ($gy/2)
+      line-height (28/$em)
+      letter-spacing: .01em
+
+    nav a
+      margin-top ($gy/8)
+      line-height (28/$em)
+      letter-spacing: .01em
+
+    .mb1
+      margin-bottom ($gy/1) !important
+    .mb2
+      margin-bottom ($gy/2) !important
+    .mb3
+      margin-bottom ($gy/3) !important
+    .mb4
+      margin-bottom ($gy/4) !important
+
+    .mt1
+      margin-top ($gy/1) !important
+    .mt2
+      margin-top ($gy/2) !important
+    .mt3
+      margin-top ($gy/3) !important
+    .mt4
+      margin-top ($gy/4) !important
+
+    .mr1
+      margin-top ($gy/1) !important
+    .mr2
+      margin-top ($gy/2) !important
+    .mr3
+      margin-top ($gy/3) !important
+    .mr4
+      margin-top ($gy/4) !important
+
+    .ml1
+      margin-left ($gy/1) !important
+    .ml2
+      margin-left ($gy/2) !important
+    .ml3
+      margin-left ($gy/3) !important
+    .ml4
+      margin-left ($gy/4) !important
+
+    .m1
+      margin ($gy/1) !important
+    .m2
+      margin ($gy/2) !important
+    .m3
+      margin ($gy/3) !important
+    .m4
+      margin ($gy/4) !important
+
+    // Text Alignment (tx(zone)-)
+    .tx{$z}-c
+      text-align center
+    .tx{$z}-r
+      text-align right
+    .tx{$z}-l
+      text-align left
+    .tx{$z}-v
+      -webkit-box-sizing border-box
+      box-sizing border-box
+      display table
+      > *
+        display table-cell
+        margin auto 0
+        vertical-align middle
+
+    section
+      margin-top 0
+      padding-top $gy
+
+      //poxy-left-nav-margin($zone-e-min, $zone-e-max, $gx-E, $gy-E, $gs-E)
+
+      &:first-child
+        //margin-top: ($gyA/2) !important
+        padding-top 0 !important
+        margin-top 0 !important
+      // &:last-child
+      //   margin-bottom: -($gyA) !important
+      &:after
+        margin-top: -($gy) !important
+      .sw
+        margin-left -($gx/2)
+      .cw0
+        margin-bottom: ($gy) !important
+        margin-right: -($gy) !important
+
+    footer
+      padding-top: ($gy) !important
+    [class*=pox{$z}]
+      height auto !important
+    [class*=poxy{$z}]
+      float left
+    [class*=qoxy{$z}]
+      float right
+    [class*=paxy{$z}]
+      position absolute
+      top 0
+      left 0
+    [class*=qaxy{$z}]
+      position absolute
+      top 0
+      right 0
+    [class*=baxy{$z}]
+      position absolute
+      bottom 0
+      left 0
+    [class*=daxy{$z}]
+      position absolute
+      bottom 0
+      right 0
+    // Percent Width
+    [class*={$z}p11]
+      width 100%
+    [class*={$z}p34]
+      width 75%
+    [class*={$z}p12]
+      width 50%
+    [class*={$z}p25]
+      width 40%
+    [class*={$z}p14]
+      width 25%
+    [class*={$z}p15]
+      width 20%
+    [class*={$z}p23]
+      width 66.6666666%
+    [class*={$z}p13]
+      width 33.3333333%
+    [class*={$z}p90]
+      width 90%
+    [class*={$z}p98]
+      width 98%
+    [class*={$z}p99]
+      width 99%
+
+    // Percent Height
+    [class*={$z}p_11]
+      height 300%
+    [class*={$z}p_11]
+      height 100%
+    [class*={$z}p_34]
+      height 75%
+    [class*={$z}p_12]
+      height 50%
+    [class*={$z}p_25]
+      height 40%
+    [class*={$z}p_14]
+      height 25%
+    [class*={$z}p_15]
+      height 20%
+    [class*={$z}p_23]
+      height 66.6666666%
+    [class*={$z}p_13]
+      height 33.3333333%
+    [class*={$z}p_90]
+      height 90%
+    [class*={$z}p_98]
+      height 98%
+    [class*={$z}p_99]
+      height 99%
 
 
 
@@ -122,42 +406,370 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, blockquote,
 
 *
   box-sizing border-box
+  background-position center center
+  //background-size cover
+
+//////////////////////////////////////////////////////
+// Typography
+//////////////////////////////////////////////////////
+body
+  color alpha($body-color, 87%)
+
+a
+  text-decoration none
+  color #ccc
+
+sup
+  font-size 50%
+
+.dark
+  color alpha($body-color-light, 100%)
+
+.light
+  color alpha($body-color, 87%)
+
+
+
+.tera
+  font-size (112/$em)rem
+h1,
+.giga
+  font-size (56/$em)rem
+.mega
+  font-size (45/$em)rem
+h2,
+.alpha
+  font-size (34/$em)rem
+h3,
+.beta
+  font-size (24/$em)rem
+.gamma
+  font-size (20/$em)rem
+h4,
+.delta
+  font-size (18/$em)rem
+h5,
+.epsilon
+  font-size (14/$em)rem
+h6,
+.zeta
+  font-size (12/$em)rem
+
+///
+// .tera
+//   font-size (114/$em)rem
+// h1,
+// .giga
+//   font-size (89/$em)rem
+// .mega
+//   font-size (55/$em)rem
+// h2,
+// .alpha
+//   font-size (34/$em)rem
+// h3,
+// .beta
+//   font-size (21/$em)rem
+// .gamma
+//   font-size (13/$em)rem
+// h4,
+// .delta
+//   font-size (8/$em)rem
+// h5,
+// .epsilon
+//   font-size (5/$em)rem
+// h6,
+// .zeta
+//   font-size (3/$em)rem
+//////////////////////////////////////////////////////
+// Container(div) Ratio Sizes
+// Get custom zone copy widths based on gutter settings
+//////////////////////////////////////////////////////
+poxy-copy-width($zone-e-min, $zone-e-max, $gx-E, $gy-E, $gs-E)
+poxy-copy-width($zone-d-min, $zone-d-max, $gx-D, $gy-D, $gs-D)
+poxy-copy-width($zone-c-min, $zone-c-max, $gx-C, $gy-C, $gs-C)
+poxy-copy-width($zone-b-min, $zone-b-max, $gx-B, $gy-B, $gs-B)
+poxy-copy-width($zone-a-min, $zone-a-max, $gx-A, $gy-A, $gs-A)
+
+//////////////////////////////////////////////////////
+// Container(div) Ratio Sizes
+//////////////////////////////////////////////////////
+// width (x)
+poxy-zone-width(E, e, $zone-e-min, $zone-e-max, $numerators-E, $gx-E, $gs-E)
+poxy-zone-width(D, d, $zone-d-min, $zone-d-max, $numerators-D, $gx-D, $gs-D)
+poxy-zone-width(C, c, $zone-c-min, $zone-c-max, $numerators-C, $gx-C, $gs-C)
+poxy-zone-width(B, b, $zone-b-min, $zone-b-max, $numerators-B, $gx-B, $gs-B)
+poxy-zone-width(A, a, $zone-a-min, $zone-a-max, $numerators-A, $gx-A, $gs-A)
+// height (y)
+poxy-zone-height(E, e, $zone-e-min, $zone-e-max, $numerators-E, $gx-E, $gs-E)
+poxy-zone-height(D, d, $zone-d-min, $zone-d-max, $numerators-D, $gx-D, $gs-D)
+poxy-zone-height(C, c, $zone-c-min, $zone-c-max, $numerators-C, $gx-C, $gs-C)
+poxy-zone-height(B, b, $zone-b-min, $zone-b-max, $numerators-B, $gx-B, $gs-B)
+poxy-zone-height(A, a, ($zone-a-min + 1), $zone-a-max, $numerators-A, $gx-A, $gs-A)
+
+// zone margin offsets and other zone exclusive styles
+zone-core(e, $zone-e-min, $gxe, $gye)
+zone-core(d, $zone-d-min, $gxd, $gyd)
+zone-core(c, $zone-c-min, $gxc, $gyc)
+zone-core(b, $zone-b-min, $gxb, $gyb)
+zone-core(a, $zone-a-min, $gxa, $gya)
+
+
 
 
 //////////////////////////////////////////////////////
-// Copy Width - Ratios are based on this width
+// POXY
 ////////////////////////////////////////////////////
-.cw
-  for i in (1..$max-copy-width)
-    @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)rem)
-        width: (((((i - 2) * ($column + $gutter) - $gutter) / $em) + $gx)rem)
+// Float - "o" stands for Float
+.poxy,
+.boxy
+  float left
 
-.cw > *
-  for i in (1..$max-copy-width)
-    @media (min-width: ((i * ($column + $gutter) - $gutter) / $em)rem)
-        width: (((((i - 2) * ($column + $gutter) - $gutter) / $em))rem)
+.qoxy,
+.doxy
+  float right
 
-.cw0 > *
-  margin-left 0
-
-
-// Get Width Classes
-poxy-zone-width(E, e, $zone-e-min, $zone-e-max, $numerators-E)
-poxy-zone-width(D, d, $zone-d-min, $zone-d-max, $numerators-D)
-poxy-zone-width(C, c, $zone-c-min, $zone-c-max, $numerators-C)
-poxy-zone-width(B, b, $zone-b-min, $zone-b-max, $numerators-B)
-poxy-zone-width(A, a, $zone-a-min, $zone-a-max, $numerators-A)
-
-// Get Hight Classes
-poxy-zone-height(E, e, $zone-e-min, $zone-e-max, $numerators-E)
-poxy-zone-height(D, d, $zone-d-min, $zone-d-max, $numerators-D)
-poxy-zone-height(C, c, $zone-c-min, $zone-c-max, $numerators-C)
-poxy-zone-height(B, b, $zone-b-min, $zone-b-max, $numerators-B)
-poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A)
+nav.pox > a
+  width 100%
+  float left
 
 
+// fixed - "f" stands for Fixed
+.pfxy,
+.qfxy,
+.bfxy,
+.dfxy
+  position fixed !important
+.pfxy
+  top 0
+  left 0
+.qfxy
+  top 0
+  right 0
+.bfxy
+  bottom 0
+  left 0
+.dfxy
+  bottom 0
+  right 0
 
 
+
+
+// Absolute
+.paxy,
+.pa,
+.qaxy,
+.baxy,
+.daxy
+  position absolute
+.paxy
+  top 0
+  left 0
+.qa
+  top 0
+  right 0
+.qoxy
+  top 0
+  right 0
+.daxy
+  bottom 0
+  right 0
+.baxy
+  bottom 0
+  left 0
+
+
+
+//////////////////////////////////////
+// No Zone Percent
+//////////////////////////////////////
+
+// // Width
+// [class*="p_31"]
+//   width 300%
+// [class*="p_11"]
+//   width 100%
+// [class*="p_34"]
+//   width 75%
+// [class*="p_12"]
+//   width 50%
+// [class*="p_25"]
+//   width 40%
+// [class*="p_14"]
+//   width 25%
+// [class*="p_15"]
+//   width 20%
+// [class*="p_23"]
+//   width 66.6666666%
+// [class*="p_13"]
+//   width 33.3333333%
+//
+// // Height
+// [class*="p31"]
+//   width:300%
+// [class*="p11"]
+//   height 100%
+// [class*="p34"]
+//   height 75%
+// [class*="p12"]
+//   height 50%
+// [class*="p25"]
+//   height 40%
+// [class*="p14"]
+//   height 25%
+// [class*="p15"]
+//   height 20%
+// [class*="p23"]
+//   height 66.6666666%
+// [class*="p13"]
+//   height 33.3333333%
+
+
+
+//////////////////////////////////////////////////////////////////////
+// OXY Classes
+///////////////////////////////////////////////////////////////////
+.oxy
+  //translate(50%, -50%)
+  -ms-transform: translate(50%, -50%); /* IE 9 */
+  -webkit-transform: translate(50%, -50%); /* Chrome, Safari, Opera */
+  transform: translate(50%, -50%);
+
+  position absolute
+  right 50%
+  top 50%
+  z-index 2
+
+.ox
+  translate(0%, -50%)
+  left 0
+  position absolute
+  top 50%
+  z-index 2
+
+.ox_
+  translate(0%, -50%)
+  position absolute
+  right 0
+  top 50%
+  z-index 2
+
+.oy
+  position absolute
+  right 50%
+  top 0
+  z-index 2
+  translate(50%, 0%)
+
+
+.oy_6
+  translate(50%, 0%)
+  position absolute
+  right 50%
+  top 0
+  z-index 2
+
+.oxy12,
+.oxy1,
+.oxy2,
+.oxy3,
+.oxy4,
+.oxy5,
+.oxy6,
+.oxy7,
+.oxy8,
+.oxy9,
+.ox10,
+.oxy11
+  display block
+  position absolute
+
+
+.oxy12
+  //translate(50%, 0%)
+  -ms-transform: translate(50%, 0%); /* IE 9 */
+  -webkit-transform: translate(50%, 0%); /* Chrome, Safari, Opera */
+  transform: translate(50%, 0%);
+  right 50%
+  top 0%
+
+.oxy1
+  //translate(50%, 0%)
+  right 25%
+  top 0
+
+.oxy2
+  //translate(0%, -50%)
+  right 0%
+  top 25%
+
+.oxy3
+  //translate(0%, -50%)
+  right 0%
+  top 50%
+
+.oxy4
+  //translate(0%, -50%)
+  right 0% top 75%
+
+.oxy5
+  //translate(50%, 0%)
+  bottom 0%
+  right 25%
+
+.oxy6
+  //translate(50%, 0%)
+  -ms-transform: translate(50%, 0%); /* IE 9 */
+  -webkit-transform: translate(50%, 0%); /* Chrome, Safari, Opera */
+  transform: translate(50%, 0%);
+  bottom 0%
+  right 50%
+
+.oxy7
+  //translate(50%, 0%)
+  bottom 0%
+  right 75%
+
+.oxy8
+  //translate(0%, -50%)
+  left 0%
+  top 75%
+
+.oxy9
+  //translate(0%, -50%)
+  -ms-transform: translate(0%, -50%); /* IE 9 */
+  -webkit-transform: translate(0%, -50%); /* Chrome, Safari, Opera */
+  left 0%
+  top 50%
+
+.oxy10
+  //translate(0%, 50%)
+  left 0%
+  top 25%
+
+.oxy11
+  //translate(-50%, 0%)
+  left 25%
+  top 0%
+
+
+
+
+
+.br100
+  border-radius 100%
+
+//////////////////////////////////////////////////////
+// z-index
+////////////////////////////////////////////////////
+for $i in (1..20)
+  .z{$i}
+    z-index $i
+
+
+//////////////////////////////////////////////////////
+// COMMON
+////////////////////////////////////////////////////
 .cb
   clear both
   display block
@@ -166,69 +778,175 @@ poxy-zone-height(A, a, $zone-a-min, $zone-a-max, $numerators-A)
   line-height 0
   width 100%
 
-.container
-  font-size: 100%
+section.clear
+  padding-top 0 !important
+  margin-bottom 0 !important
+  &:after,
+  &:before
+    display none !important
+  .sw
+    //margin-left 0 !important
+    margin-bottom 0 !important
+    &:after,
+    &:before
+      display none !important
+
+section.full
+  margin-left 0 !important
+  .sw
+    margin-left 0 !important
+  .cw
+    width 100% !important
+  .cw > *
+    margin-left 0
+
+button
+  background none
+  border none
+  position relative
+  float left
+
+.mb0
+  margin-bottom 0 !important
+.mt0
+  margin-top 0 !important
+.mr0
+  margin-right 0 !important
+.ml0
+  margin-left 0 !important
+// Background (bg-)
+.bg-a
+  background-color $accent
+
+// Text (tx-)
+.tx-a
+  color $accent
+.txc,
+.tx-c
+  text-align center
+.tx-r
+  text-align right
+.tx-l
+  text-align left
+
+// Vertical Center
+// display: table is kinda hacky, but it's a good way to vertically
+// align elements that has good browser support
+.tx-v
+  -webkit-box-sizing border-box
+  box-sizing border-box
+  display table
+  > *
+    display table-cell
+    margin auto 0
+    vertical-align middle
+
+
+
+// Background Position
+.bg-tc
+  background-position center top
+
+.bg-contain,
+.bg-contain *
+  background-size contain
+  background-repeat no-repeat
+
+
+
+// Overflow
+.ofh
+  overflow hidden !important
+
+
+
+
+// Box Shadow
+.bs6
+  box-shadow 0 2px 5px 0 rgba(0, 0, 0, 0.26)
+
+.bs12
+  box-shadow 0 2px 10px 0 rgba(0, 0, 0, 0.16)
+
+
+//////////////////////////////////////////////////////
+// CORE
+////////////////////////////////////////////////////
+nav *
+  background-repeat no-repeat
+  background-size contain
+
+nav a
+  position relative
 
 section
+  //position relative
   display block
   float left
-  margin 0
-  overflow hidden
-  padding 0
   width 100%
-  margin-top -($gy)
 
-.site-width,
-.sw
+.sw // site-width
   display block
   float left
   margin 0 auto
   width: 100%
-
-.copy-width,
-.cw
-  display block
   position relative
-  background #666
+
+.cw // copy-widt
+  position relative
+  //background #666
   margin 0 auto
+
+.cw0
+  width 100%
+  float left
+
+.cw0 > *
+  margin-left 0
 
 .copy-inside
   display inline-block
 
 section:before,
 section:after
-  margin 0 auto
-  height $gy
+  //margin 0 auto
+  display block
   float right
   width 100%
-  border-top alpha(#fff, .2) solid 1px
-  border-bottom alpha(#fff, .2) solid 1px
-  //background alpha(#222, .9)
+  content:""
 
 figure
-  //margin-right $gx
-  margin-bottom $gy
-  margin-left $gx
+  background-size cover
+  background-position center center
+  -webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
+ 	backface-visibility: hidden;
   float left
-  background alpha(#fff, .1)
-  border alpha(#fff, .15) solid 2px
-  text-align center
-  //padding .25rem 0
-  border-radius .15rem
   width 100%
-  // &:last-child
-  //   margin-bottom 0
+  span
+    background-size cover
+    background-position center center
+
+figure  *
+  -webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
+   backface-visibility: hidden;
+
 
 .mr0
   margin-right 0
 
-//////////////////////////////////////////////////////////////////////
-// Meat
-/////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////
+// Box Styling
+////////////////////////////////////////////////////
+header,
+footer,
+#meat
+  float left
+  width 100%
+
 .container
   padding:0;
   display:block;
-  //background-color:$container_bg;
 
   section .site-width:before
   section .site-width:after
@@ -237,17 +955,8 @@ figure
     width:100%
     content:""
 
-
-  section:before
-    //border-top 0px solid #ccc
-    //border-bottom: 1px solid #fff;
-    //height 1px
-    display block
-    content ""
-
-
-  //section .site-width{background:rgba(0,0,0, 1) !important; }
-  //section .site-width:before{background:rgba(0,0,0, .3) !important; float:left;}
+  //section .site-width{background:rgba(0,0,0, 1) !important
+  //section .site-width:before{background:rgba(0,0,0, .3) !important
   section:nth-child(1):before
     width 100% !important
 
@@ -257,18 +966,6 @@ figure
   //section:first-child:before, section:first-child:after{height:0;}
   //section:last-child .site-width:after{margin-top:$cols1 !important;}
 
-  .site-width
-    margin:$spacer/8 0
-    background #f5f5f5
-    background-color #444
-
-  .copy-width
-    background #666
-
-
-
-//#meat:first-child section:first-child:after{width:100% !important}
-
 .container:after
 footer:after
      visibility hidden
@@ -277,3 +974,140 @@ footer:after
      content ""
      clear both
      height 0
+
+footer section:last-child:after
+  display none
+
+
+//////////////////////////////////////////////////////////////////////
+// Deve Zone Styles
+/////////////////////////////////////////////////////////////////////
+
+// ZONE COLORS
+$zone-a-color = #00bcd4
+$zone-b-color = #5677fc
+$zone-c-color = #ffc107
+$zone-d-color = #a6e22a
+$zone-e-color = #e0276f
+$zone-f-color = #10e277
+
+// section
+//   border-top alpha(#fff, .1) solid 1px
+//   &:nth-child(2n+2)
+//     background alpha(#fff, .3)
+//   &:before
+//     border-top alpha(#fff, .03) solid 1px
+//   &:after
+//     border-bottom alpha(#fff, .03) solid 1px
+
+.poxy-dev
+  z-index 9999
+
+.poxy-dev span
+
+  font-size .8em
+  padding $s4
+  float left
+  width $cols1
+  height $cols1
+  +zone(E)
+    background $zone-e-color
+    color #fff
+  +zone(D)
+    background $zone-d-color
+    color #fff
+  +zone(C)
+    background $zone-c-color
+    color #fff
+  +zone(B)
+    background $zone-b-color
+    color #000
+  +zone(A)
+    background $zone-a-color
+    color #000
+
+  &:before
+    +zone(E)
+      content 'E '
+    +zone(D)
+      content 'D '
+    +zone(C)
+      content 'C '
+    +zone(B)
+      content 'B '
+    +zone(A)
+      content 'A '
+
+.poxy_dev li:first-child a
+  line-height 2em
+
+.poxy_dev li:first-child a:before
+  font-family sans-serif
+  font-size 55%
+  letter-spacing .12em
+  position absolute
+  text-transform uppercase
+  top 40%
+
+
+
+
+
+for $i in (1..40)
+  @media (min-width:(($i * ($column + $gutter) - $gutter) / $em))
+    .logo h2:after,
+    .poxy-dev span:after
+      content '' + $i + 'x'
+
+
+$dev-color-opacity = 70%
+
+//figure,
+.logo
+  +zone(E)
+    //background-color alpha($zone-e-color, $dev-color-opacity)
+    color alpha($zone-e-color, $dev-color-opacity)
+  +zone(D)
+    background-color alpha($zone-d-color, $dev-color-opacity)
+    //color #fff
+  +zone(C)
+    background-color alpha($zone-c-color, $dev-color-opacity)
+    //color #fff
+  +zone(B)
+    background-color alpha($zone-b-color, $dev-color-opacity)
+    //color #000
+  +zone(A)
+    //background-color alpha($zone-a-color, $dev-color-opacity)
+    color alpha($zone-a-color, $dev-color-opacity)
+
+//////////////////////////////////////////////////////
+// DEV
+////////////////////////////////////////////////////
+.hide
+  display none !important
+.red
+  background-color red
+.logo
+  background-size cover
+.bg0
+  background transparent !important
+.bg10
+  background-color darken(#fff, 10%) !important
+.bg20
+  background-color darken(#fff, 20%) !important
+.bg30
+  background-color darken(#fff, 30%) !important
+.bg40
+  background-color darken(#fff, 40%) !important
+.bg50
+  background-color darken(#fff, 50%) !important
+.bg60
+  background-color darken(#fff, 60%) !important
+.bg70
+  background-color darken(#fff, 70%) !important
+.bg80
+  background-color darken(#fff, 80%) !important
+.bg90
+  background-color darken(#fff, 90%) !important
+.bg100
+  background-color darken(#fff, 100%) !important

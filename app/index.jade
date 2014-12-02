@@ -9,66 +9,167 @@ doctype html
 <html class="no-js lt-ie9">
 <![endif]-->
 <!--[if gt IE 8]><!-->
-html.no-js
-<!--<![endif]-->
-head
-  meta(charset="utf-8")
-  meta(http-equiv="X-UA-Compatible", content="IE=edge")
-  title
-  meta(name="description", content="")
-  meta(name="viewport", content="width=device-width")
-  // Place favicon.ico and apple-touch-icon.png in the root directory
-  // build:css styles/vendor.css
-  // bower:css
-  // endbower
-  // endbuild
-  // build:css(.tmp) styles/main.css
-  link(rel="stylesheet", href="styles/main.css")
-  // endbuild
-body(ng-app="poxyStylusApp")
-  <!--[if lt IE 7]>
-  p.browsehappy
-    | You are using an
-    strong outdated
-    |  browser. Please
-    a(href="http://browsehappy.com/") upgrade your browser
-    |  to improve your experience.
-  <![endif]-->
+html.no-js <!--<![endif]-->
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+    title
+    meta(name="description", content="")
+    meta(name="viewport", content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no")
+    meta(http-equiv="cleartype", content="on")
+    meta(content="yes" name="apple-mobile-web-app-capable")
+    meta(name="apple-mobile-web-app-status-bar-style" content="black")
+    // Place favicon.ico and apple-touch-icon.png in the root directory
+    // build:css styles/vendor.css
+    // bower:css
+    link(rel='stylesheet', href='bower_components/slick-carousel/slick/slick.css')
+    // endbower
+    // endbuild
+    // build:css(.tmp) styles/main.css
+    link(rel="stylesheet", href="styles/main.css")
+    // endbuild
+  body(ng-app="poxyStylusApp")
+    <!--[if lt IE 7]>
+    p.browsehappy
+      | You are using an
+      strong outdated
+      |  browser. Please
+      a(href="http://browsehappy.com/") upgrade your browser
+      |  to improve your experience.
+    <![endif]-->
 
-  // Add your site or application content here
+    // Add your site or application content here
+    header.pfxy.z10
+      section.clear.full
+        div.sw
+          div.cw
+            a(href="#/", style='background-image: url(images/logo.png);').logo.paxya15a_16.paxyb18b_110.paxyc18c_110.paxyd18d_18.paxye18e_110.mb0.mt0.ml4
+              //- h2.oxy
+            nav.qoxya12a_19.qoxyb34b_110.qoxyc34c_18.qoxyd34d_18.qoxye34e_18.mb0
+              a(href="#/about").poxy.ap14ap_11.bp14bp_11.cp14cp_11c.dp14dp_11.ep14ep_11.mt0.mb4
+                span(style='background-image: url(images/icon-heart.png);').oxy12.mt4.a116a_116.br100
+                span.oxy6.mb4.epsilon about
+              a(href="#/products").poxy.ap14ap_11.bp14bp_11.cp14cp_11c.dp14dp_11.ep14ep_11.mt0.mb4
+                span(style='background-image: url(http://placehold.it/50x50/333333&text=icon);').oxy12.mt4.a116a_116.br100
+                span.oxy6.mb4.epsilon products
+              a(href="#/shop").poxy.ap14ap_11.bp14bp_11.cp14cp_11c.dp14dp_11.ep14ep_11.mt0.mb4
+                span(style='background-image: url(http://placehold.it/50x50/333333&text=icon);').oxy12.mt4.a116a_116.br100
+                span.oxy6.mb4.epsilon shop
+              a(href="#/blog").poxy.ap14ap_11.bp14bp_11.cp14cp_11c.dp14dp_11.ep14ep_11.mt0.mb4
+                span(style='background-image: url(http://placehold.it/50x50/333333&text=icon);').oxy12.mt4.a116a_116.br100
+                span.oxy6.mb4.epsilon blog
 
-  div.container(ng-view)
+    section.clear
+      div.sw
+        div.cw.a_110
 
+    div.container(ng-view)
 
-  // Google Analytics: change UA-XXXXX-X to be your site's ID
-  script.
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    section.bg-paper
+      div.sw
+        div.cw.tx-c
+          figure.a_18
+            span.bg-contain(style='background-image: url(images/fall-in-love.png);').oxy.a34a_18
+          //- figure
+          //-   h1 inspired by new zealand
+          //-   h2 Made Fresh in Minnesota
+    footer
+      section.dark.hide
+        div.sw
+          div.cw
+            figure.poxa14a_14poxb14b_14poxc12poxc_14poxd12d_14poxe11e_14
+              h4 Section Heading
+              nav.pox.epsilon
+                a(href="#") footer link
+                a(href="#") footer link
+                a(href="#") footer link
+                a(href="#") footer link
+                a(href="#") footer link
+                a(href="#") footer link
+            figure.poxa14a_14poxb14b_14poxc12poxc_14poxd12d_14poxe11e_14
+              h4 Section Heading
+              nav.pox.epsilon
+                a(href="#") footer link
+                a(href="#") footer link
+                a(href="#") footer link
+                a(href="#") footer link
+                a(href="#") footer link
+                a(href="#") footer link
+            figure.poxa14a_14poxb14b_14poxc12poxc_14poxd12d_14poxe11e_14
+              h4 Section Heading
+              nav.pox.epsilon
+                a(href="#") footer link
+                a(href="#") footer link
+                a(href="#") footer link
+                a(href="#") footer link
+                a(href="#") footer link
+                a(href="#") footer link
+            figure.poxa14a_14poxb14b_14poxc12poxc_14poxd12d_14poxe11e_14
+              h4 Section Heading
+              nav.pox.epsilon
+                a(href="#") footer link
+                a(href="#") footer link
+                a(href="#") footer link
+                a(href="#") footer link
+                a(href="#") footer link
+                a(href="#") footer link
 
-    ga('create', 'UA-XXXXX-X');
-    ga('send', 'pageview');
+      section.dark
+        div.sw
+          div.cw
+            div.soical-icons.poxya12a_116poxyb12b_18poxye11e_18.txt-c.mb0
+              figure.poxya116a_116poxyb18b_18poxye14e_18.tx-v.alpha.bg10.br100
+                a(target="_blank" href='#').oxy
+                  span &#xe027;
+              figure.poxya116a_116poxyb18b_18poxye14e_18.tx-v.alpha.bg10.br100
+                a(target="_blank" href='#').oxy
+                  span &#xe027;
+              figure.poxya116a_116poxyb18b_18poxye14e_18.tx-v.alpha.bg10.br100
+                a(target="_blank" href='#').oxy
+                  span &#xe027;
+              figure.poxya116a_116poxyb18b_18poxye14e_18.tx-v.alpha.bg10.br100
+                a(target="_blank" href='#').oxy
+                  span &#xe027;
 
-  <!--[if lt IE 9]>
-  script(src="bower_components/es5-shim/es5-shim.js")
-  script(src="bower_components/json3/lib/json3.min.js")
-  <![endif]-->
+            figure.poxya12a_116poxyb12b_18.poxye11e_16.tx-v.zeta.mb0
+              span.txa-r.txb-r.txe-c &copy; 2014
+                a(href="#") Poxy All Rights Reserved.
 
-  // build:js scripts/vendor.js
-  // bower:js
-  script(src='bower_components/jquery/dist/jquery.js')
-  script(src='bower_components/es5-shim/es5-shim.js')
-  script(src='bower_components/angular/angular.js')
-  script(src='bower_components/json3/lib/json3.min.js')
-  script(src='bower_components/angular-resource/angular-resource.js')
-  script(src='bower_components/angular-cookies/angular-cookies.js')
-  script(src='bower_components/angular-sanitize/angular-sanitize.js')
-  script(src='bower_components/angular-route/angular-route.js')
-  // endbower
-  // endbuild
+    div.bfxy.poxy-dev
+      span
 
-  // build:js(.tmp) scripts/main.js
-  script(src="scripts/app.js")
-  script(src="scripts/controllers/main.js")
-  // endbuild
+    // Google Analytics: change UA-XXXXX-X to be your site's ID
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-XXXXX-X');
+      ga('send', 'pageview');
+
+    <!--[if lt IE 9]>
+    script(src="bower_components/es5-shim/es5-shim.js")
+    script(src="bower_components/json3/lib/json3.min.js")
+    <![endif]-->
+
+    // build:js scripts/vendor.js
+    // bower:js
+    script(src='bower_components/jquery/dist/jquery.js')
+    script(src='bower_components/es5-shim/es5-shim.js')
+    script(src='bower_components/angular/angular.js')
+    script(src='bower_components/json3/lib/json3.min.js')
+    script(src='bower_components/angular-resource/angular-resource.js')
+    script(src='bower_components/angular-cookies/angular-cookies.js')
+    script(src='bower_components/angular-sanitize/angular-sanitize.js')
+    script(src='bower_components/angular-route/angular-route.js')
+    script(src='bower_components/slick-carousel/slick/slick.min.js')
+    script(src='bower_components/angular-slick/dist/slick.js')
+    script(src='bower_components/ngFx/dist/ngFx.js')
+    // endbower
+    // endbuild
+
+    // build:js(.tmp) scripts/main.js
+    script(src="scripts/app.js")
+    script(src="scripts/controllers/main.js")
+    // endbuild

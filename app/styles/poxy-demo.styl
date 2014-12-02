@@ -1,4 +1,158 @@
+@import url('http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic');
+@import 'nib'
+/////////////////////////////////
+// DESIGN SETTINGS
+/////////////////////////////////
+$body-color = #111
+$body-color-light = #ccc
+$accent = #d251d7
+
+/////////////////////////////////
+// Styles
+///////////////////////////////
 body
-  font-family sans-serif
+  //font-family 'Lato' sans-serif
+  font-family "Courier New", Courier, monospace
   font-size 100%
-  background: #111
+  background-color: #111
+  //background-image url(http://subtlepatterns.com/patterns/binding_dark.png)
+
+
+
+
+
+header
+  background alpha(#fff, 1)
+
+  .logo
+    background-size contain
+    background-repeat no-repeat
+
+  a
+    color $body-color
+
+
+footer
+  position relative
+
+#meat
+  background alpha(#fff, 1)
+
+
+figure
+  position relative
+
+//#meat figure span,
+.shadow
+  transition opacity 0.2s
+  background-image radial-gradient(ellipse at center, rgba(0,0,0,0), rgba(0,0,0,0.45) 80%, rgba(0,0,0,0.75) 150%)
+  border alpha(#fff, .15) solid 2px
+  text-align center
+
+// #meat figure:hover span
+//   opacity .5
+
+
+// Navigation
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header nav a
+  text-transform uppercase
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  -webkit-mask-image url('../images/text-mask.png')
+  -o-mask-image url('../images/text-mask.png')
+  -moz-mask-image url('../images/text-mask.png')
+  mask-image url('../images/text-mask.png')
+  //text-shadow 0px 0px 30px rgba(30, 28, 28, 0.6)
+
+
+
+// Typography
+p
+  font-family "Courier New", Courier, monospace
+
+nav a:hover
+  transition background 0.2s
+  background-color $accent !important
+
+
+
+
+section.full .slick-prev
+  left 1rem
+
+section.full .slick-next
+  right 1rem
+
+
+// footer:before, .bg-paper:after
+//   content ""
+//   width 100%
+//   position relative
+//   height 50px
+//   float left
+//   position absolute
+//   top 0
+//   background-image -webkit-gradient(linear, 0 0, 300% 100%, color-stop(0.25rem, #666), color-stop(0.25rem, #666))
+//   background-image linear-gradient(135deg, #666 25%, transparent 25%), linear-gradient(225deg, #666 25%, transparent 25%)
+//   background-position 50%
+//   background-repeat repeat-x
+//   background-size 50px 100%
+
+.bg-paper:after
+  content ""
+  width 100%
+  position relative
+  height 50px
+  float left
+  position absolute
+  top 0
+  margin 0 !important
+  background-image -webkit-gradient(linear, 0 0, 300% 100%, color-stop(0.25, #fff), color-stop(0.25, #fff))
+  background-image linear-gradient(135deg, #fff 25%, transparent 25%), linear-gradient(225deg, #fff 25%, transparent 25%)
+  background-position 50%
+  background-repeat repeat-x
+  background-size 50px 100%
+
+.bbg-a:after
+  background-image -webkit-gradient(linear, 0 0, 300% 100%, color-stop(0.25, $accent), color-stop(0.25, $accent))
+  background-image linear-gradient(135deg, $accent 25%, transparent 25%), linear-gradient(225deg, $accent 25%, transparent 25%)
+
+
+.bg-paper
+  position relative
+  overflow visible
+  background-color #dec28e !important
+  background-image url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZlcnNpb249JzEuMScgd2lkdGg9JzMwMCcgaGVpZ2h0PSczMDAnPgoJPGRlZnM+CgkJPGZpbHRlciBjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM9J3NSR0InIGlkPSdmaWx0ZXIzMDAxJz4KCQkJPGZlVHVyYnVsZW5jZSB0eXBlPSdmcmFjdGFsTm9pc2UnIGJhc2VGcmVxdWVuY3k9JzEwMCAuODUnIG51bU9jdGF2ZXM9JzEnLz4KCQk8L2ZpbHRlcj4KCTwvZGVmcz4KCTxyZWN0IGhlaWdodD0nMjAwJScgd2lkdGg9JzIwMCUnIHN0eWxlPSdmaWx0ZXI6dXJsKCNmaWx0ZXIzMDAxKScgLz4KCTxyZWN0IGhlaWdodD0nMjAwJScgd2lkdGg9JzIwMCUnIHN0eWxlPSdmaWxsOiNlZGM5YTE7ZmlsbC1vcGFjaXR5OjAuMTM7Jy8+Cjwvc3ZnPg==') !important
+
+
+.bg-wood
+  /** To edit this background, follow this link:
+  http://svgeneration.com/generate/Wood-Grain?base-color=f2e8d3&grain-color=c28c6d&grain-weight=1.5&turbulence-weight=0.15&
+  */
+  background-repeat repeat
+  background-color #f2e8d3
+  background-image url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc2MDAnIGhlaWdodD0nNCc+Cgk8ZGVmcyBpZD0nZGVmczQnPgoJCTxmaWx0ZXIgeT0nMCcgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSdzUkdCJyBpZD0ndCc+CgkJCTxmZVR1cmJ1bGVuY2UgdHlwZT0nZnJhY3RhbE5vaXNlJyBiYXNlRnJlcXVlbmN5PScuOCAwJyByZXN1bHQ9J291dDEnIG51bU9jdGF2ZXM9JzEnLz4KCQkJPGZlQ29sb3JNYXRyaXggdHlwZT0nc2F0dXJhdGUnIGluPSdvdXQxJyByZXN1bHQ9J291dDInIHZhbHVlcz0nMCcvPgoJCQk8ZmVDb21wb3NpdGUgb3BlcmF0b3I9J2FyaXRobWV0aWMnIGsxPScwJyBrMj0nMC4xNScgazM9JzAnIGs0PScwJyBpbj0nb3V0MicgaW4yPSdvdXQxJy8+CgkJPC9maWx0ZXI+Cgk8L2RlZnM+Cgk8cmVjdCBmaWxsPScjYzI4YzZkJyBmaWxsLW9wYWNpdHk9JzAuMTUwMDAwMDAwMDAwMDAwMDInIHg9JzUlJyB5PSctNSUnIHdpZHRoPScxMCUnIGhlaWdodD0nMTEwJScvPgoJPHJlY3QgZmlsbD0nI2MyOGM2ZCcgZmlsbC1vcGFjaXR5PScwLjA2JyB4PSc2JScgeT0nLTUlJyB3aWR0aD0nMTAlJyBoZWlnaHQ9JzExMCUnLz4KCTxyZWN0IGZpbGw9JyNjMjhjNmQnIGZpbGwtb3BhY2l0eT0nMC4wNicgeD0nNyUnIHk9Jy01JScgd2lkdGg9JzE0JScgaGVpZ2h0PScxMTAlJy8+Cgk8cmVjdCBmaWxsPScjYzI4YzZkJyBmaWxsLW9wYWNpdHk9JzAuMDYnIHg9JzklJyB5PSctNSUnIHdpZHRoPScyMCUnIGhlaWdodD0nMTEwJScvPgoJPHJlY3QgZmlsbD0nI2MyOGM2ZCcgZmlsbC1vcGFjaXR5PScwLjA2JyB4PScxMSUnIHk9Jy01JScgd2lkdGg9JzEwJScgaGVpZ2h0PScxMTAlJy8+Cgk8cmVjdCBmaWxsPScjYzI4YzZkJyBmaWxsLW9wYWNpdHk9JzAuMTInIHg9JzU1JScgeT0nLTUlJyB3aWR0aD0nNDAlJyBoZWlnaHQ9JzExMCUnLz4KCTxyZWN0IGZpbGw9JyNjMjhjNmQnIGZpbGwtb3BhY2l0eT0nMC4wNDUnIHg9JzYyJScgeT0nLTUlJyB3aWR0aD0nMzUlJyBoZWlnaHQ9JzExMCUnLz4KCTxyZWN0IGZpbGw9JyNjMjhjNmQnIGZpbGwtb3BhY2l0eT0nMC4xMDUwMDAwMDAwMDAwMDAwMScgeD0nMzglJyB5PSctNSUnIHdpZHRoPScyMCUnIGhlaWdodD0nMTEwJScvPgoJPHJlY3QgZmlsbD0nI2MyOGM2ZCcgZmlsbC1vcGFjaXR5PScwLjA0NScgeD0nODUlJyB5PSctNSUnIHdpZHRoPSc0MCUnIGhlaWdodD0nMTEwJScvPgoJPHJlY3QgZmlsbD0nI2MyOGM2ZCcgZmlsbC1vcGFjaXR5PScwLjA3NTAwMDAwMDAwMDAwMDAxJyB4PSc1MiUnIHk9Jy01JScgd2lkdGg9JzQwJScgaGVpZ2h0PScxMTAlJy8+Cgk8cmVjdCBzdHlsZT0nZmlsdGVyOnVybCgjdCknIHg9Jy0xJScgeT0nLTElJyB3aWR0aD0nMTAyJScgaGVpZ2h0PScxMDAlJy8+Cjwvc3ZnPg==')
+
+
+.bg-fixed
+  background-attachment fixed
+  background-image url('../images/fixed-home.jpg') !important
+  background-size cover
+
+// Single Product
+.banner-mask
+  background-position right top
+  background-size cover
+  position relative
